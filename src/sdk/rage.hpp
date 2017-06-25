@@ -23,7 +23,7 @@ namespace rage
 		virtual uint32_t GetVersion() { return sdkver; }
 		virtual void Unload() { }
 	};
-	
+
 	class IEntityHandler;
 	class IPlayerHandler;
 	class IVehicleHandler;

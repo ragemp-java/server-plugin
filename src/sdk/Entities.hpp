@@ -117,8 +117,8 @@ namespace rage
 				this->_Call(eventName);
 			else
 			{
-				/* arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
-				this->_Call(eventName, arguments, count); */
+				arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
+				this->_Call(eventName, arguments, count);
 			}
 		}
 
@@ -131,8 +131,8 @@ namespace rage
 				this->_Invoke(hash);
 			else
 			{
-				/* arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
-				this->_Invoke(hash, arguments, count); */
+				arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
+				this->_Invoke(hash, arguments, count);
 			}
 		}
 	};

@@ -51,19 +51,19 @@ namespace rage
 
 		virtual void SetAlpha(uint8_t alpha) = 0;
 
-		private:
+	private:
 		virtual void* GetExternalValue() = 0;
 		virtual void SetExternalValue(void *val) = 0;
 
-		public:
+	public:
 		// todo
 
-		public:
+	public:
 		template<class T>
 		T* External() { return reinterpret_cast<T*>(this->GetExternalValue()); }
 
 		template<class T>
-		void External(T *val) { this->SetExternalValue(reinterpret_cast<void*>(val)); }		
+		void External(T *val) { this->SetExternalValue(reinterpret_cast<void*>(val)); }
 	};
 
 	template<class T>
