@@ -10,3 +10,11 @@ RageJava.vcxproj.filters
 ZERO_CHECK.vcxproj
 ZERO_CHECK.vcxproj.filters
 cmake_install.cmake
+.vs/
+ALL_BUILD.vcxproj.user
+Debug/
+RageJava.dir/
+RageJava.sln.DotSettings.user
+RageJava.vcxproj.user
+ZERO_CHECK.vcxproj.user
+x64/
