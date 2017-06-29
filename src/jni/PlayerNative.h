@@ -10,34 +10,34 @@ extern "C" {
 	/*
 	* Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
 	* Method:    kick
-	* Signature: (Ljava/lang/String;)V
+	* Signature: (ILjava/lang/String;)V
 	*/
 	JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_kick
-	(JNIEnv *, jobject, jstring);
+	(JNIEnv *, jobject, jint, jstring);
 
 	/*
 	* Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
 	* Method:    ban
-	* Signature: (Ljava/lang/String;)V
+	* Signature: (ILjava/lang/String;)V
 	*/
 	JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_ban
-	(JNIEnv *, jobject, jstring);
+	(JNIEnv *, jobject, jint, jstring);
 
 	/*
 	* Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
 	* Method:    outputChatBox
-	* Signature: (Ljava/lang/String;)V
+	* Signature: (ILjava/lang/String;)V
 	*/
 	JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_outputChatBox
-	(JNIEnv *, jobject, jstring);
+	(JNIEnv *, jobject, jint, jstring);
 
 	/*
 	* Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
 	* Method:    notify
-	* Signature: (Ljava/lang/String;)V
+	* Signature: (ILjava/lang/String;)V
 	*/
 	JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_notify
-	(JNIEnv *, jobject, jstring);
+	(JNIEnv *, jobject, jint, jstring);
 
 #ifdef __cplusplus
 }

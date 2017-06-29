@@ -10,7 +10,7 @@
 #ifdef WIN32
 #define RAGE_API extern "C" __declspec(dllexport) 
 #else
-#define RAGE_API
+#define RAGE_API extern "C" __attribute__((visibility("default")))
 #endif
 
 namespace rage
@@ -68,14 +68,14 @@ namespace rage
 		virtual void OnPlayerJoin(IPlayer *player) { }
 		virtual void OnPlayerQuit(IPlayer *player, exit_t exitType, const char *reason) { }
 		virtual void OnPlayerSpawn(IPlayer *player) { }
-		virtual void OnPlayerCommand(IPlayer *player, const std::wstring& command) { }
-		virtual void OnPlayerChat(IPlayer *player, const std::wstring& text) { }
+		virtual void OnPlayerCommand(IPlayer *player, const std::u16string& command) { }
+		virtual void OnPlayerChat(IPlayer *player, const std::u16string& text) { }
 		virtual void OnPlayerEnterVehicle(IPlayer *player, IVehicle *vehicle, uint8_t seatId) { }
 		virtual void OnPlayerEnteredVehicle(IPlayer *player, IVehicle *vehicle, uint8_t seatId) { }
 		virtual void OnPlayerExitVehicle(IPlayer *player, IVehicle *vehicle) { }
 		virtual void OnPlayerLeftVehicle(IPlayer *player, IVehicle *vehicle) { }
 		virtual void OnPlayerDeath(IPlayer *player, hash_t reason, IPlayer *killer) { }
-		virtual void OnPlayerRemoteEvent(IPlayer *player, const std::wstring& eventName, const args_t& args) { } // to be done
+		virtual void OnPlayerRemoteEvent(IPlayer *player, const std::string& eventName, const args_t& args) { } // to be done
 	};
 
 	class IVehicleHandler
@@ -134,5 +134,9 @@ namespace rage
 		virtual const IObjectPool& GetObjectPool() = 0;
 	};
 
-	typedef IPlugin*(__cdecl *initializeFunc_t) (IMultiplayer *multiplayer);
+	using initializeFunc_t = IPlugin*(
+#ifdef WIN32
+		__cdecl
+#endif
+		*) (IMultiplayer *multiplayer);
 }

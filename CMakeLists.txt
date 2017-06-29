@@ -14,14 +14,6 @@ else ()
     message(ERROR "JNI not found!")
 endif ()
 
-#file(GLOB_RECURSE  SOURCES src/*.cpp)
-#file(GLOB_RECURSE  HEADERS src/*.hpp)
-#
-#include_directories(include)
-#
-#add_library(RageJava SHARED ${SOURCES} ${HEADERS})
-
-
 set(_src_root_path "${RageJava_SOURCE_DIR}/src")
 file(
         GLOB_RECURSE _source_list
@@ -30,7 +22,12 @@ file(
         "${_src_root_path}/*.h*"
 )
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+
 add_library(RageJava SHARED ${_source_list})
+target_link_libraries(RageJava ${JNI_LIBRARIES})
 
 foreach(_source IN ITEMS ${_source_list})
     get_filename_component(_source_path "${_source}" PATH)

@@ -82,15 +82,16 @@ namespace rage
 
 	using Entity = IEntity;
 
-	class IPlayer : public Entity
+	class IPlayer
+		: public Entity
 	{
 	public:
 		virtual void Kick(const char *reason) = 0;
 		virtual void Ban(const char *reason) = 0;
-		virtual void OutputChatBox(const std::wstring& text) = 0;
-		virtual void Notify(const std::wstring& text) = 0;
+		virtual void OutputChatBox(const std::u16string& text) = 0;
+		virtual void Notify(const std::u16string& text) = 0;
 	private:
-		virtual void _Call(const std::wstring& eventName, const arg_t *arguments = nullptr, size_t count = 0) = 0;
+		virtual void _Call(const std::u16string& eventName, const arg_t *arguments = nullptr, size_t count = 0) = 0;
 		virtual void _Invoke(uint64_t nativeHash, const arg_t *arguments = nullptr, size_t count = 0) = 0;
 	public:
 		virtual void Spawn(const vector3& pos, float heading) = 0;
@@ -109,7 +110,7 @@ namespace rage
 
 	public:
 		template<typename ...Args>
-		void Call(const std::wstring& eventName, Args&&... args)
+		void Call(const std::u16string& eventName, Args&&... args)
 		{
 			const int count = sizeof...(Args);
 
@@ -117,7 +118,7 @@ namespace rage
 				this->_Call(eventName);
 			else
 			{
-				arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
+				arg_t arguments[count] = { arg_t(std::forward<Args>(args))... };
 				this->_Call(eventName, arguments, count);
 			}
 		}
@@ -131,7 +132,7 @@ namespace rage
 				this->_Invoke(hash);
 			else
 			{
-				arg_t arguments[count] = { arg_t(isolate, std::forward<Args>(args))... };
+				arg_t arguments[count] = { arg_t(std::forward<Args>(args))... };
 				this->_Invoke(hash, arguments, count);
 			}
 		}
