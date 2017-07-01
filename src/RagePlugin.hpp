@@ -4,14 +4,15 @@
 #endif
 #include <iostream>
 #include "sdk/rage.hpp"
-#include "player/PlayerEventHandler.hpp"
+#include "event/PlayerEventHandler.hpp"
+#include "event/EntityEventHandler.hpp"
+#include "event/VehicleEventHandler.hpp"
+#include "event/ColshapeEventHandler.hpp"
+#include "event/CheckpointEventHandler.hpp"
 #include "jvm/JVM.hpp"
 
 class RagePlugin
 {
 public:
-//	static rage::IMultiplayer *getMultiPlayer();
-//	static void setMultiPlayer(rage::IMultiplayer *mp);
-//private:
-//	static rage::IMultiplayer *mp;
+	static rage::IMultiplayer *getMultiPlayer();
 };

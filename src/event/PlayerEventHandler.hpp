@@ -6,6 +6,9 @@
 class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler
 {
 public:
+
+    static rage::IPlayer *GetPlayer();
+
     rage::IPlayerHandler *GetPlayerHandler() override;
 
     void OnPlayerJoin(rage::IPlayer *player) override;
@@ -29,6 +32,9 @@ public:
     void OnPlayerDeath(rage::IPlayer *player, rage::hash_t reason, rage::IPlayer *killer) override;
 
     void OnPlayerRemoteEvent(rage::IPlayer *player, const std::string &eventName, const rage::args_t &args) override;
+
+private:
+    static rage::IPlayer *player;
 };
 
 #endif //RAGEJAVA_PLAYEREVENTHANDLER_H

@@ -1,90 +1,104 @@
 #include "JVM.hpp"
 #include <iostream>
 
-JNIEnv* JVM::createJavaVirtualMachine()
+static JNIEnv* jniEnv = nullptr;
+static JavaVM *javaVM = nullptr;
+
+bool JVM::createJavaVirtualMachine()
 {
-	JavaVM *javaVM;
-	JNIEnv *jniEnv;
-	JavaVMInitArgs vm_args;
-	JavaVMOption options[4];
+	std::cout << "Creating Java Virtual Machine..." << std::endl;
 
-	options[0].optionString = "-Djava.compiler=NONE";           /* disable JIT */
-	options[1].optionString = "-Djava.class.path=./plugins/launcher.jar;"; /* user classes */
-	options[2].optionString = "-Djava.library.path=./plugins/RageJava.dll";  /* set native library path */
-	options[3].optionString = "-verbose:jni";                   /* print JNI-related messages */
+    if(!JVM::createJVM()) {
+        return false;
+    }
+    if(!JVM::findAndExecuteMain()) {
+        return false;
+    }
+    return true;
+}
 
-	vm_args.version = JNI_VERSION_1_8;
-	vm_args.options = options;
-	vm_args.nOptions = 4;
-	vm_args.ignoreUnrecognized = true;
+JNIEnv *JVM::getJNIEnv() {
+	return jniEnv;
+}
 
-	/* Note that in the JDK/JRE, there is no longer any need to call
-	* JNI_GetDefaultJavaVMInitArgs.
-	*/
-	std::cout << "init jvm..." << std::endl;
-	auto res = JNI_CreateJavaVM(&javaVM, (void **)&jniEnv, &vm_args);
-	std::cout << res << " result" << std::endl;
-	jclass jcls = jniEnv->FindClass("de/demofire/ragemultiplayer/launcher/Main");
-	if(jcls == NULL)
-	{
-		std::cout << "class is null" << std::endl;
-		return nullptr;
-	}
-	std::cout << "class found" << std::endl;
-	jmethodID methodId = jniEnv->GetStaticMethodID(jcls, "main", "()V");
-	if (methodId == NULL)
-	{
-		std::cout << "method is null" << std::endl;
-		return nullptr;
-	}
-	jniEnv->CallStaticVoidMethod(jcls, methodId);
-	if(jniEnv->ExceptionCheck())
-	{
-		auto throwable = jniEnv->ExceptionOccurred();
-		auto throwableCls = jniEnv->GetObjectClass(throwable);
-		auto printStackTraceId = jniEnv->GetMethodID(throwableCls, "printStackTrace", "()V");
-		
+bool JVM::checkForException() {
+    if(jniEnv->ExceptionCheck())
+    {
+        jthrowable throwable = jniEnv->ExceptionOccurred();
+        jclass throwableCls = jniEnv->GetObjectClass(throwable);
+        jmethodID printStackTraceId = jniEnv->GetMethodID(throwableCls, "printStackTrace", "()V");
 
-		jniEnv->CallVoidMethod(throwable, printStackTraceId);
-		jniEnv->ExceptionClear();
-	}
-	//options[0].optionString = "-Djava.class.path=C:\\Users\\Fabian Jungwirth\\IdeaProjects\\javaruntimeparent\\java-runtime-launcher\\target";
-	/*JavaVMOption jvmopt[1];
-	jvmopt[0].optionString = "-Djava.class.path=.";
+        jniEnv->CallVoidMethod(throwable, printStackTraceId);
+        jniEnv->ExceptionClear();
+        return true;
+    }
+    return false;
+}
 
-	JavaVMInitArgs vmArgs;
-	vmArgs.version = JNI_VERSION_1_2;
-	vmArgs.nOptions = 1;
-	vmArgs.options = jvmopt;
-	vmArgs.ignoreUnrecognized = JNI_TRUE;
+bool JVM::findAndExecuteMain() {
+    jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME);
+    if(jClass == NULL)
+    {
+        std::cout << "Couldn't find expected JVM main class" << std::endl;
+        return false;
+    }
+    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME, "()V");
+    if (methodId == NULL)
+    {
+        std::cout << "Couldn't find expected JVM main method" << std::endl;
+        return false;
+    }
+    jniEnv->CallStaticVoidMethod(jClass, methodId);
+    if(checkForException()) {
+        return false;
+    }
+    return true;
+}
 
-	// Create the JVM
-	JavaVM *javaVM;
-	JNIEnv *jniEnv;
-	JNI_CreateJavaVM(&javaVM, reinterpret_cast<void**>(&jniEnv), &vmArgs);*/
-	/*if (flag == JNI_ERR) {
-		std::cout << "Error creating VM. Exiting...\n";
-		return nullptr;
-	}
+bool JVM::createJVM() {
+    JavaVMInitArgs vm_args;
+    JavaVMOption options[4];
 
-	jclass jcls = jniEnv->FindClass("org/jnijvm/Demo");
-	if (jcls == NULL) {
-		jniEnv->ExceptionDescribe();
-		javaVM->DestroyJavaVM();
-		return nullptr;
-	}
-	if (jcls != NULL) {
-		jmethodID methodId = jniEnv->GetStaticMethodID(jcls, "greet", "(Ljava/lang/String;)V");
-		if (methodId != NULL) {
-			jstring str = jniEnv->NewStringUTF("10");
-			jniEnv->CallStaticVoidMethod(jcls, methodId, str);
-			if (jniEnv->ExceptionCheck()) {
-				jniEnv->ExceptionDescribe();
-				jniEnv->ExceptionClear();
-			}
-		}
-	}*/
+    options[0].optionString = "-Djava.compiler=NONE";           /* disable JIT */
+    options[1].optionString = "-Djava.class.path=./plugins/launcher.jar;"; /* user classes */
+    options[2].optionString = "-Djava.library.path=./plugins/RageJava.dll";  /* set native library path */
+    options[3].optionString = "-verbose:jni";                   /* print JNI-related messages */
 
-	//javaVM->DestroyJavaVM();
-	return nullptr; 
+    vm_args.version = JNI_VERSION_1_8;
+    vm_args.options = options;
+    vm_args.nOptions = 4;
+    vm_args.ignoreUnrecognized = (jboolean)"true";
+
+    /* Note that in the JDK/JRE, there is no longer any need to call
+    * JNI_GetDefaultJavaVMInitArgs.
+    */
+    int res = JNI_CreateJavaVM(&javaVM, (void **)&jniEnv, &vm_args);
+    if (res != JNI_OK) {
+        switch (res) {
+            case JNI_ERR:
+                printf("Error: %d\nunknown error", res);
+                break;
+            case JNI_EDETACHED:
+                printf("Error: %d\nthread detached from the VM", res);
+                break;
+            case JNI_EVERSION:
+                printf("Error: %d\nJNI version error", res);
+                break;
+            case JNI_ENOMEM:
+                printf("Error %d:\nnot enough memory", res);
+                break;
+            case JNI_EEXIST:
+                printf("Error %d:\nVM already created", res);
+                break;
+            case JNI_EINVAL:
+                printf("Error %d\ninvalid arguments ", res);
+                break;
+        }
+        javaVM->DestroyJavaVM();
+        return false;
+    }
+    else {
+        printf("JVM created successfully");
+        return true;
+    }
 }

@@ -1,23 +1,25 @@
 #include "RagePlugin.hpp"
 
-RAGE_API rage::IPlugin *InitializePlugin(rage::IMultiplayer *mp)
-{
-    std::cout << "Initialize Rage Multiplayer Java Runtime..." << std::endl;
-//	RagePlugin::setMultiPlayer(mp);
-	
-	JVM::createJavaVirtualMachine();
+static rage::IMultiplayer *multiplayer = nullptr;
 
-	mp->AddEventHandler(new PlayerEventHandler);
-	
+RAGE_API rage::IPlugin *InitializePlugin(rage::IMultiplayer *mp) {
+    std::cout << "Initialize Rage Multiplayer Java Runtime ... ";
+    multiplayer = mp;
+
+    if (!JVM::createJavaVirtualMachine()) {
+        return false;
+    }
+
+    std::cout << "Registering event handlers ...";
+    mp->AddEventHandler(new PlayerEventHandler);
+    mp->AddEventHandler(new EntityEventHandler);
+    mp->AddEventHandler(new VehicleEventHandler);
+    mp->AddEventHandler(new ColshapeEventHandler);
+    mp->AddEventHandler(new CheckpointEventHandler);
+
     return new rage::IPlugin;
 }
 
-//rage::IMultiplayer* RagePlugin::getMultiPlayer()
-//{
-//	return RagePlugin::mp;
-//}
-//
-//void RagePlugin::setMultiPlayer(rage::IMultiplayer* mp)
-//{
-//	RagePlugin::mp = mp;
-//}
+rage::IMultiplayer *RagePlugin::getMultiPlayer() {
+    return multiplayer;
+}

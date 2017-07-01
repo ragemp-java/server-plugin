@@ -3,8 +3,6 @@ project("RageJava")
 
 include (GenerateExportHeader)
 
-include_directories(C:/Program Files/Java/jdk1.8.0_131)
-
 find_package(JNI REQUIRED)
 if (JNI_FOUND)
     include_directories(${JNI_INCLUDE_DIRS})
