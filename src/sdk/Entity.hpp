@@ -44,7 +44,7 @@ namespace rage
 		virtual const vector3& GetPosition() = 0;
 		virtual void SetPosition(const vector3& pos) = 0;
 
-		virtual const const vector3& GetRotation() = 0;
+		virtual const vector3& GetRotation() = 0;
 		virtual void SetRotation(const vector3& rot) = 0;
 
 		virtual uint32_t GetModel() = 0;
