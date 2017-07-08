@@ -1,10 +1,4 @@
-//
-// Created by Fabian Jungwirth on 02.07.2017.
-//
-
-#ifndef RAGEJAVA_VEHICLEEVENTHANDLER_HPP
-#define RAGEJAVA_VEHICLEEVENTHANDLER_HPP
-
+#pragma once
 
 #include "../sdk/rage.hpp"
 
@@ -14,6 +8,3 @@ public:
 
     rage::IVehicleHandler *GetVehicleHandler() override;
 };
-
-
-#endif //RAGEJAVA_VEHICLEEVENTHANDLER_HPP

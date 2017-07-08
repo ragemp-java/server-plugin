@@ -1,10 +1,4 @@
-//
-// Created by Fabian Jungwirth on 02.07.2017.
-//
-
-#ifndef RAGEJAVA_CHECKPOINTEVENTHANDLER_HPP
-#define RAGEJAVA_CHECKPOINTEVENTHANDLER_HPP
-
+#pragma once
 
 #include "../sdk/rage.hpp"
 
@@ -15,6 +9,3 @@ public:
     void OnPlayerExitCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) override;
 
 };
-
-
-#endif //RAGEJAVA_CHECKPOINTEVENTHANDLER_HPP

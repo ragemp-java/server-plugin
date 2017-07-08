@@ -1,29 +1,30 @@
 #include "JVM.hpp"
-#include <iostream>
 
-static JNIEnv* jniEnv = nullptr;
+static JNIEnv *jniEnv = nullptr;
 static JavaVM *javaVM = nullptr;
 
-bool JVM::createJavaVirtualMachine()
-{
-	std::cout << "Creating Java Virtual Machine..." << std::endl;
+JNIEnv *JVM::getJNIEnv() {
+    return jniEnv;
+}
 
-    if(!JVM::createJVM()) {
+JavaVM *JVM::getJVM() {
+    return javaVM;
+}
+
+bool JVM::createJavaVirtualMachine() {
+    std::cout << "Creating Java Virtual Machine..." << std::endl;
+
+    if (!JVM::createJVM()) {
         return false;
     }
-    if(!JVM::findAndExecuteMain()) {
+    if (!JVM::findAndExecuteMain()) {
         return false;
     }
     return true;
 }
 
-JNIEnv *JVM::getJNIEnv() {
-	return jniEnv;
-}
-
 bool JVM::checkForException() {
-    if(jniEnv->ExceptionCheck())
-    {
+    if (jniEnv->ExceptionCheck()) {
         jthrowable throwable = jniEnv->ExceptionOccurred();
         jclass throwableCls = jniEnv->GetObjectClass(throwable);
         jmethodID printStackTraceId = jniEnv->GetMethodID(throwableCls, "printStackTrace", "()V");
@@ -36,20 +37,18 @@ bool JVM::checkForException() {
 }
 
 bool JVM::findAndExecuteMain() {
-    jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME);
-    if(jClass == NULL)
-    {
+    jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME.c_str());
+    if (jClass == NULL) {
         std::cout << "Couldn't find expected JVM main class" << std::endl;
         return false;
     }
-    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME, "()V");
-    if (methodId == NULL)
-    {
+    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "()V");
+    if (methodId == NULL) {
         std::cout << "Couldn't find expected JVM main method" << std::endl;
         return false;
     }
     jniEnv->CallStaticVoidMethod(jClass, methodId);
-    if(checkForException()) {
+    if (checkForException()) {
         return false;
     }
     return true;
@@ -67,12 +66,9 @@ bool JVM::createJVM() {
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
     vm_args.nOptions = 4;
-    vm_args.ignoreUnrecognized = (jboolean)"true";
+    vm_args.ignoreUnrecognized = (jboolean) "true";
 
-    /* Note that in the JDK/JRE, there is no longer any need to call
-    * JNI_GetDefaultJavaVMInitArgs.
-    */
-    int res = JNI_CreateJavaVM(&javaVM, (void **)&jniEnv, &vm_args);
+    int res = JNI_CreateJavaVM(&javaVM, (void **) &jniEnv, &vm_args);
     if (res != JNI_OK) {
         switch (res) {
             case JNI_ERR:
@@ -96,9 +92,34 @@ bool JVM::createJVM() {
         }
         javaVM->DestroyJavaVM();
         return false;
-    }
-    else {
+    } else {
         printf("JVM created successfully");
         return true;
     }
+}
+
+jclass JVM::getClass(std::string className) {
+    JNIEnv *env = JVM::getJNIEnv();
+    jclass jClass = env->FindClass(className.c_str());
+    if (jClass == NULL) {
+        throw ClassNotFoundException(className + " not found");
+    }
+    return jClass;
+}
+
+jmethodID JVM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
+    JNIEnv *env = JVM::getJNIEnv();
+    jmethodID methodId = env->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
+    if (methodId == NULL) {
+        throw MethodNotFoundException(methodName + " not found");
+    }
+    return methodId;
+}
+
+bool JVM::callStaticMethod(jclass className, jmethodID methodName, ...) {
+    va_list args;
+    va_start(args, methodName);
+    JVM::getJVM()->AttachCurrentThread((void **) JVM::getJNIEnv(), nullptr);
+    JVM::getJNIEnv()->CallStaticVoidMethod(className, methodName, args);
+    return JVM::checkForException();
 }

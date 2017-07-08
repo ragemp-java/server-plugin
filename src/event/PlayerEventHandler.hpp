@@ -1,13 +1,17 @@
-#ifndef RAGEJAVA_PLAYEREVENTHANDLER_H
-#define RAGEJAVA_PLAYEREVENTHANDLER_H
+#pragma once
+
 #include <iostream>
+#include <jni.h>
 #include "../sdk/rage.hpp"
+#include "../jvm/JVM.hpp"
+#include "../jvm/TypeConverter.hpp"
+
+const std::string playerEventClassName = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "player/PlayerEvents";
 
 class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler
 {
 public:
-
-    static rage::IPlayer *GetPlayer();
+    PlayerEventHandler();
 
     rage::IPlayerHandler *GetPlayerHandler() override;
 
@@ -34,7 +38,7 @@ public:
     void OnPlayerRemoteEvent(rage::IPlayer *player, const std::string &eventName, const rage::args_t &args) override;
 
 private:
-    static rage::IPlayer *player;
+    jclass playerEventClass;
+    jmethodID playerJoinMethod;
+    jmethodID playerCommandMethod;
 };
-
-#endif //RAGEJAVA_PLAYEREVENTHANDLER_H

@@ -1,10 +1,4 @@
-//
-// Created by Fabian Jungwirth on 02.07.2017.
-//
-
-#ifndef RAGEJAVA_COLSHAPEEVENTHANDLER_HPP
-#define RAGEJAVA_COLSHAPEEVENTHANDLER_HPP
-
+#pragma once
 
 #include "../sdk/rage.hpp"
 
@@ -15,6 +9,3 @@ public:
     void OnPlayerExitColshape(rage::IPlayer *player, rage::IColshape *colshape) override;
 
 };
-
-
-#endif //RAGEJAVA_COLSHAPEEVENTHANDLER_HPP

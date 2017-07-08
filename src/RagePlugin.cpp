@@ -10,13 +10,21 @@ RAGE_API rage::IPlugin *InitializePlugin(rage::IMultiplayer *mp) {
         return false;
     }
 
-    std::cout << "Registering event handlers ...";
-    mp->AddEventHandler(new PlayerEventHandler);
-    mp->AddEventHandler(new EntityEventHandler);
-    mp->AddEventHandler(new VehicleEventHandler);
-    mp->AddEventHandler(new ColshapeEventHandler);
-    mp->AddEventHandler(new CheckpointEventHandler);
+    std::cout << "Registering event handlers ..." << std::endl;
 
+    try {
+        mp->AddEventHandler(new PlayerEventHandler);
+        mp->AddEventHandler(new EntityEventHandler);
+        mp->AddEventHandler(new VehicleEventHandler);
+        mp->AddEventHandler(new ColshapeEventHandler);
+        mp->AddEventHandler(new CheckpointEventHandler);
+    } catch (ClassNotFoundException &e) {
+        std::cout << "ClassNotFoundException: " << e.what() << std::endl;
+        return false;
+    } catch (MethodNotFoundException &e) {
+        std::cout << "MethodNotFoundException: " << e.what() << std::endl;
+        return false;
+    }
     return new rage::IPlugin;
 }
 

@@ -1,5 +1,4 @@
-#ifndef RAGEJAVA_ENTITYEVENTHANDLER_HPP
-#define RAGEJAVA_ENTITYEVENTHANDLER_HPP
+#pragma once
 
 #include "../sdk/rage.hpp"
 
@@ -9,6 +8,3 @@ public:
 
     void OnEntityDestroyed(rage::IEntity *entity) override;
 };
-
-
-#endif //RAGEJAVA_ENTITYEVENTHANDLER_HPP
