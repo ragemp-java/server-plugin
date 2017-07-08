@@ -1,7 +1,5 @@
 #include "EntityEventHandler.hpp"
 
-
-
 void EntityEventHandler::OnEntityCreated(rage::IEntity *entity) {
 
 }

@@ -37,6 +37,10 @@ jstring TypeConverter::toJString(std::u16string input) {
     return JVM::getJNIEnv()->NewStringUTF(convertedString.c_str());
 }
 
+jstring TypeConverter::toJString(const char *input) {
+    return JVM::getJNIEnv()->NewStringUTF(input);
+}
+
 int TypeConverter::fromJInt(jint input) {
     return (int) input;
 }
@@ -44,7 +48,5 @@ int TypeConverter::fromJInt(jint input) {
 jint TypeConverter::toJInt(int input) {
     return (jint) input;
 }
-
-
 
 

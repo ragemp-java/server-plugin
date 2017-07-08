@@ -11,6 +11,7 @@ class TypeConverter {
 public:
     static std::u16string fromJString(jstring input);
     static jstring toJString(std::u16string input);
+    static jstring toJString(const char* input);
     static jint toJInt(int input);
     static int fromJInt(jint input);
 };

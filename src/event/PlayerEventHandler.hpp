@@ -41,4 +41,13 @@ private:
     jclass playerEventClass;
     jmethodID playerJoinMethod;
     jmethodID playerCommandMethod;
+    jmethodID playerQuitMethod;
+    jmethodID playerSpawnMethod;
+    jmethodID playerChatMethod;
+    jmethodID playerEnterVehicleMethod;
+    jmethodID playerEnteredVehicleMethod;
+    jmethodID playerExitVehicleMethod;
+    jmethodID playerLeftVehicleMethod;
+    jmethodID playerDeathMethod;
+    jmethodID playerRemoteEventMethod;
 };
