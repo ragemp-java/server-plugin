@@ -9,11 +9,91 @@ extern "C" {
 #endif
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getType
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getType
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getDimension
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    setDimension
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_setDimension
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getRotation
+ * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getRotation
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    setRotation
+ * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;)V
+ */
+JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_setRotation
+        (JNIEnv *, jclass, jint, jobject);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getModel
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getModel
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    setModel
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_setModel
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getVelocity
+ * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getVelocity
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    getAlpha
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_getAlpha
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
+ * Method:    setAlpha
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_setAlpha
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
  * Method:    kick
  * Signature: (ILjava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_kick
-		(JNIEnv *, jobject, jint, jstring);
+        (JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
@@ -21,7 +101,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNa
  * Signature: (ILjava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_ban
-		(JNIEnv *, jobject, jint, jstring);
+        (JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
@@ -29,7 +109,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNa
  * Signature: (ILjava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_outputChatBox
-		(JNIEnv *, jobject, jint, jstring);
+        (JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_player_PlayerNative
@@ -37,7 +117,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNa
  * Signature: (ILjava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_notify
-		(JNIEnv *, jobject, jint, jstring);
+        (JNIEnv *, jclass, jint, jstring);
 
 #ifdef __cplusplus
 }

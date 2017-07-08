@@ -101,7 +101,7 @@ bool JVM::createJVM() {
 jclass JVM::getClass(std::string className) {
     JNIEnv *env = JVM::getJNIEnv();
     jclass jClass = env->FindClass(className.c_str());
-    if (jClass == NULL) {
+    if (jClass == nullptr) {
         throw ClassNotFoundException(className + " not found");
     }
     return jClass;
@@ -110,7 +110,7 @@ jclass JVM::getClass(std::string className) {
 jmethodID JVM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
     JNIEnv *env = JVM::getJNIEnv();
     jmethodID methodId = env->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
-    if (methodId == NULL) {
+    if (methodId == nullptr) {
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
