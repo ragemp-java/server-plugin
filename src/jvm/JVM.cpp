@@ -12,7 +12,7 @@ JavaVM *JVM::getJVM() {
 }
 
 bool JVM::createJavaVirtualMachine() {
-    std::cout << "Creating Java Virtual Machine..." << std::endl;
+    std::cout << "Creating Java Virtual Machine ... ";
 
     if (!JVM::createJVM()) {
         return false;
@@ -39,12 +39,12 @@ bool JVM::checkForException() {
 bool JVM::findAndExecuteMain() {
     jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME.c_str());
     if (jClass == NULL) {
-        std::cout << "Couldn't find expected JVM main class" << std::endl;
+        std::cout << std::endl << "Couldn't find expected JVM main class" << std::endl;
         return false;
     }
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "()V");
     if (methodId == NULL) {
-        std::cout << "Couldn't find expected JVM main method" << std::endl;
+        std::cout << std::endl << "Couldn't find expected JVM main method" << std::endl;
         return false;
     }
     jniEnv->CallStaticVoidMethod(jClass, methodId);
@@ -61,7 +61,7 @@ bool JVM::createJVM() {
     options[0].optionString = "-Djava.compiler=NONE";           /* disable JIT */
     options[1].optionString = "-Djava.class.path=./plugins/launcher.jar;"; /* user classes */
     options[2].optionString = "-Djava.library.path=./plugins/RageJava.dll";  /* set native library path */
-    options[3].optionString = "-verbose:jni";                   /* print JNI-related messages */
+    options[3].optionString = "";//"-verbose:jni";                   /* print JNI-related messages */
 
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
@@ -93,7 +93,7 @@ bool JVM::createJVM() {
         javaVM->DestroyJavaVM();
         return false;
     } else {
-        printf("JVM created successfully");
+        std::cout << "[OK]" << std::endl;
         return true;
     }
 }
@@ -114,12 +114,4 @@ jmethodID JVM::getStaticMethod(jclass jClass, std::string methodName, std::strin
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
-}
-
-bool JVM::callStaticMethod(jclass className, jmethodID methodName, ...) {
-    va_list args;
-    va_start(args, methodName);
-    JVM::getJVM()->AttachCurrentThread((void **) JVM::getJNIEnv(), nullptr);
-    JVM::getJNIEnv()->CallStaticVoidMethod(className, methodName, args);
-    return JVM::checkForException();
 }

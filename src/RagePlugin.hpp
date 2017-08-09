@@ -11,9 +11,3 @@
 #include "event/CheckpointEventHandler.hpp"
 #include "jvm/JVMException.hpp"
 #include "jvm/JVM.hpp"
-
-class RagePlugin
-{
-public:
-	static rage::IMultiplayer *getMultiPlayer();
-};

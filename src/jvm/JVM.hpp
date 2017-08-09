@@ -24,8 +24,6 @@ public:
 
     static jmethodID getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature);
 
-    static bool callStaticMethod(jclass className, jmethodID methodName, ...);
-
 private:
     static bool findAndExecuteMain();
 
