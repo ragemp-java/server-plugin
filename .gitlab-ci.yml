@@ -1,8 +1,9 @@
 image: docker.nexus.infinityhost.eu/rage-java-build:latest
 
+before_script:
+  - docker login docker.nexus.infinityhost.eu -u docker -p ${registry_password}
+
 build:
-  before_script:
-    - docker login docker.nexus.infinityhost.eu -u docker -p ${registry_password}
   script: 
     - cmake .
     - make
