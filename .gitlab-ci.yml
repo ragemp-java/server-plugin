@@ -1,0 +1,7 @@
+image: docker.nexus.infinityhost.eu/rage-java-build:latest
+
+build:
+  script: 
+    - cmake .
+    - make
+  
