@@ -93,14 +93,14 @@ namespace rage
 	struct args_t
 	{
 	public:
-		args_t(arg_t *data, size_t len)
-			: m_data(data), m_len(len) { }
+		args_t(arg_t *data, uint8_t len)
+				: m_data(data), m_len(len) { }
 
-		size_t Length() const { return this->m_len; }
+		uint8_t Length() const { return this->m_len; }
 		const arg_t& operator[](int id) const { if (id >= this->m_len) return arg_t{}; return this->m_data[id]; }
 
 	private:
-		size_t m_len;
+		uint8_t m_len;
 		arg_t *m_data;
 	};
 
@@ -115,10 +115,10 @@ namespace rage
 	class IPickup;
 
 	using Entity =
-		IEntity;
+	IEntity;
 
 	class IPlayer
-		: public Entity
+			: public Entity
 	{
 	public:
 		virtual void Kick(const char *reason) = 0;
@@ -126,8 +126,8 @@ namespace rage
 		virtual void OutputChatBox(const std::u16string& text) = 0;
 		virtual void Notify(const std::u16string& text) = 0;
 	private:
-		virtual void _Call(const std::string& eventName, const arg_t *arguments = nullptr, size_t count = 0) = 0;
-		virtual void _Invoke(uint64_t nativeHash, const arg_t *arguments = nullptr, size_t count = 0) = 0;
+		virtual void _Call(const std::string& eventName, const arg_t *arguments = nullptr, uint8_t count = 0) = 0;
+		virtual void _Invoke(uint64_t nativeHash, const arg_t *arguments = nullptr, uint8_t count = 0) = 0;
 	public:
 		virtual void Spawn(const vector3& pos, float heading) = 0;
 		virtual void PlayAnimation(const std::string& dict, const std::string& name, float speed = 8.f, int flags = 0) = 0;
@@ -188,7 +188,7 @@ namespace rage
 		virtual const headBlend_t& GetHeadBlend() = 0;
 
 		virtual void SetHeadBlend(int shapeFirstID, int shapeSecondID, int shapeThirdID, int skinFirstID, int skinSecondID, int skinThirdID,
-			float shapeMix, float skinMix, float thirdMix) = 0;
+								  float shapeMix, float skinMix, float thirdMix) = 0;
 
 		virtual void UpdateHeadBlend(float shapeMix, float skinMix, float thirdMix) = 0;
 
@@ -229,7 +229,7 @@ namespace rage
 	};
 
 	class IVehicle
-		: public Entity
+			: public Entity
 	{
 	public:
 		virtual bool IsSirenActive() = 0;
@@ -244,7 +244,7 @@ namespace rage
 		virtual float GetEngineHealth() = 0;
 
 		virtual float GetBodyHealth() = 0;
-		virtual rage::IPlayer *GetOccupant(uint8_t seat) = 0; 
+		virtual rage::IPlayer *GetOccupant(uint8_t seat) = 0;
 		virtual std::vector<rage::IPlayer*> GetOccupants() = 0;
 		virtual void SetOccupant(uint8_t seat, rage::IPlayer *player) = 0;
 
@@ -275,22 +275,22 @@ namespace rage
 		virtual void SetColour(uint8_t primary, uint8_t secondary) = 0;
 		virtual void SetPaint(const rage::paintInfo_t& primary, const rage::paintInfo_t& secondary) = 0;
 
-		virtual material_t GetMaterialType() = 0;
+		virtual uint8_t GetMaterialType() = 0;
 
 		virtual const std::string& GetNumberPlate() = 0;
 		virtual void SetNumberPlate(const std::string& numberPlate) = 0;
 	};
 
 	class IColshape
-		: public Entity
+			: public Entity
 	{
 	public:
 		virtual bool IsPointWithin(const vector3& pos) = 0;
-		virtual colshape_t GetShapeType() = 0;
+		virtual uint8_t GetShapeType() = 0;
 	};
 
 	class ICheckpoint
-		: public Entity
+			: public Entity
 	{
 	public:
 		virtual const rage::rgba_t& GetColour() = 0;
@@ -310,9 +310,9 @@ namespace rage
 	};
 
 	class IMarker
-		: public Entity
+			: public Entity
 	{
-	public:		
+	public:
 		virtual const rage::rgba_t& GetColour() = 0;
 		virtual void SetColour(uint8_t r, uint8_t g, uint8_t b, uint8_t a) = 0;
 
@@ -330,12 +330,12 @@ namespace rage
 	};
 
 	class IBlip
-		: public Entity
+			: public Entity
 	{
 	public:
 		virtual float GetRadius() = 0;
 
-		virtual blipMode_t GetMode() = 0;
+		virtual uint8_t GetMode() = 0;
 
 		virtual void RouteFor(const std::vector<rage::IPlayer*>& players, uint8_t colour, float scale) = 0;
 		virtual void UnrouteFor(const std::vector<rage::IPlayer*>& players) = 0;
@@ -354,14 +354,14 @@ namespace rage
 	};
 
 	class IPickup
-		: public Entity
+			: public Entity
 	{
 	public:
 		// todo
 	};
 
 	class IObject
-		: public Entity
+			: public Entity
 	{
 	public:
 	};
