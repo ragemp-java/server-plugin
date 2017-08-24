@@ -66,7 +66,7 @@ bool JVM::createJVM() {
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
     vm_args.nOptions = 4;
-    vm_args.ignoreUnrecognized = (jboolean) "true";
+    vm_args.ignoreUnrecognized = (jboolean) true;
 
     int res = JNI_CreateJavaVM(&javaVM, (void **) &jniEnv, &vm_args);
     if (res != JNI_OK) {
