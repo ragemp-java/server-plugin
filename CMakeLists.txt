@@ -29,7 +29,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/plugins)
 set(CMAKE_CXX_FLAGS_RELEASE "/MD")
 set(CMAKE_CXX_FLAGS_DEBUG "/MD")
 
-add_library(RageJava SHARED ${_source_list})
+#add_library(RageJava SHARED ${_source_list})
+add_executable(RageJava ${_source_list})
 target_link_libraries(RageJava ${JNI_LIBRARIES})
 
 foreach(_source IN ITEMS ${_source_list})

@@ -10,3 +10,11 @@ RAGE_API rage::IPlugin *InitializePlugin(rage::IMultiplayer *mp) {
 
     return new rage::IPlugin;
 }
+
+int main() {
+    std::cout << "Initialize Rage MultiPlayer Java Runtime ... " << std::endl;
+
+    if(!RageJavaCore::getInstance().initialize(nullptr)) {
+
+    }
+}
