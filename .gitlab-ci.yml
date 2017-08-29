@@ -4,4 +4,8 @@ build:
   script: 
     - cmake .
     - make
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - build/libRageJava.so
   
