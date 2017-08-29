@@ -5,12 +5,13 @@
 #include <vector>
 
 #include "Entity.hpp"
+
 #include "Pools.hpp"
 
 #ifdef WIN32
-#define RAGE_API extern "C" __declspec(dllexport) 
+#define RAGE_API extern "C" __declspec(dllexport)
 #else
-#define RAGE_API extern "C" __attribute__((visibility("default")))
+#define RAGE_API
 #endif
 
 namespace rage
@@ -23,15 +24,12 @@ namespace rage
 		virtual uint32_t GetVersion() { return sdkver; }
 		virtual void Unload() { }
 	};
-	
+
 	class IEntityHandler;
 	class IPlayerHandler;
 	class IVehicleHandler;
 	class IColshapeHandler;
 	class ICheckpointHandler;
-	/*class IMarkerHandler;
-	class IPickupHandler;
-	class IBlipHandler;*/
 	class ITickHandler;
 
 	class IEventHandler
@@ -42,9 +40,6 @@ namespace rage
 		virtual IVehicleHandler *GetVehicleHandler() { return nullptr; }
 		virtual IColshapeHandler *GetColshapeHandler() { return nullptr; }
 		virtual ICheckpointHandler *GetCheckpointHandler() { return nullptr; }
-		/*virtual IMarkerHandler *GetMarkerHandler() { return nullptr; }
-		virtual IPickupHandler *GetPickupHandler() { return nullptr; }
-		virtual IBlipHandler *GetBlipHandler() { return nullptr; }*/
 		virtual ITickHandler *GetTickHandler() { return nullptr; }
 	};
 
@@ -99,21 +94,6 @@ namespace rage
 		virtual void OnPlayerExitCheckpoint(IPlayer *player, ICheckpoint *checkpoint) { }
 	};
 
-	/*class IMarkerHandler
-	{
-	public:
-	};
-
-	class IPickupHandler
-	{
-	public:
-	};
-
-	class IBlipHandler
-	{
-	public:
-	};*/
-
 	class ITickHandler
 	{
 	public:
@@ -124,6 +104,7 @@ namespace rage
 	{
 	public:
 		virtual void AddEventHandler(IEventHandler *handler) = 0;
+
 		virtual const IPlayerPool& GetPlayerPool() = 0;
 		virtual const IVehiclePool& GetVehiclePool() = 0;
 		virtual const IColshapePool& GetColshapePool() = 0;
@@ -133,10 +114,11 @@ namespace rage
 		virtual const IPickupPool& GetPickupPool() = 0;
 		virtual const IObjectPool& GetObjectPool() = 0;
 	};
-	
+
+
 	using initializeFunc_t = IPlugin*(
-		#ifdef WIN32
-		__cdecl
-	#endif
-			*) (IMultiplayer *multiplayer);
+#ifdef WIN32
+	__cdecl
+#endif
+	*) (IMultiplayer *multiplayer);
 }

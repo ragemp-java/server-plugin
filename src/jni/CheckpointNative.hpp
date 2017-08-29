@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative
  * Method:    GetColour
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/RGBColor;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative_GetColour
         (JNIEnv *, jclass, jint);
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_checkpoint_Chec
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative
  * Method:    GetDirection
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative_GetDirection
         (JNIEnv *, jclass, jint);
@@ -34,7 +34,7 @@ JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_checkpoint_C
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative
  * Method:    SetDirection
- * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/vector/Vector3;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_checkpoint_CheckpointNative_SetDirection
         (JNIEnv *, jclass, jint, jobject);

@@ -154,7 +154,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_Vehicle
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative
  * Method:    spawn
- * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;F)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/vector/Vector3;F)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative_spawn
         (JNIEnv *, jclass, jint, jobject, jfloat);
@@ -202,7 +202,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_Vehicle
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative
  * Method:    GetNeonsColour
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/RGBColor;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative_GetNeonsColour
         (JNIEnv *, jclass, jint);
@@ -218,7 +218,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_Vehicle
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative
  * Method:    GetColourRGB
- * Signature: (II)Lde/demofire/ragemultiplayer/launcher/RGBColor;
+ * Signature: (II)Lde/demofire/ragemultiplayer/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative_GetColourRGB
         (JNIEnv *, jclass, jint, jint);
@@ -242,7 +242,7 @@ JNIEXPORT jint JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_Vehicle
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative
  * Method:    SetColourRGB
- * Signature: (ILde/demofire/ragemultiplayer/launcher/RGBColor;Lde/demofire/ragemultiplayer/launcher/RGBColor;)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/color/RGBColor;Lde/demofire/ragemultiplayer/api/color/RGBColor;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative_SetColourRGB
         (JNIEnv *, jclass, jint, jobject, jobject);
@@ -258,7 +258,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_Vehicle
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative
  * Method:    SetPaint
- * Signature: (ILde/demofire/ragemultiplayer/launcher/vehicle/VehiclePaintInfo;Lde/demofire/ragemultiplayer/launcher/vehicle/VehiclePaintInfo;)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/vehicle/VehiclePaintInfo;Lde/demofire/ragemultiplayer/api/vehicle/VehiclePaintInfo;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_vehicle_VehicleNative_SetPaint
         (JNIEnv *, jclass, jint, jobject, jobject);

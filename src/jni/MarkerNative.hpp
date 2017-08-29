@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_marker_MarkerNative
  * Method:    GetColour
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/RGBColor;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_marker_MarkerNative_GetColour
         (JNIEnv *, jclass, jint);
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_marker_MarkerNa
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_marker_MarkerNative
  * Method:    GetDirection
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_marker_MarkerNative_GetDirection
         (JNIEnv *, jclass, jint);
@@ -34,7 +34,7 @@ JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_marker_Marke
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_marker_MarkerNative
  * Method:    SetDirection
- * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/vector/Vector3;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_marker_MarkerNative_SetDirection
         (JNIEnv *, jclass, jint, jobject);

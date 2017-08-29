@@ -69,10 +69,8 @@ void Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_outputChatBox
         return;
     }
     std::cout << "player is present";
-    std::u16string outputMessage = TypeConverter::fromJString(message);
-    std::cout << "converted";
     player->OutputChatBox(u"outputChatBox called");
-    player->OutputChatBox(outputMessage);
+    player->OutputChatBox(TypeConverter::fromJStringU16(message));
 }
 
 void Java_de_demofire_ragemultiplayer_launcher_player_PlayerNative_notify(JNIEnv *env, jclass jClass, jint id, jstring message) {

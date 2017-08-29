@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative_se
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_EntityNative
  * Method:    getRotation
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -50,7 +50,7 @@ JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_EntityNative
  * Method:    setRotation
- * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;)V
+ * Signature: (ILde/demofire/ragemultiplayer/api/vector/Vector3;)V
  */
 JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative_setRotation
         (JNIEnv *, jclass, jint, jobject);
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative_se
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_EntityNative
  * Method:    getVelocity
- * Signature: (I)Lde/demofire/ragemultiplayer/launcher/Vector3;
+ * Signature: (I)Lde/demofire/ragemultiplayer/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_de_demofire_ragemultiplayer_launcher_EntityNative_getVelocity
         (JNIEnv *, jclass, jint);

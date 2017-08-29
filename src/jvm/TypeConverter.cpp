@@ -1,33 +1,26 @@
 #include "TypeConverter.hpp"
+#include <iomanip>
+#include <clocale>
+#include <cuchar>
 
+std::u16string TypeConverter::fromJStringU16(jstring input) {
+    const char *jStringMessage = JVM::getJNIEnv()->GetStringUTFChars(input, nullptr);
+    std::u16string wstr = u"";
+    char16_t c16str[3] = u"\0";
+    mbstate_t mbs;
+    for (const auto& it: fromJString(input)){
+        memset(&mbs, 0, sizeof (mbs));//set shift state to the initial state
+        memmove(c16str, u"\0\0\0", 3);
+        mbrtoc16(c16str, &it, 3, &mbs);
+        wstr.append(std::u16string(c16str));
+    }//for
+    return wstr;
+}
 
-//#if _MSC_VER == 1900
-
-//std::string utf16_to_utf8(std::u16string utf16_string)
-//{
-//    std::cout << "cast 1";
-//    std::wstring_convert<std::codecvt_utf8_utf16<int16_t>, int16_t> convert;
-//    std::cout << "cast 2";
-//    auto p = reinterpret_cast<const int16_t *>(utf16_string.data());
-//    std::cout << "cast 3";
-//    return convert.to_bytes(p, p + utf16_string.size());
-//}
-//
-//#else
-//
-//std::string utf16_to_utf8(std::u16string utf16_string)
-//{
-//    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> convert;
-//    return convert.to_bytes(utf16_string);
-//}
-//
-//#endif
-
-std::u16string TypeConverter::fromJString(jstring input) {
-    const char *jStringMessage = JVM::getJNIEnv()->GetStringUTFChars(input, NULL);
-    const char16_t *stringMessage = (const char16_t *) jStringMessage;
-    std::u16string outputString = stringMessage;
-    return outputString;
+std::string TypeConverter::fromJString(jstring input) {
+    const char *jStringMessage = JVM::getJNIEnv()->GetStringUTFChars(input, nullptr);
+    std::string result(jStringMessage);
+    return result;
 }
 
 jstring TypeConverter::toJString(std::u16string input) {
@@ -35,6 +28,10 @@ jstring TypeConverter::toJString(std::u16string input) {
     auto p = reinterpret_cast<const int16_t *>(input.data());
     std::string convertedString = convert.to_bytes(p, p + input.size());
     return JVM::getJNIEnv()->NewStringUTF(convertedString.c_str());
+}
+
+jstring TypeConverter::toJString(std::string string) {
+    return JVM::getJNIEnv()->NewStringUTF(string.c_str());
 }
 
 jstring TypeConverter::toJString(const char *input) {

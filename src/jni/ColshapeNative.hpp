@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     de_demofire_ragemultiplayer_launcher_colshape_ColshapeNative
  * Method:    IsPointWithin
- * Signature: (ILde/demofire/ragemultiplayer/launcher/Vector3;)Z
+ * Signature: (ILde/demofire/ragemultiplayer/api/vector/Vector3;)Z
  */
 JNIEXPORT jboolean JNICALL Java_de_demofire_ragemultiplayer_launcher_colshape_ColshapeNative_IsPointWithin
         (JNIEnv *, jclass, jint, jobject);
