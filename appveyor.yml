@@ -1,0 +1,12 @@
+image: Visual Studio 2017
+
+before_build:
+  - cmake -G "Visual Studio 15 Win64"
+
+build:
+  project: RageJava.sln
+  verbosity: minimal
+
+artifacts:
+  - path:  build\plugins\Debug\RageJava.dll
+    name: RageJava
