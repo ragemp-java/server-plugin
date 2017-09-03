@@ -5,7 +5,6 @@ before_build:
 
 build:
   project: RageJava.sln
-  verbosity: detailed
 
 artifacts:
   - path:  build\plugins\Debug\RageJava.dll
