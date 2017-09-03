@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: noxaro/cmake-jdk
+
+    working_directory: /build
+
+    steps:
+      - checkout
+      - run: cmake .
+      - run: make
+
+      - store_artifacts:
+          path: /build/build/libRageJava.so
