@@ -6,8 +6,8 @@
 #include "JVMException.hpp"
 
 
-const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "de/demofire/ragemultiplayer/launcher/";
-const std::string JVM_LAUNCHER_CLASS_NAME = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "Main";
+const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/rage/plugin/java/launcher/";
+const std::string JVM_LAUNCHER_CLASS_NAME = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "Launcher";
 const std::string JVM_LAUNCHER_METHOD_NAME = "main";
 
 class JVM {

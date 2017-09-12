@@ -25,10 +25,10 @@ void PlayerEventHandler::OnPlayerJoin(rage::IPlayer *player) {
 }
 
 void PlayerEventHandler::OnPlayerCommand(rage::IPlayer *player, const std::u16string &command) {
-//    jint playerId = TypeConverter::toJInt(player->GetId());
-//    jstring jCommand = TypeConverter::toJString(command);
-//    JVM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCommandMethod, playerId, jCommand);
-//    JVM::checkForException();
+    jint playerId = TypeConverter::toJInt(player->GetId());
+    jstring jCommand = TypeConverter::toJString(command);
+    JVM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCommandMethod, playerId, jCommand);
+    JVM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerQuit(rage::IPlayer *player, rage::exit_t exitType, const char *reason) {

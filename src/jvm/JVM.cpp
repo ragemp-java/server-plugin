@@ -15,9 +15,11 @@ bool JVM::createJavaVirtualMachine() {
     std::cout << "Creating Java Virtual Machine ... ";
 
     if (!JVM::createJVM()) {
+        std::cout << "Failed to initialize Java Virtual Machine" << std::endl;
         return false;
     }
     if (!JVM::findAndExecuteMain()) {
+        std::cout << "Failed to execute Launcher" << std::endl;
         return false;
     }
     return true;
@@ -38,12 +40,12 @@ bool JVM::checkForException() {
 
 bool JVM::findAndExecuteMain() {
     jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME.c_str());
-    if (jClass == NULL) {
+    if (jClass == nullptr) {
         std::cout << std::endl << "Couldn't find expected JVM main class" << std::endl;
         return false;
     }
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "()V");
-    if (methodId == NULL) {
+    if (methodId == nullptr) {
         std::cout << std::endl << "Couldn't find expected JVM main method" << std::endl;
         return false;
     }
@@ -56,16 +58,14 @@ bool JVM::findAndExecuteMain() {
 
 bool JVM::createJVM() {
     JavaVMInitArgs vm_args;
-    JavaVMOption options[4];
+    JavaVMOption options[2];
 
-    options[0].optionString = "-Djava.compiler=NONE";           /* disable JIT */
-    options[1].optionString = "-Djava.class.path=./plugins/launcher.jar;"; /* user classes */
-    options[2].optionString = "-Djava.library.path=./plugins/RageJava.dll";  /* set native library path */
-    options[3].optionString = "";//"-verbose:jni";                   /* print JNI-related messages */
+    options[0].optionString = "-Djava.class.path=./plugins/launcher.jar;";
+    options[1].optionString ="-Djava.library.path=./plugins/RageJava.dll";
 
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
-    vm_args.nOptions = 4;
+    vm_args.nOptions = 2;
     vm_args.ignoreUnrecognized = (jboolean) true;
 
     int res = JNI_CreateJavaVM(&javaVM, (void **) &jniEnv, &vm_args);
@@ -89,6 +89,8 @@ bool JVM::createJVM() {
             case JNI_EINVAL:
                 printf("Error %d\ninvalid arguments ", res);
                 break;
+            default:
+                printf("Unknown startup error %d", res);
         }
         javaVM->DestroyJavaVM();
         return false;

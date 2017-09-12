@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <clocale>
 #include <cuchar>
-#include <cstring>
 
 std::u16string TypeConverter::fromJStringU16(jstring input) {
     const char *jStringMessage = JVM::getJNIEnv()->GetStringUTFChars(input, nullptr);
@@ -10,11 +9,11 @@ std::u16string TypeConverter::fromJStringU16(jstring input) {
     char16_t c16str[3] = u"\0";
     mbstate_t mbs;
     for (const auto& it: fromJString(input)){
-        memset(&mbs, 0, sizeof (mbs));//set shift state to the initial state
+        memset(&mbs, 0, sizeof (mbs));
         memmove(c16str, u"\0\0\0", 3);
         mbrtoc16(c16str, &it, 3, &mbs);
         wstr.append(std::u16string(c16str));
-    }//for
+    }
     return wstr;
 }
 
