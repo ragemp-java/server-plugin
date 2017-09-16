@@ -3,6 +3,10 @@
 #include <string>
 #include <iostream>
 #include <codecvt>
+#include <iomanip>
+#include <clocale>
+#include <cuchar>
+#include <cstring>
 
 #include <jni.h>
 #include "JVM.hpp"

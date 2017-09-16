@@ -1,7 +1,5 @@
 #include "TypeConverter.hpp"
-#include <iomanip>
-#include <clocale>
-#include <cuchar>
+
 
 std::u16string TypeConverter::fromJStringU16(jstring input) {
     const char *jStringMessage = JVM::getJNIEnv()->GetStringUTFChars(input, nullptr);
