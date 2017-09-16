@@ -24,17 +24,22 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_outputChatBox(JNIEnv 
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_notify(JNIEnv *, jclass, jint, jstring) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_notify(JNIEnv *, jclass, jint playerId, jstring message) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->Notify(TypeConverter::fromJStringU16(message));
+    }
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn(JNIEnv *, jclass, jint, jobject, jfloat) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn(JNIEnv * env, jclass, jint playerId, jfloat x, jfloat y, jfloat z, jfloat heading) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::vector3 position = {x, y, z};
+        player->Spawn(position, heading);
+    }
 }
 
-void
-Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv *, jclass, jint, jstring, jstring, jfloat,
-                                                                    jint) {
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv *, jclass, jint, jstring, jstring, jfloat, jint) {
 
 }
 
@@ -94,19 +99,30 @@ jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHealth(JNIEnv *,
     return 0;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHealth(JNIEnv *, jclass, jint, jfloat) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHealth(JNIEnv *, jclass, jint playerId, jfloat health) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetHealth(health);
+    }
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getArmor(JNIEnv *, jclass, jint) {
     return 0;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setArmor(JNIEnv *, jclass, jint, jfloat) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setArmor(JNIEnv *, jclass, jint playerId, jfloat armor) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetArmour(armor);
+    }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt(JNIEnv *, jclass, jint) {
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt(JNIEnv* env, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::vector3 pos = player->GetAimingAt();
+        return JVM::createVector3(pos.x, pos.y, pos.z);
+    }
     return nullptr;
 }
 

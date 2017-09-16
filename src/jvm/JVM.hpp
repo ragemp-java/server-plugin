@@ -24,6 +24,8 @@ public:
 
     static jmethodID getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature);
 
+    static jobject createVector3(float x, float y, float z);
+
 private:
     static bool findAndExecuteMain();
 

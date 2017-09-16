@@ -42,10 +42,10 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_not
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    spawn
- * Signature: (ILmp/rage/plugin/java/api/vector/Vector3;F)V
+ * Signature: (IFFFF)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn
-        (JNIEnv *, jclass, jint, jobject, jfloat);
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative

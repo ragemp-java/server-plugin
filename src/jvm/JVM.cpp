@@ -66,7 +66,7 @@ bool JVM::createJVM() {
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
     vm_args.nOptions = 2;
-    vm_args.ignoreUnrecognized = (jboolean) true;
+    vm_args.ignoreUnrecognized = JNI_FALSE;
 
     int res = JNI_CreateJavaVM(&javaVM, (void **) &jniEnv, &vm_args);
     if (res != JNI_OK) {
@@ -101,8 +101,7 @@ bool JVM::createJVM() {
 }
 
 jclass JVM::getClass(std::string className) {
-    JNIEnv *env = JVM::getJNIEnv();
-    jclass jClass = env->FindClass(className.c_str());
+    jclass jClass = jniEnv->FindClass(className.c_str());
     if (jClass == nullptr) {
         throw ClassNotFoundException(className + " not found");
     }
@@ -110,10 +109,15 @@ jclass JVM::getClass(std::string className) {
 }
 
 jmethodID JVM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
-    JNIEnv *env = JVM::getJNIEnv();
-    jmethodID methodId = env->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
+    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
+}
+
+jobject JVM::createVector3(float x, float y, float z) {
+    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/vector/Vector3");
+    jmethodID methodId = jniEnv->GetMethodID(clazz, "<init>", "(FFF)V");
+    return jniEnv->NewObject(clazz, methodId, x, y, z);
 }
