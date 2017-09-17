@@ -13,6 +13,88 @@
 #include "../RagePlugin.hpp"
 #include "../rage/Player.hpp"
 
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getType(JNIEnv *, jclass, jint playerId) {
+    return (jint)rage::entity_t::Player;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_destroy(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->Destroy();
+    }
+}
+
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getDimension(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetDimension();
+    }
+    return -1;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setDimension(JNIEnv *, jclass, jint playerId, jint dimension) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetDimension((uint32_t)dimension);
+    }
+}
+
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getRotation(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::vector3 position = player->GetRotation();
+        return JVM::createVector3(position.x, position.y, position.z);
+    }
+    return nullptr;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setRotation(JNIEnv *, jclass, jint playerId, jfloat x, jfloat y, jfloat z) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::vector3 position = {x, y, z};
+        player->SetRotation(position);
+    }
+}
+
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getModel(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetModel();
+    }
+    return -1;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setModel(JNIEnv *, jclass, jint playerId, jint model) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetModel((uint32_t)model);
+    }
+}
+
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVelocity(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::vector3 velocity = player->GetVelocity();
+        return JVM::createVector3(velocity.x, velocity.y, velocity.x);
+    }
+    return nullptr;
+}
+
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAlpha(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetAlpha();
+    }
+    return -1;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setAlpha(JNIEnv *, jclass, jint playerId, jint alpha) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetAlpha((uint8_t)alpha);
+    }
+}
+
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_kick(JNIEnv *, jclass, jint playerId, jstring reason) {
     rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
     if(player) {

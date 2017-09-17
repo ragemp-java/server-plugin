@@ -9,6 +9,94 @@ extern "C" {
 #endif
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getType
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getType
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    destroy
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_destroy
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getDimension
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    setDimension
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_setDimension
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getRotation
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getRotation
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    setRotation
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_setRotation
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getModel
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getModel
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    setModel
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_setModel
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getVelocity
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getVelocity
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    getAlpha
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getAlpha
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
+ * Method:    setAlpha
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_setAlpha
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    GetColour
  * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
  */

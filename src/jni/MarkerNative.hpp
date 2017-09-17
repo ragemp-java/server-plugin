@@ -9,6 +9,94 @@ extern "C" {
 #endif
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getType
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getType
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    destroy
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_destroy
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getDimension
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    setDimension
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_setDimension
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getRotation
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getRotation
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    setRotation
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_setRotation
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getModel
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getModel
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    setModel
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_setModel
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getVelocity
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getVelocity
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    getAlpha
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getAlpha
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
+ * Method:    setAlpha
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_setAlpha
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    GetColour
  * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
  */

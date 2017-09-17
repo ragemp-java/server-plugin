@@ -9,6 +9,94 @@ extern "C" {
 #endif
 /*
  * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getType
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getType
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    destroy
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_destroy
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getDimension
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    setDimension
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_setDimension
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getRotation
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getRotation
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    setRotation
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_setRotation
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getModel
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getModel
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    setModel
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_setModel
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getVelocity
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getVelocity
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    getAlpha
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_getAlpha
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
+ * Method:    setAlpha
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_blip_BlipNative_setAlpha
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_blip_BlipNative
  * Method:    GetRadius
  * Signature: (I)F
  */

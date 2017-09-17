@@ -9,6 +9,94 @@ extern "C" {
 #endif
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getType
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getType
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    destroy
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_destroy
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getDimension
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    setDimension
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setDimension
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getRotation
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getRotation
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    setRotation
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setRotation
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getModel
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getModel
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    setModel
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setModel
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getVelocity
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVelocity
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getAlpha
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAlpha
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    setAlpha
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setAlpha
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    kick
  * Signature: (ILjava/lang/String;)V
  */
