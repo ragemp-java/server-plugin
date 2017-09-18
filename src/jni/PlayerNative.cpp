@@ -131,32 +131,54 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn(JNIEnv * env, j
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv *, jclass, jint, jstring, jstring, jfloat, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv *, jclass, jint playerId, jstring dict, jstring name, jfloat speed, jint flags) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        std::string convertedDict = TypeConverter::fromJString(dict);
+        std::string convertedName = TypeConverter::fromJString(name);
+        player->PlayAnimation(convertedDict, convertedName, speed, flags);
+    }
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playScenario(JNIEnv *, jclass, jint, jstring) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playScenario(JNIEnv *, jclass, jint playerId, jstring name) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        std::string convertedName = TypeConverter::fromJString(name);
+        player->PlayScenario(convertedName);
+    }
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_stopAnimation(JNIEnv *, jclass, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_stopAnimation(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->StopAnimation();
+    }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getClothes(JNIEnv *, jclass, jint, jint) {
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getClothes(JNIEnv *, jclass, jint playerId, jint componentId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::clothData_t clothes = player->GetClothes((uint8_t)componentId);
+    }
+    JVM::throwNotImplementedException("Player.getClothes is currently not implemented");
     return nullptr;
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setClothes(JNIEnv *, jclass, jint, jint, jobject) {
-
+    JVM::throwNotImplementedException("Player.setClothes is currently not implemented");
 }
 
-jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getProp(JNIEnv *, jclass, jint, jint) {
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getProp(JNIEnv *, jclass, jint playerId, jint propId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::propData_t props = player->GetProp((uint8_t)propId);
+    }
+    JVM::throwNotImplementedException("Player.getProp is currently not implemented");
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setProp(JNIEnv *, jclass, jint, jint, jobject) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setProp(JNIEnv *, jclass, jint playerId, jint propId, jobject) {
+    JVM::throwNotImplementedException("Player.getProp is currently not implemented");
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_eval(JNIEnv *, jclass, jint, jstring) {
@@ -230,85 +252,160 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt(JNIEnv
     return nullptr;
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPing(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPing(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return player->GetPing();
+    }
+    return -1;
 }
 
-jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getKickReason(JNIEnv *, jclass, jint) {
+jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getKickReason(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        std::string name = player->GetName();
+        return TypeConverter::toJString(name);
+    }
     return nullptr;
 }
 
-jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getIp(JNIEnv *, jclass, jint) {
+jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getIp(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        std::string ip = player->GetIp();
+        return TypeConverter::toJString(ip);
+    }
     return nullptr;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isJumping(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isJumping(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jboolean)player->IsJumping();
+    }
+    return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isInCover(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isInCover(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jboolean)player->IsInCover();
+    }
+    return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isEnteringVehicle(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isEnteringVehicle(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jboolean)player->IsEnteringVehicle();
+    }
+    return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isLeavingVehicle(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isLeavingVehicle(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jboolean)player->IsLeavingVehicle();
+    }
+    return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isClimbing(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isClimbing(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jboolean)player->IsClimbing();
+    }
+    return (jboolean)false;
 }
 
-jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString(JNIEnv *, jclass, jint) {
+jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        std::string action = player->GetActionString();
+        return TypeConverter::toJString(action);
+    }
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_removeFromVehicle(JNIEnv *, jclass, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_removeFromVehicle(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->RemoveFromVehicle();
+    }
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSeat(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSeat(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetSeat();
+    }
+    return -1;
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getEyeColor(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getEyeColor(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetEyeColour();
+    }
+    return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setEyeColor(JNIEnv *, jclass, jint, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setEyeColor(JNIEnv *, jclass, jint playerId, jint eyeColor) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetEyeColour((uint8_t)eyeColor);
+    }
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairColor(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairColor(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetHairColour();
+    }
+    return -1;
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairHighlightColor(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairHighlightColor(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jint)player->GetHairHighlightColour();
+    }
+    return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHairColor(JNIEnv *, jclass, jint, jint, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHairColor(JNIEnv *, jclass, jint playerId, jint hairColor, jint hairHighlightColor) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetHairColour((uint8_t)hairColor, (uint8_t)hairHighlightColor);
+    }
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getFaceFeature(JNIEnv *, jclass, jint, jint) {
-    return 0;
+jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getFaceFeature(JNIEnv *, jclass, jint playerId, jint facePartId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        return (jfloat)player->GetFaceFeature((uint8_t)facePartId);
+    }
+    return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setFaceFeature(JNIEnv *, jclass, jint, jint, jfloat) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setFaceFeature(JNIEnv *, jclass, jint playerId, jint faceId, jfloat scale) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        player->SetFaceFeature((uint8_t)faceId, (uint8_t)scale);
+    }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeadBlend(JNIEnv *, jclass, jint) {
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeadBlend(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Player::getPlayerById(TypeConverter::fromJInt(playerId));
+    if(player) {
+        rage::headBlend_t headBlend = player->GetHeadBlend();
+//        @TODO
+//        JVM::createPlayerHeadBlend(headBlend.m_shape, headBlend.m_skin, headBlend.m_shapeMix, headBlend.m_skinMix, headBlend.m_thirdMix);
+    }
     return nullptr;
 }
 
-void
-Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeadBlend(JNIEnv *, jclass, jint, jint, jint, jint, jint, jint,
-                                                                   jint, jfloat, jfloat, jfloat) {
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeadBlend(JNIEnv *, jclass, jint, jint, jint, jint, jint, jint, jint, jfloat, jfloat, jfloat) {
 
 }
 

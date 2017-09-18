@@ -131,3 +131,14 @@ jobject JVM::createVector3(float x, float y, float z) {
     jmethodID methodId = jniEnv->GetMethodID(clazz, "<init>", "(FFF)V");
     return jniEnv->NewObject(clazz, methodId, x, y, z);
 }
+
+jobject JVM::createPlayerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix) {
+    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/player/PlayerHeadBlend");
+    jmethodID methodId = jniEnv->GetMethodID(clazz, "<init>", "(IIFFF)V");
+    return jniEnv->NewObject(clazz, methodId, shape, skin, shapeMix, skinMix, thirdMix);
+}
+
+jint JVM::throwNotImplementedException(std::string reason) {
+    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/exception/NotImplementedException");
+    return jniEnv->ThrowNew(clazz, reason.c_str());
+}

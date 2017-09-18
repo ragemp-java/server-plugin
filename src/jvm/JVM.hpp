@@ -36,6 +36,12 @@ public:
 
     static jobject createVector3(float x, float y, float z);
 
+//    static jobject createPlayerProperty() @Todo
+
+    static jobject createPlayerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix);
+
+    static jint throwNotImplementedException(std::string reason);
+
 private:
     static bool findAndExecuteMain();
 
