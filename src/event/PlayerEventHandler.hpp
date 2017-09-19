@@ -13,8 +13,8 @@
 #include <iostream>
 #include <jni.h>
 #include "../sdk/rage.hpp"
-#include "../jvm/JVM.hpp"
-#include "../jvm/TypeConverter.hpp"
+#include "../jvm/VM.hpp"
+#include "../jvm/Converter.hpp"
 
 const std::string playerEventClassName = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "player/PlayerEvents";
 

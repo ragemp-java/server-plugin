@@ -8,34 +8,34 @@
  * See the file COPYING included with this distribution for more information.
  */
 
-#include "JVM.hpp"
+#include "VM.hpp"
 
 static JNIEnv *jniEnv = nullptr;
 static JavaVM *javaVM = nullptr;
 
-JNIEnv *JVM::getJNIEnv() {
+JNIEnv *JVM::VM::getJNIEnv() {
     return jniEnv;
 }
 
-JavaVM *JVM::getJVM() {
+JavaVM *JVM::VM::getJVM() {
     return javaVM;
 }
 
-bool JVM::createJavaVirtualMachine() {
+bool JVM::VM::create() {
     std::cout << "Creating Java Virtual Machine ... ";
 
-    if (!JVM::createJVM()) {
+    if (!VM::createJVM()) {
         std::cout << "Failed to initialize Java Virtual Machine" << std::endl;
         return false;
     }
-    if (!JVM::findAndExecuteMain()) {
+    if (!VM::findAndExecuteMain()) {
         std::cout << "Failed to execute Launcher" << std::endl;
         return false;
     }
     return true;
 }
 
-bool JVM::checkForException() {
+bool JVM::VM::checkForException() {
     if (jniEnv->ExceptionCheck()) {
         jthrowable throwable = jniEnv->ExceptionOccurred();
         jclass throwableCls = jniEnv->GetObjectClass(throwable);
@@ -48,15 +48,15 @@ bool JVM::checkForException() {
     return false;
 }
 
-bool JVM::findAndExecuteMain() {
+bool JVM::VM::findAndExecuteMain() {
     jclass jClass = jniEnv->FindClass(JVM_LAUNCHER_CLASS_NAME.c_str());
     if (jClass == nullptr) {
-        std::cout << std::endl << "Couldn't find expected JVM main class" << std::endl;
+        std::cout << std::endl << "Couldn't find expected VM main class" << std::endl;
         return false;
     }
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "()V");
     if (methodId == nullptr) {
-        std::cout << std::endl << "Couldn't find expected JVM main method" << std::endl;
+        std::cout << std::endl << "Couldn't find expected VM main method" << std::endl;
         return false;
     }
     jniEnv->CallStaticVoidMethod(jClass, methodId);
@@ -66,7 +66,7 @@ bool JVM::findAndExecuteMain() {
     return true;
 }
 
-bool JVM::createJVM() {
+bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
     JavaVMOption options[2];
 
@@ -110,7 +110,7 @@ bool JVM::createJVM() {
     }
 }
 
-jclass JVM::getClass(std::string className) {
+jclass JVM::VM::getClass(std::string className) {
     jclass jClass = jniEnv->FindClass(className.c_str());
     if (jClass == nullptr) {
         throw ClassNotFoundException(className + " not found");
@@ -118,27 +118,10 @@ jclass JVM::getClass(std::string className) {
     return jClass;
 }
 
-jmethodID JVM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
+jmethodID JVM::VM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
-}
-
-jobject JVM::createVector3(float x, float y, float z) {
-    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/vector/Vector3");
-    jmethodID methodId = jniEnv->GetMethodID(clazz, "<init>", "(FFF)V");
-    return jniEnv->NewObject(clazz, methodId, x, y, z);
-}
-
-jobject JVM::createPlayerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix) {
-    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/player/PlayerHeadBlend");
-    jmethodID methodId = jniEnv->GetMethodID(clazz, "<init>", "(IIFFF)V");
-    return jniEnv->NewObject(clazz, methodId, shape, skin, shapeMix, skinMix, thirdMix);
-}
-
-jint JVM::throwNotImplementedException(std::string reason) {
-    jclass clazz = jniEnv->FindClass("mp/rage/plugin/java/api/exception/NotImplementedException");
-    return jniEnv->ThrowNew(clazz, reason.c_str());
 }

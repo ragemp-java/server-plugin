@@ -10,11 +10,19 @@
 
 #include "Player.hpp"
 
-rage::IPlayer* Player::getPlayerById(int playerId) {
+/**
+ * Get's a player from the player pool.
+ * If the pool returns null for the player a JVM exception will be thrown
+ */
+rage::IPlayer* Rage::Player::getPlayerById(int playerId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if(mp == nullptr) {
         return nullptr;
     }
-    rage::IPlayer *player = mp->GetPlayerPool().GetAt((rage::entityId_t)TypeConverter::fromJInt(playerId));
-    return player;
+    rage::IPlayer *player = mp->GetPlayerPool().GetAt((rage::entityId_t) JVM::Converter::toInt(playerId));
+    if(player) {
+        return player;
+    }
+    JVM::Exception::throwPlayerNotFoundException(playerId);
+    return nullptr;
 }

@@ -13,11 +13,12 @@
 #include <windows.h>
 #endif
 #include <iostream>
+#include "RageJavaCore.hpp"
 #include "sdk/rage.hpp"
 #include "event/PlayerEventHandler.hpp"
 #include "event/EntityEventHandler.hpp"
 #include "event/VehicleEventHandler.hpp"
 #include "event/ColshapeEventHandler.hpp"
 #include "event/CheckpointEventHandler.hpp"
-#include "jvm/JVMException.hpp"
-#include "jvm/JVM.hpp"
+#include "jvm/Exception.hpp"
+#include "jvm/VM.hpp"

@@ -8,10 +8,15 @@
  * See the file COPYING included with this distribution for more information.
  */
 
-#include "JVMException.hpp"
+#pragma once
 
-JVMException::JVMException(std::string reason): pMessage(reason) {}
+#include <jni.h>
+#include "VM.hpp"
 
-ClassNotFoundException::ClassNotFoundException(const std::string &reason) : JVMException(reason) {}
-
-MethodNotFoundException::MethodNotFoundException(const std::string &reason) : JVMException(reason) {}
+namespace JVM {
+    class Object {
+    public:
+        static jobject vector3(float x, float y, float z);
+        static jobject playerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix);
+    };
+}

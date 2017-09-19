@@ -10,7 +10,8 @@
 
 #pragma once
 
-#include "jvm/JVM.hpp"
+#include "jvm/VM.hpp"
+#include "jvm/Exception.hpp"
 #include "event/PlayerEventHandler.hpp"
 #include "event/EntityEventHandler.hpp"
 #include "event/VehicleEventHandler.hpp"
@@ -32,9 +33,6 @@ public:
     bool initialize(rage::IMultiplayer *mp);
 
 private:
-    bool initializeJVM();
-    bool initializeEventHandlers();
-
     rage::IMultiplayer *mp;
 };
 

@@ -12,24 +12,9 @@
 
 bool RageJavaCore::initialize(rage::IMultiplayer *mp) {
     this->mp = mp;
-    if(!this->initializeJVM()) {
+    if (!JVM::VM::create()) {
         return false;
     }
-    if(!this->initializeEventHandlers()) {
-        return false;
-    }
-
-    return true;
-}
-
-bool RageJavaCore::initializeJVM() {
-    if (!JVM::createJavaVirtualMachine()) {
-        return false;
-    }
-    return true;
-}
-
-bool RageJavaCore::initializeEventHandlers() {
     try {
         mp->AddEventHandler(new PlayerEventHandler);
         mp->AddEventHandler(new EntityEventHandler);
