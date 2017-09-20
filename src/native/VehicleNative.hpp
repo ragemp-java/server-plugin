@@ -41,6 +41,22 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
+ * Method:    getPosition
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPosition
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
+ * Method:    setPosition
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPosition
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getRotation
  * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
  */

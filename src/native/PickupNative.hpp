@@ -41,6 +41,22 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_set
 
 /*
  * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
+ * Method:    getPosition
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_getPosition
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
+ * Method:    setPosition
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_setPosition
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
  * Method:    getRotation
  * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
  */
