@@ -182,20 +182,34 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setProp(JNIEnv *, jcl
     JVM::Exception::throwNotImplementedException("Player.getProp is currently not implemented");
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_eval(JNIEnv *, jclass, jint, jstring) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_eval(JNIEnv *, jclass, jint playerId, jstring code) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        player->Eval(JVM::Converter::toString(code));
+    }
 }
 
-jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getName(JNIEnv *, jclass, jint) {
+jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getName(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        return JVM::Converter::toJString(player->GetName());
+    }
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setName(JNIEnv *, jclass, jint, jstring) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setName(JNIEnv *, jclass, jint playerId, jstring name) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        player->SetName(JVM::Converter::toString(name));
+    }
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isAiming(JNIEnv *, jclass, jint) {
-    return 0;
+jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isAiming(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        return (jboolean)player->IsAiming();
+    }
+    return (jboolean)false;
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeading(JNIEnv *, jclass, jint) {
@@ -407,21 +421,32 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeadBlend(JNIEn
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeadBlend(JNIEnv *, jclass, jint, jint, jint, jint, jint, jint, jint, jfloat, jfloat, jfloat) {
-
+    JVM::Exception::throwNotImplementedException("Player.setHeadBlend is currently not implemented");
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_updateHeadBlend(JNIEnv *, jclass, jint, jfloat, jfloat, jfloat) {
-
+    JVM::Exception::throwNotImplementedException("Player.updateHeadBlend is currently not implemented");
 }
 
-jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getWeapon(JNIEnv *, jclass, jint) {
-    return 0;
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getWeapon(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        return (jint)player->GetWeapon();
+    }
+    return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapon(JNIEnv *, jclass, jint, jint, jint) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapon(JNIEnv *, jclass, jint playerId, jint hash, jint ammo) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        player->GiveWeapon((rage::hash_t)hash, (uint16_t)ammo);
+    }
 }
 
-jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSerial(JNIEnv *, jclass, jint) {
+jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSerial(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        return JVM::Converter::toJString(player->GetSerial());
+    }
     return nullptr;
 }
