@@ -230,12 +230,19 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isAiming(JNIEnv *
     return (jboolean)false;
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeading(JNIEnv *, jclass, jint) {
-    return 0;
+jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeading(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        return (jfloat)player->GetHeading();
+    }
+    return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeading(JNIEnv *, jclass, jint, jfloat) {
-
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeading(JNIEnv *, jclass, jint playerId, jfloat heading) {
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        player->SetHeading(heading);
+    }
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getMoveSpeed(JNIEnv *, jclass, jint playerId) {
