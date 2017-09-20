@@ -14,7 +14,7 @@
 #include "../sdk/Entities.hpp"
 #include "../RageJavaCore.hpp"
 
-namespace Rage {
+namespace Game {
     class Player {
     public:
         static rage::IPlayer *getPlayerById(int playerId);

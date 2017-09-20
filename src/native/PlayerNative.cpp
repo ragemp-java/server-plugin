@@ -20,14 +20,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getType(JNIEnv *, jcl
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_destroy(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->Destroy();
     }
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getDimension(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetDimension();
     }
@@ -35,14 +35,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getDimension(JNIEnv *
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setDimension(JNIEnv *, jclass, jint playerId, jint dimension) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetDimension((uint32_t)dimension);
     }
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPosition(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 position = player->GetPosition();
         return JVM::Object::vector3(position.x, position.y, position.z);
@@ -51,7 +51,7 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPosition(JNIEnv
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setPosition(JNIEnv *, jclass, jint playerId, jfloat x, jfloat y, jfloat z) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 position = {x, y, z};
         player->SetPosition(position);
@@ -59,7 +59,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setPosition(JNIEnv *,
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getRotation(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 position = player->GetRotation();
         return JVM::Object::vector3(position.x, position.y, position.z);
@@ -68,7 +68,7 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getRotation(JNIEnv
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setRotation(JNIEnv *, jclass, jint playerId, jfloat x, jfloat y, jfloat z) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 position = {x, y, z};
         player->SetRotation(position);
@@ -76,7 +76,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setRotation(JNIEnv *,
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getModel(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetModel();
     }
@@ -84,14 +84,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getModel(JNIEnv *, jc
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setModel(JNIEnv *, jclass, jint playerId, jint model) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetModel((uint32_t)model);
     }
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVelocity(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 velocity = player->GetVelocity();
         return JVM::Object::vector3(velocity.x, velocity.y, velocity.x);
@@ -100,7 +100,7 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVelocity(JNIEnv
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAlpha(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetAlpha();
     }
@@ -108,42 +108,42 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAlpha(JNIEnv *, jc
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setAlpha(JNIEnv *, jclass, jint playerId, jint alpha) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetAlpha((uint8_t)alpha);
     }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_kick(JNIEnv *, jclass, jint playerId, jstring reason) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->Kick(JVM::Converter::toString(reason).c_str());
     }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_ban(JNIEnv *, jclass, jint playerId, jstring reason) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->Ban(JVM::Converter::toString(reason).c_str());
     }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_outputChatBox(JNIEnv * env, jclass, jint playerId, jstring message) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->OutputChatBox(JVM::Converter::toU16string(message));
     }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_notify(JNIEnv *, jclass, jint playerId, jstring message) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->Notify(JVM::Converter::toU16string(message));
     }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn(JNIEnv * env, jclass, jint playerId, jfloat x, jfloat y, jfloat z, jfloat heading) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 position = {x, y, z};
         player->Spawn(position, heading);
@@ -151,7 +151,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_spawn(JNIEnv * env, j
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv *, jclass, jint playerId, jstring dict, jstring name, jfloat speed, jint flags) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         std::string convertedDict = JVM::Converter::toString(dict);
         std::string convertedName = JVM::Converter::toString(name);
@@ -160,7 +160,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playAnimation(JNIEnv 
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playScenario(JNIEnv *, jclass, jint playerId, jstring name) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         std::string convertedName = JVM::Converter::toString(name);
         player->PlayScenario(convertedName);
@@ -168,14 +168,14 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_playScenario(JNIEnv *
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_stopAnimation(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->StopAnimation();
     }
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getClothes(JNIEnv *, jclass, jint playerId, jint componentId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::clothData_t clothes = player->GetClothes((uint8_t)componentId);
     }
@@ -188,7 +188,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setClothes(JNIEnv *, 
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getProp(JNIEnv *, jclass, jint playerId, jint propId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::propData_t props = player->GetProp((uint8_t)propId);
     }
@@ -201,14 +201,14 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setProp(JNIEnv *, jcl
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_eval(JNIEnv *, jclass, jint playerId, jstring code) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->Eval(JVM::Converter::toString(code));
     }
 }
 
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getName(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return JVM::Converter::toJString(player->GetName());
     }
@@ -216,14 +216,14 @@ jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getName(JNIEnv *, 
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setName(JNIEnv *, jclass, jint playerId, jstring name) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetName(JVM::Converter::toString(name));
     }
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isAiming(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsAiming();
     }
@@ -239,7 +239,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHeading(JNIEnv *, 
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getMoveSpeed(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return player->GetMoveSpeed();
     }
@@ -247,7 +247,7 @@ jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getMoveSpeed(JNIEnv
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHealth(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return player->GetHealth();
     }
@@ -255,14 +255,14 @@ jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHealth(JNIEnv *,
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHealth(JNIEnv *, jclass, jint playerId, jfloat health) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetHealth(health);
     }
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getArmor(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return player->GetArmour();
     }
@@ -270,14 +270,14 @@ jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getArmor(JNIEnv *, 
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setArmor(JNIEnv *, jclass, jint playerId, jfloat armor) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetArmour(armor);
     }
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt(JNIEnv* env, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::vector3 pos = player->GetAimingAt();
         return JVM::Object::vector3(pos.x, pos.y, pos.z);
@@ -286,7 +286,7 @@ jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt(JNIEnv
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPing(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return player->GetPing();
     }
@@ -294,7 +294,7 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPing(JNIEnv *, jcl
 }
 
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getKickReason(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         std::string name = player->GetName();
         return JVM::Converter::toJString(name);
@@ -303,7 +303,7 @@ jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getKickReason(JNIE
 }
 
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getIp(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         std::string ip = player->GetIp();
         return JVM::Converter::toJString(ip);
@@ -312,7 +312,7 @@ jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getIp(JNIEnv *, jc
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isJumping(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsJumping();
     }
@@ -320,7 +320,7 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isJumping(JNIEnv 
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isInCover(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsInCover();
     }
@@ -328,7 +328,7 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isInCover(JNIEnv 
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isEnteringVehicle(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsEnteringVehicle();
     }
@@ -336,7 +336,7 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isEnteringVehicle
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isLeavingVehicle(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsLeavingVehicle();
     }
@@ -344,7 +344,7 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isLeavingVehicle(
 }
 
 jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isClimbing(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jboolean)player->IsClimbing();
     }
@@ -352,7 +352,7 @@ jboolean Java_mp_rage_plugin_java_launcher_player_PlayerNative_isClimbing(JNIEnv
 }
 
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         std::string action = player->GetActionString();
         return JVM::Converter::toJString(action);
@@ -361,7 +361,7 @@ jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString(JN
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVehicle(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::IVehicle *vehicle = player->GetVehicle();
         if(vehicle) {
@@ -372,9 +372,9 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVehicle(JNIEnv *, 
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_putIntoVehicle(JNIEnv *, jclass, jint playerId, jint vehicleId, jint seatId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        rage::IVehicle *vehicle = Rage::Vehicle::getVehicleById(vehicleId);
+        rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
         if(vehicle) {
             player->PutIntoVehicle(vehicle, (int8_t)seatId);
         }
@@ -382,14 +382,14 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_putIntoVehicle(JNIEnv
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_removeFromVehicle(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->RemoveFromVehicle();
     }
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSeat(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetSeat();
     }
@@ -397,7 +397,7 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSeat(JNIEnv *, jcl
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getEyeColor(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetEyeColour();
     }
@@ -405,14 +405,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getEyeColor(JNIEnv *,
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setEyeColor(JNIEnv *, jclass, jint playerId, jint eyeColor) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetEyeColour((uint8_t)eyeColor);
     }
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairColor(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetHairColour();
     }
@@ -420,7 +420,7 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairColor(JNIEnv *
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairHighlightColor(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetHairHighlightColour();
     }
@@ -428,14 +428,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHairHighlightColor
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setHairColor(JNIEnv *, jclass, jint playerId, jint hairColor, jint hairHighlightColor) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetHairColour((uint8_t)hairColor, (uint8_t)hairHighlightColor);
     }
 }
 
 jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getFaceFeature(JNIEnv *, jclass, jint playerId, jint facePartId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jfloat)player->GetFaceFeature((uint8_t)facePartId);
     }
@@ -443,14 +443,14 @@ jfloat Java_mp_rage_plugin_java_launcher_player_PlayerNative_getFaceFeature(JNIE
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setFaceFeature(JNIEnv *, jclass, jint playerId, jint faceId, jfloat scale) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetFaceFeature((uint8_t)faceId, (uint8_t)scale);
     }
 }
 
 jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeadBlend(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         rage::headBlend_t headBlend = player->GetHeadBlend();
 //        @TODO
@@ -468,7 +468,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_updateHeadBlend(JNIEn
 }
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getWeapon(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return (jint)player->GetWeapon();
     }
@@ -476,14 +476,14 @@ jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getWeapon(JNIEnv *, j
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapon(JNIEnv *, jclass, jint playerId, jint hash, jint ammo) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->GiveWeapon((rage::hash_t)hash, (uint16_t)ammo);
     }
 }
 
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSerial(JNIEnv *, jclass, jint playerId) {
-    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         return JVM::Converter::toJString(player->GetSerial());
     }

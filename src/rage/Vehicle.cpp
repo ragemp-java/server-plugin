@@ -10,7 +10,7 @@
 
 #include "Vehicle.hpp"
 
-rage::IVehicle *Rage::Vehicle::getVehicleById(int vehicleId) {
+rage::IVehicle *Game::Vehicle::getVehicleById(int vehicleId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if (mp == nullptr) {
         return nullptr;
