@@ -24,6 +24,7 @@ namespace JVM {
 
         static void throwVehicleNotFoundException(int vehicleId);
 
+        static void throwJNIExecutionException(std::string reason);
     };
 
 

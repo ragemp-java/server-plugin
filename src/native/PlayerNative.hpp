@@ -505,6 +505,14 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_giv
 
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    giveWeapons
+ * Signature: (I[I[I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapons
+        (JNIEnv *, jclass, jint, jintArray, jintArray);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getSerial
  * Signature: (I)Ljava/lang/String;
  */

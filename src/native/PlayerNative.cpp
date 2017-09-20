@@ -489,6 +489,36 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapon(JNIEnv *, 
     }
 }
 
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapons(JNIEnv *env, jclass, jint playerId, jintArray weapons, jintArray ammo) {
+    return JVM::Exception::throwNotImplementedException("player.giveWeapons is currently broken in the rage sdk");
+    rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        jsize weaponLength = env->GetArrayLength(weapons);
+        jsize ammoLength = env->GetArrayLength(ammo);
+        std::cout << weaponLength << " " << ammoLength << std::endl;
+
+        if(weaponLength != ammoLength) {
+            JVM::Exception::throwJNIExecutionException("weapon array length must equals ammo array length");
+        }
+        jint *weaponElements = env->GetIntArrayElements(weapons, JNI_FALSE);
+        jint *ammoElements = env->GetIntArrayElements(ammo, JNI_FALSE);
+
+        std::vector<std::pair<rage::hash_t, uint16_t>> weaponsToAdd;
+
+        for(int i = 0; i < weaponLength; i++) {
+            std::cout << weaponElements[i] << " " << ammoElements[i] << std::endl;
+            std::pair<rage::hash_t, uint16_t> test = std::make_pair((rage::hash_t)weaponElements[i], (uint16_t)ammoElements[i]);
+            weaponsToAdd.push_back(test);
+        }
+
+        player->GiveWeapons(weaponsToAdd);
+
+        env->ReleaseIntArrayElements(weapons, weaponElements, 0);
+        env->ReleaseIntArrayElements(ammo, ammoElements, 0);
+    }
+
+}
+
 jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getSerial(JNIEnv *, jclass, jint playerId) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
