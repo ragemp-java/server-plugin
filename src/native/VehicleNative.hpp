@@ -97,6 +97,14 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
+ * Method:    create
+ * Signature: (IFFFFI)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_create
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    IsSirenActive
  * Signature: (I)Z
  */

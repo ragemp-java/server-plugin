@@ -21,6 +21,9 @@ namespace JVM {
         static void throwNotImplementedException(std::string reason);
 
         static void throwPlayerNotFoundException(int playerId);
+
+        static void throwVehicleNotFoundException(int vehicleId);
+
     };
 
 

@@ -13,6 +13,7 @@
 #include "../RagePlugin.hpp"
 #include "../rage/Player.hpp"
 #include "../jvm/Object.hpp"
+#include "../rage/Vehicle.hpp"
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getType(JNIEnv *, jclass, jint playerId) {
     return (jint)rage::entity_t::Player;
@@ -37,6 +38,23 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setDimension(JNIEnv *
     rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         player->SetDimension((uint32_t)dimension);
+    }
+}
+
+jobject Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPosition(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        rage::vector3 position = player->GetPosition();
+        return JVM::Object::vector3(position.x, position.y, position.z);
+    }
+    return nullptr;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_setPosition(JNIEnv *, jclass, jint playerId, jfloat x, jfloat y, jfloat z) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        rage::vector3 position = {x, y, z};
+        player->SetPosition(position);
     }
 }
 
@@ -340,6 +358,27 @@ jstring Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString(JN
         return JVM::Converter::toJString(action);
     }
     return nullptr;
+}
+
+jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVehicle(JNIEnv *, jclass, jint playerId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        rage::IVehicle *vehicle = player->GetVehicle();
+        if(vehicle) {
+            return vehicle->GetId();
+        }
+    }
+    return -1;
+}
+
+void Java_mp_rage_plugin_java_launcher_player_PlayerNative_putIntoVehicle(JNIEnv *, jclass, jint playerId, jint vehicleId, jint seatId) {
+    rage::IPlayer* player = Rage::Player::getPlayerById(JVM::Converter::toInt(playerId));
+    if(player) {
+        rage::IVehicle *vehicle = Rage::Vehicle::getVehicleById(vehicleId);
+        if(vehicle) {
+            player->PutIntoVehicle(vehicle, (int8_t)seatId);
+        }
+    }
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_removeFromVehicle(JNIEnv *, jclass, jint playerId) {

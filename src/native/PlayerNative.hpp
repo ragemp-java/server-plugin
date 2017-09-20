@@ -41,6 +41,22 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getPosition
+ * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPosition
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    setPosition
+ * Signature: (IFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setPosition
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getRotation
  * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
  */
@@ -358,6 +374,22 @@ JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative
  */
 JNIEXPORT jstring JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getActionString
         (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    getVehicle
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVehicle
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
+ * Method:    putIntoVehicle
+ * Signature: (III)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_putIntoVehicle
+        (JNIEnv *, jclass, jint, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
