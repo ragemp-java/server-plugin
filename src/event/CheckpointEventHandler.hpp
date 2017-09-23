@@ -10,12 +10,24 @@
 
 #pragma once
 
+#include <jni.h>
 #include "../sdk/rage.hpp"
+#include "../jvm/VM.hpp"
 
 class CheckpointEventHandler : public rage::ICheckpointHandler, public rage::IEventHandler {
 public:
+    CheckpointEventHandler();
+
+    rage::ICheckpointHandler *GetCheckpointHandler() override {
+        return this;
+    }
+
     void OnPlayerEnterCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) override;
 
     void OnPlayerExitCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) override;
 
+private:
+    jclass checkpointEventClass;
+    jmethodID playerEnterCheckpointMethod;
+    jmethodID playerExitCheckpointMethod;
 };

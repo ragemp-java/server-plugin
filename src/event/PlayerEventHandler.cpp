@@ -10,22 +10,18 @@
 
 #include "PlayerEventHandler.hpp"
 
-rage::IPlayerHandler *PlayerEventHandler::GetPlayerHandler() {
-    return this;
-}
-
 PlayerEventHandler::PlayerEventHandler() {
-    playerEventClass = JVM::VM::getClass(playerEventClassName);
-    playerJoinMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerJoin", "(I)V");
-    playerCommandMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerCommand", "(ILjava/lang/String;)V");
-    playerQuitMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerQuit", "(IILjava/lang/String;)V");
-    playerSpawnMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerSpawn", "(I)V");
-    playerChatMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerChat", "(ILjava/lang/String;)V");
-    playerEnterVehicleMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerEnterVehicle", "(III)V");
-    playerEnteredVehicleMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerEnteredVehicle", "(III)V");
-    playerExitVehicleMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerExitVehicle", "(II)V");
-    playerLeftVehicleMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerExitVehicle", "(II)V");
-    playerDeathMethod = JVM::VM::getStaticMethod(playerEventClass, "onPlayerDeath", "(III)V");
+    playerEventClass = JVM::VM::getClass(JVM_LAUNCHER_MAIN_PACKAGE_NAME + "player/PlayerEvents");
+    playerJoinMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerJoin", "(I)V");
+    playerCommandMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerCommand", "(ILjava/lang/String;)V");
+    playerQuitMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerQuit", "(IILjava/lang/String;)V");
+    playerSpawnMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerSpawn", "(I)V");
+    playerChatMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerChat", "(ILjava/lang/String;)V");
+    playerEnterVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerEnterVehicle", "(III)V");
+    playerEnteredVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerEnteredVehicle", "(III)V");
+    playerExitVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerExitVehicle", "(II)V");
+    playerLeftVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerExitVehicle", "(II)V");
+    playerDeathMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerDeath", "(III)V");
 }
 
 void PlayerEventHandler::OnPlayerJoin(rage::IPlayer *player) {

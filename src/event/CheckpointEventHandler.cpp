@@ -10,10 +10,18 @@
 
 #include "CheckpointEventHandler.hpp"
 
-void CheckpointEventHandler::OnPlayerEnterCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) {
+CheckpointEventHandler::CheckpointEventHandler() {
+    checkpointEventClass = JVM::VM::getClass(JVM_LAUNCHER_MAIN_PACKAGE_NAME + "checkpoint/CheckpointEvents");
+    playerEnterCheckpointMethod = JVM::VM::getStaticMethodId(checkpointEventClass, "onPlayerEnterCheckpoint", "(II)V");
+    playerExitCheckpointMethod = JVM::VM::getStaticMethodId(checkpointEventClass, "onPlayerExitCheckpoint", "(II)V");
+}
 
+void CheckpointEventHandler::OnPlayerEnterCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerEnterCheckpointMethod, (jint)player->GetId(), (jint)checkpoint->GetId());
+    JVM::VM::checkForException();
 }
 
 void CheckpointEventHandler::OnPlayerExitCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) {
-
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerExitCheckpointMethod, (jint)player->GetId(), (jint)checkpoint->GetId());
+    JVM::VM::checkForException();
 }

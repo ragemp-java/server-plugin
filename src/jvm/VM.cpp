@@ -22,7 +22,7 @@ JavaVM *JVM::VM::getJVM() {
 }
 
 bool JVM::VM::create() {
-    std::cout << "Creating Java Virtual Machine ... ";
+    std::cout << "Creating Java Virtual Machine ... " << std::endl;
 
     if (!VM::createJVM()) {
         std::cout << "Failed to initialize Java Virtual Machine" << std::endl;
@@ -108,7 +108,6 @@ bool JVM::VM::createJVM() {
         javaVM->DestroyJavaVM();
         return false;
     } else {
-        std::cout << "[OK]" << std::endl;
         return true;
     }
 }
@@ -116,14 +115,25 @@ bool JVM::VM::createJVM() {
 jclass JVM::VM::getClass(std::string className) {
     jclass jClass = jniEnv->FindClass(className.c_str());
     if (jClass == nullptr) {
+        std::cerr << "JVM class " + className + " not found";
         throw ClassNotFoundException(className + " not found");
     }
     return jClass;
 }
 
-jmethodID JVM::VM::getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature) {
+jmethodID JVM::VM::getMethodId(jclass jClass, std::string methodName, std::string methodSignature) {
+    jmethodID methodId = jniEnv->GetMethodID(jClass, methodName.c_str(), methodSignature.c_str());
+    if (methodId == nullptr) {
+        std::cerr << "JVM method " << methodId << " not found";
+        throw MethodNotFoundException(methodName + " not found");
+    }
+    return methodId;
+}
+
+jmethodID JVM::VM::getStaticMethodId(jclass jClass, std::string methodName, std::string methodSignature) {
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
+        std::cerr << "JVM static method " << methodId << " not found";
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;

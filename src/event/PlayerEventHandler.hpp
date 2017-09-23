@@ -16,14 +16,14 @@
 #include "../jvm/VM.hpp"
 #include "../jvm/Converter.hpp"
 
-const std::string playerEventClassName = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "player/PlayerEvents";
-
 class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler
 {
 public:
     PlayerEventHandler();
 
-    rage::IPlayerHandler *GetPlayerHandler() override;
+    rage::IPlayerHandler *GetPlayerHandler() override {
+        return this;
+    }
 
     void OnPlayerJoin(rage::IPlayer *player) override;
 

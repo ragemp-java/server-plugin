@@ -12,6 +12,8 @@ namespace rage
 {
     struct rgba_t
     {
+        rgba_t(uint8_t r, uint8_t g, uint8_t b, uint8_t a) : intvalue((a << 24) + (b << 16) + (g << 8) + r) { }
+
         union
         {
             uint32_t intvalue;

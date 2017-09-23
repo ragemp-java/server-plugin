@@ -17,7 +17,8 @@
 #include "Object.hpp"
 
 
-const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/game/plugin/java/launcher/";
+const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/rage/plugin/java/launcher/";
+const std::string JVM_API_MAIN_PACKAGE_NAME = "mp/rage/plugin/java/api/";
 const std::string JVM_LAUNCHER_CLASS_NAME = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "Launcher";
 const std::string JVM_LAUNCHER_METHOD_NAME = "main";
 
@@ -35,11 +36,14 @@ namespace JVM {
 
         static jclass getClass(std::string className);
 
-        static jmethodID getStaticMethod(jclass jClass, std::string methodName, std::string methodSignature);
+        static jmethodID getMethodId(jclass jClass, std::string methodName, std::string methodSignature);
+
+        static jmethodID getStaticMethodId(jclass jClass, std::string methodName, std::string methodSignature);
 
     private:
         static bool findAndExecuteMain();
 
         static bool createJVM();
+
     };
 }

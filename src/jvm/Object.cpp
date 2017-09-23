@@ -24,18 +24,18 @@ static jmethodID arrayListConstructor;
 static jmethodID arrayListAddMethod;
 
 void JVM::Object::initialize() {
-    vector3Class = VM::getClass("mp/game/plugin/java/api/vector/Vector3");
-    vector3Constructor = VM::getJNIEnv()->GetMethodID(vector3Class, "<init>", "(FFF)V");
+    vector3Class = VM::getClass(JVM_API_MAIN_PACKAGE_NAME + "vector/Vector3");
+    vector3Constructor = VM::getMethodId(vector3Class, "<init>", "(FFF)V");
 
-//    playerHeadBlendClass = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/player/PlayerHeadBlend");
+//    playerHeadBlendClass = VM::getClass("mp/game/plugin/java/api/player/PlayerHeadBlend");
 //    playerHeadBlendConstructor = VM::getJNIEnv()->GetMethodID(playerHeadBlendClass, "<init>", "(IIFFF)V");
 
-    rgbColorClass = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/color/RGBColor");
-    rgbColorConstructor = VM::getJNIEnv()->GetMethodID(rgbColorClass, "<init>", "(III)V");
+    rgbColorClass = VM::getClass(JVM_API_MAIN_PACKAGE_NAME +"color/RGBColor");
+    rgbColorConstructor = VM::getMethodId(rgbColorClass, "<init>", "(III)V");
 
-    arrayListClass = VM::getJNIEnv()->FindClass("java/util/ArrayList");
-    arrayListConstructor = VM::getJNIEnv()->GetMethodID(arrayListClass, "<init>", "(I)V");
-    arrayListAddMethod = VM::getJNIEnv()->GetMethodID(arrayListClass, "add","(Ljava/lang/Object;)Z");
+    arrayListClass = VM::getClass("java/util/ArrayList");
+    arrayListConstructor = VM::getMethodId(arrayListClass, "<init>", "(I)V");
+    arrayListAddMethod = VM::getMethodId(arrayListClass, "add","(Ljava/lang/Object;)Z");
 }
 
 jobject JVM::Object::vector3(float x, float y, float z) {
