@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_pickup_PickupNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_pickup_PickupNative_getVelocity
         (JNIEnv *, jclass, jint);

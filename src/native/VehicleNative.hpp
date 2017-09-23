@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getVelocity
         (JNIEnv *, jclass, jint);
@@ -314,7 +314,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getNeonsColour
- * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
+ * Signature: (I)Lmp/game/plugin/java/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNeonsColour
         (JNIEnv *, jclass, jint);
@@ -330,7 +330,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_r
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    getColourRGB
- * Signature: (II)Lmp/rage/plugin/java/api/color/RGBColor;
+ * Signature: (II)Lmp/game/plugin/java/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColourRGB
         (JNIEnv *, jclass, jint, jint);

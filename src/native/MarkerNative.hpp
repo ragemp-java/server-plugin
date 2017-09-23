@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_getVelocity
         (JNIEnv *, jclass, jint);
@@ -114,7 +114,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    GetColour
- * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
+ * Signature: (I)Lmp/game/plugin/java/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_GetColour
         (JNIEnv *, jclass, jint);
@@ -130,7 +130,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_Set
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    GetDirection
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_GetDirection
         (JNIEnv *, jclass, jint);
@@ -138,7 +138,7 @@ JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_
 /*
  * Class:     mp_rage_plugin_java_launcher_marker_MarkerNative
  * Method:    SetDirection
- * Signature: (ILmp/rage/plugin/java/api/vector/Vector3;)V
+ * Signature: (ILmp/game/plugin/java/api/vector/Vector3;)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_marker_MarkerNative_SetDirection
         (JNIEnv *, jclass, jint, jobject);

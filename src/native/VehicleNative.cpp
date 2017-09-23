@@ -10,9 +10,9 @@
 
 #include "VehicleNative.hpp"
 #include "../RageJavaCore.hpp"
-#include "../rage/Vehicle.hpp"
+#include "../game/Vehicle.hpp"
 #include "../jvm/Object.hpp"
-#include "../rage/Player.hpp"
+#include "../game/Player.hpp"
 
 jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_create(JNIEnv *, jclass, jint model, jfloat x, jfloat y, jfloat z, jfloat heading, jint dimension) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();

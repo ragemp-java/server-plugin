@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNa
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNa
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNa
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_getVelocity
         (JNIEnv *, jclass, jint);
@@ -114,7 +114,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNa
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    GetColour
- * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
+ * Signature: (I)Lmp/game/plugin/java/api/color/RGBColor;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_GetColour
         (JNIEnv *, jclass, jint);
@@ -130,7 +130,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNa
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    GetDirection
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_GetDirection
         (JNIEnv *, jclass, jint);
@@ -138,7 +138,7 @@ JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_Checkpoin
 /*
  * Class:     mp_rage_plugin_java_launcher_checkpoint_CheckpointNative
  * Method:    SetDirection
- * Signature: (ILmp/rage/plugin/java/api/vector/Vector3;)V
+ * Signature: (ILmp/game/plugin/java/api/vector/Vector3;)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_SetDirection
         (JNIEnv *, jclass, jint, jobject);

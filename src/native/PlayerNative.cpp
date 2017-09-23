@@ -11,9 +11,9 @@
 #include "PlayerNative.hpp"
 #include <iostream>
 #include "../RagePlugin.hpp"
-#include "../rage/Player.hpp"
+#include "../game/Player.hpp"
 #include "../jvm/Object.hpp"
-#include "../rage/Vehicle.hpp"
+#include "../game/Vehicle.hpp"
 
 jint Java_mp_rage_plugin_java_launcher_player_PlayerNative_getType(JNIEnv *, jclass, jint playerId) {
     return (jint)rage::entity_t::Player;
@@ -490,7 +490,7 @@ void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapon(JNIEnv *, 
 }
 
 void Java_mp_rage_plugin_java_launcher_player_PlayerNative_giveWeapons(JNIEnv *env, jclass, jint playerId, jintArray weapons, jintArray ammo) {
-    return JVM::Exception::throwNotImplementedException("player.giveWeapons is currently broken in the rage sdk");
+    return JVM::Exception::throwNotImplementedException("player.giveWeapons is currently broken in the game sdk");
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
         jsize weaponLength = env->GetArrayLength(weapons);

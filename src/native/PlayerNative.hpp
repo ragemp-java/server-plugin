@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getVelocity
         (JNIEnv *, jclass, jint);
@@ -178,7 +178,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_sto
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getClothes
- * Signature: (II)Lmp/rage/plugin/java/api/player/PlayerClothes;
+ * Signature: (II)Lmp/game/plugin/java/api/player/PlayerClothes;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getClothes
         (JNIEnv *, jclass, jint, jint);
@@ -186,7 +186,7 @@ JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    setClothes
- * Signature: (IILmp/rage/plugin/java/api/player/PlayerClothes;)V
+ * Signature: (IILmp/game/plugin/java/api/player/PlayerClothes;)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setClothes
         (JNIEnv *, jclass, jint, jint, jobject);
@@ -194,7 +194,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getProp
- * Signature: (II)Lmp/rage/plugin/java/api/player/PlayerProperty;
+ * Signature: (II)Lmp/game/plugin/java/api/player/PlayerProperty;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getProp
         (JNIEnv *, jclass, jint, jint);
@@ -202,7 +202,7 @@ JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    setProp
- * Signature: (IILmp/rage/plugin/java/api/player/PlayerProperty;)V
+ * Signature: (IILmp/game/plugin/java/api/player/PlayerProperty;)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_setProp
         (JNIEnv *, jclass, jint, jint, jobject);
@@ -298,7 +298,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getAimingAt
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getAimingAt
         (JNIEnv *, jclass, jint);
@@ -466,7 +466,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_set
 /*
  * Class:     mp_rage_plugin_java_launcher_player_PlayerNative
  * Method:    getHeadBlend
- * Signature: (I)Lmp/rage/plugin/java/api/player/PlayerHeadBlend;
+ * Signature: (I)Lmp/game/plugin/java/api/player/PlayerHeadBlend;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_player_PlayerNative_getHeadBlend
         (JNIEnv *, jclass, jint);

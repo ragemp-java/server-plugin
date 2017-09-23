@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative
 /*
  * Class:     mp_rage_plugin_java_launcher_colshape_ColshapeNative
  * Method:    getPosition
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative_getPosition
         (JNIEnv *, jclass, jint);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative
 /*
  * Class:     mp_rage_plugin_java_launcher_colshape_ColshapeNative
  * Method:    getRotation
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative_getRotation
         (JNIEnv *, jclass, jint);
@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative
 /*
  * Class:     mp_rage_plugin_java_launcher_colshape_ColshapeNative
  * Method:    getVelocity
- * Signature: (I)Lmp/rage/plugin/java/api/vector/Vector3;
+ * Signature: (I)Lmp/game/plugin/java/api/vector/Vector3;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative_getVelocity
         (JNIEnv *, jclass, jint);
@@ -114,7 +114,7 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative
 /*
  * Class:     mp_rage_plugin_java_launcher_colshape_ColshapeNative
  * Method:    IsPointWithin
- * Signature: (ILmp/rage/plugin/java/api/vector/Vector3;)Z
+ * Signature: (ILmp/game/plugin/java/api/vector/Vector3;)Z
  */
 JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_colshape_ColshapeNative_IsPointWithin
         (JNIEnv *, jclass, jint, jobject);

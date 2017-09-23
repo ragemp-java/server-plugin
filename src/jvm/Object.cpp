@@ -24,13 +24,13 @@ static jmethodID arrayListConstructor;
 static jmethodID arrayListAddMethod;
 
 void JVM::Object::initialize() {
-    vector3Class = VM::getClass("mp/rage/plugin/java/api/vector/Vector3");
+    vector3Class = VM::getClass("mp/game/plugin/java/api/vector/Vector3");
     vector3Constructor = VM::getJNIEnv()->GetMethodID(vector3Class, "<init>", "(FFF)V");
 
-//    playerHeadBlendClass = VM::getJNIEnv()->FindClass("mp/rage/plugin/java/api/player/PlayerHeadBlend");
+//    playerHeadBlendClass = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/player/PlayerHeadBlend");
 //    playerHeadBlendConstructor = VM::getJNIEnv()->GetMethodID(playerHeadBlendClass, "<init>", "(IIFFF)V");
 
-    rgbColorClass = VM::getJNIEnv()->FindClass("mp/rage/plugin/java/api/color/RGBColor");
+    rgbColorClass = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/color/RGBColor");
     rgbColorConstructor = VM::getJNIEnv()->GetMethodID(rgbColorClass, "<init>", "(III)V");
 
     arrayListClass = VM::getJNIEnv()->FindClass("java/util/ArrayList");

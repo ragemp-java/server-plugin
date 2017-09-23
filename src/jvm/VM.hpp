@@ -17,7 +17,7 @@
 #include "Object.hpp"
 
 
-const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/rage/plugin/java/launcher/";
+const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/game/plugin/java/launcher/";
 const std::string JVM_LAUNCHER_CLASS_NAME = JVM_LAUNCHER_MAIN_PACKAGE_NAME + "Launcher";
 const std::string JVM_LAUNCHER_METHOD_NAME = "main";
 
