@@ -11,12 +11,18 @@
 #pragma once
 
 #include <jni.h>
+#include <vector>
 #include "VM.hpp"
 
 namespace JVM {
     class Object {
     public:
+        static void initialize();
+
         static jobject vector3(float x, float y, float z);
         static jobject playerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix);
+        static jobject rgbColor(int red, int green, int blue);
+
+        static jobject intArrayList(std::vector<int> ids);
     };
 }

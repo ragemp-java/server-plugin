@@ -14,6 +14,7 @@
 #include <iostream>
 #include "jni.h"
 #include "Exception.hpp"
+#include "Object.hpp"
 
 
 const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/rage/plugin/java/launcher/";

@@ -121,58 +121,58 @@ JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_c
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    IsSirenActive
+ * Method:    isSirenActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_IsSirenActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isSirenActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    IsHornActive
+ * Method:    isHornActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_IsHornActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isHornActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    AreHighbeamsActive
+ * Method:    areHighbeamsActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_AreHighbeamsActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areHighbeamsActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    AreLightsActive
+ * Method:    ireLightsActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_AreLightsActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_ireLightsActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    IsEngineActive
+ * Method:    isEngineActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_IsEngineActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isEngineActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    IsRocketBoostActive
+ * Method:    isRocketBoostActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_IsRocketBoostActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isRocketBoostActive
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    IsBrakeActive
+ * Method:    isBrakeActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_IsBrakeActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isBrakeActive
         (JNIEnv *, jclass, jint);
 
 /*
@@ -266,10 +266,10 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_e
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
  * Method:    spawn
- * Signature: (ILmp/rage/plugin/java/api/vector/Vector3;F)V
+ * Signature: (IFFFF)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_spawn
-        (JNIEnv *, jclass, jint, jobject, jfloat);
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
@@ -313,90 +313,90 @@ JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_s
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetNeonsColour
+ * Method:    getNeonsColour
  * Signature: (I)Lmp/rage/plugin/java/api/color/RGBColor;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetNeonsColour
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNeonsColour
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    Repair
+ * Method:    repair
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_Repair
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_repair
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetColourRGB
+ * Method:    getColourRGB
  * Signature: (II)Lmp/rage/plugin/java/api/color/RGBColor;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetColourRGB
+JNIEXPORT jobject JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColourRGB
         (JNIEnv *, jclass, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetColour
+ * Method:    getColour
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetColour
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColour
         (JNIEnv *, jclass, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetPaint
+ * Method:    getPaint
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetPaint
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPaint
         (JNIEnv *, jclass, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    SetColourRGB
- * Signature: (ILmp/rage/plugin/java/api/color/RGBColor;Lmp/rage/plugin/java/api/color/RGBColor;)V
+ * Method:    setColourRGB
+ * Signature: (IIIIIII)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_SetColourRGB
-        (JNIEnv *, jclass, jint, jobject, jobject);
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setColourRGB
+        (JNIEnv *, jclass, jint, jint, jint, jint, jint, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    SetColour
+ * Method:    setColour
  * Signature: (III)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_SetColour
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setColour
         (JNIEnv *, jclass, jint, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    SetPaint
- * Signature: (ILmp/rage/plugin/java/api/vehicle/VehiclePaintInfo;Lmp/rage/plugin/java/api/vehicle/VehiclePaintInfo;)V
+ * Method:    setPaint
+ * Signature: (IIIII)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_SetPaint
-        (JNIEnv *, jclass, jint, jobject, jobject);
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPaint
+        (JNIEnv *, jclass, jint, jint, jint, jint, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetMaterialType
+ * Method:    getMaterialType
  * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetMaterialType
+JNIEXPORT jint JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getMaterialType
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    GetNumberPlate
+ * Method:    getNumberPlate
  * Signature: (I)Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_GetNumberPlate
+JNIEXPORT jstring JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNumberPlate
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_plugin_java_launcher_vehicle_VehicleNative
- * Method:    SetNumberPlate
+ * Method:    setNumberPlate
  * Signature: (ILjava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_SetNumberPlate
+JNIEXPORT void JNICALL Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setNumberPlate
         (JNIEnv *, jclass, jint, jstring);
 
 #ifdef __cplusplus

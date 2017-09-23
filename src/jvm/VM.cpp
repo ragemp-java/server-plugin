@@ -28,6 +28,9 @@ bool JVM::VM::create() {
         std::cout << "Failed to initialize Java Virtual Machine" << std::endl;
         return false;
     }
+
+    Object::initialize();
+
     if (!VM::findAndExecuteMain()) {
         std::cout << "Failed to execute Launcher" << std::endl;
         return false;

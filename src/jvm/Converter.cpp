@@ -52,5 +52,3 @@ int JVM::Converter::toInt(jint input) {
 jint JVM::Converter::toJInt(int input) {
     return (jint) input;
 }
-
-
