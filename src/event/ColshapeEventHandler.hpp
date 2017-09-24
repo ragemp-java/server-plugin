@@ -10,12 +10,34 @@
 
 #pragma once
 
+#include <jni.h>
 #include "../sdk/rage.hpp"
 
-class ColshapeEventHandler : public rage::IColshapeHandler, public rage::IEventHandler {
+class ColshapeEventHandler : public rage::IColshapeHandler, public rage::IEventHandler, public rage::IEntityHandler {
 public:
+
+    ColshapeEventHandler();
+
+    rage::IEntityHandler *GetEntityHandler() override {
+        return this;
+    }
+
+    rage::IColshapeHandler *GetColshapeHandler() override {
+        return this;
+    }
+
     void OnPlayerEnterColshape(rage::IPlayer *player, rage::IColshape *colshape) override;
 
     void OnPlayerExitColshape(rage::IPlayer *player, rage::IColshape *colshape) override;
 
+    void OnEntityCreated(rage::IEntity *entity) override;
+
+    void OnEntityDestroyed(rage::IEntity *entity) override;
+
+private:
+    jclass colshapeEventClass;
+    jmethodID playerEnterColshapeMethod;
+    jmethodID playerExitColshapeMethod;
+    jmethodID colshapeCreatedMethod;
+    jmethodID colshapeDestroyedMethod;
 };
