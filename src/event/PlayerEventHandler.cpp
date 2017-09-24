@@ -33,89 +33,89 @@ void PlayerEventHandler::OnPlayerJoin(rage::IPlayer *player) {
 }
 
 void PlayerEventHandler::OnPlayerCommand(rage::IPlayer *player, const std::u16string &command) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jstring jCommand = JVM::Converter::toJString(command);
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCommandMethod, playerId, jCommand);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCommandMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJString(command));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerQuit(rage::IPlayer *player, rage::exit_t exitType, const char *reason) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint jExitType = JVM::Converter::toJInt((int)exitType);
-    jstring jReason = JVM::Converter::toJString(reason);
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerQuitMethod, playerId, jExitType, jReason);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerQuitMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt((int)exitType),
+                                               JVM::Converter::toJString(reason));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerSpawn(rage::IPlayer *player) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerSpawnMethod, playerId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerSpawnMethod,
+                                               JVM::Converter::toJInt(player->GetId()));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerChat(rage::IPlayer *player, const std::u16string &text) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jstring jText = JVM::Converter::toJString(text);
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerChatMethod, playerId, jText);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerChatMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJString(text));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerEnterVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
-    jint jSeatId = JVM::Converter::toJInt(seatId);
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerEnterVehicleMethod, playerId, vehicleId, jSeatId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerEnterVehicleMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(vehicle->GetId()),
+                                               JVM::Converter::toJInt(seatId));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerEnteredVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
-    jint jSeatId = JVM::Converter::toJInt(seatId);
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerEnteredVehicleMethod, playerId, vehicleId, jSeatId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerEnteredVehicleMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(vehicle->GetId()),
+                                               JVM::Converter::toJInt(seatId));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerExitVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerExitVehicleMethod, playerId, vehicleId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerExitVehicleMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(vehicle->GetId()));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerLeftVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerLeftVehicleMethod, playerId, vehicleId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerLeftVehicleMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(vehicle->GetId()));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerDeath(rage::IPlayer *player, rage::hash_t reason, rage::IPlayer *killer) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    jint jReason = JVM::Converter::toJInt(reason);
-    jint killerId = JVM::Converter::toJInt(killer->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDeathMethod, playerId, jReason, killerId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDeathMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(reason),
+                                               JVM::Converter::toJInt(killer->GetId()));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnPlayerRemoteEvent(rage::IPlayer *player, const std::string &eventName, const rage::args_t &args) {
-    jint playerId = JVM::Converter::toJInt(player->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerRemoteEventMethod, playerId);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerRemoteEventMethod,
+                                               JVM::Converter::toJInt(player->GetId()));
     JVM::VM::checkForException();
 }
 
 void PlayerEventHandler::OnEntityCreated(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Player) {
-        jint playerId = JVM::Converter::toJInt(entity->GetId());
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCreatedMethod, playerId);
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCreatedMethod,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }
 
 void PlayerEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Player) {
-        jint playerId = JVM::Converter::toJInt(entity->GetId());
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDestroyedMethod, playerId);
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDestroyedMethod,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }

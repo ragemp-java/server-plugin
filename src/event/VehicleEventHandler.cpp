@@ -21,25 +21,25 @@ VehicleEventHandler::VehicleEventHandler() {
 }
 
 void VehicleEventHandler::OnVehicleDeath(rage::IVehicle *vehicle, rage::hash_t hash, rage::IPlayer *killer) {
-    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
-    jint jHash = JVM::Converter::toJInt((uint32_t)hash);
-    jint jKiller = JVM::Converter::toJInt(killer->GetId());
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDeathMethod, vehicleId, jHash, jKiller);
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDeathMethod,
+                                               JVM::Converter::toJInt(vehicle->GetId()),
+                                               JVM::Converter::toJInt((uint32_t)hash),
+                                               JVM::Converter::toJInt(killer->GetId()));
     JVM::VM::checkForException();
 }
 
 void VehicleEventHandler::OnEntityCreated(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Vehicle) {
-        jint vehicleId = JVM::Converter::toJInt(entity->GetId());
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleCreatedMethod, vehicleId);
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleCreatedMethod,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }
 
 void VehicleEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Vehicle) {
-        jint vehicleId = JVM::Converter::toJInt(entity->GetId());
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDestroyedMethod, vehicleId);
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDestroyedMethod,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }

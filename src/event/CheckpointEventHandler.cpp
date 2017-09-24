@@ -20,25 +20,31 @@ CheckpointEventHandler::CheckpointEventHandler() {
 }
 
 void CheckpointEventHandler::OnPlayerEnterCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerEnterCheckpointMethod, JVM::Converter::toJInt(player->GetId()), JVM::Converter::toJInt(checkpoint->GetId()));
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerEnterCheckpointMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(checkpoint->GetId()));
     JVM::VM::checkForException();
 }
 
 void CheckpointEventHandler::OnPlayerExitCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerExitCheckpointMethod, JVM::Converter::toJInt(player->GetId()), JVM::Converter::toJInt(checkpoint->GetId()));
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, playerExitCheckpointMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(checkpoint->GetId()));
     JVM::VM::checkForException();
 }
 
 void CheckpointEventHandler::OnEntityCreated(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Checkpoint) {
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, checkpointCreatedMethodId, JVM::Converter::toJInt(entity->GetId()));
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, checkpointCreatedMethodId,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }
 
 void CheckpointEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Checkpoint) {
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, checkpointDestroyedMethodId, JVM::Converter::toJInt(entity->GetId()));
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(checkpointEventClass, checkpointDestroyedMethodId,
+                                                   JVM::Converter::toJInt(entity->GetId()));
         JVM::VM::checkForException();
     }
 }
