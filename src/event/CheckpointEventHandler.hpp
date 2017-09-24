@@ -14,7 +14,7 @@
 #include "../sdk/rage.hpp"
 #include "../jvm/VM.hpp"
 
-class CheckpointEventHandler : public rage::ICheckpointHandler, public rage::IEventHandler {
+class CheckpointEventHandler : public rage::ICheckpointHandler, public rage::IEventHandler, public rage::IEntityHandler {
 public:
     CheckpointEventHandler();
 
@@ -22,12 +22,22 @@ public:
         return this;
     }
 
+    rage::IEntityHandler *GetEntityHandler() override {
+        return this;
+    }
+
     void OnPlayerEnterCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) override;
 
     void OnPlayerExitCheckpoint(rage::IPlayer *player, rage::ICheckpoint *checkpoint) override;
+
+    void OnEntityCreated(rage::IEntity *entity) override;
+
+    void OnEntityDestroyed(rage::IEntity *entity) override;
 
 private:
     jclass checkpointEventClass;
     jmethodID playerEnterCheckpointMethod;
     jmethodID playerExitCheckpointMethod;
+    jmethodID checkpointCreatedMethodId;
+    jmethodID checkpointDestroyedMethodId;
 };
