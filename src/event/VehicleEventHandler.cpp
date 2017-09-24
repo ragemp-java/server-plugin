@@ -8,12 +8,38 @@
  * See the file COPYING included with this distribution for more information.
  */
 
+#include <iostream>
 #include "VehicleEventHandler.hpp"
+#include "../jvm/VM.hpp"
+#include "../jvm/Converter.hpp"
 
-rage::IVehicleHandler *VehicleEventHandler::GetVehicleHandler() {
-    return this;
+VehicleEventHandler::VehicleEventHandler() {
+    vehicleEventClass = JVM::VM::getClass(JVM_LAUNCHER_MAIN_PACKAGE_NAME + "vehicle/VehicleEvents");
+    vehicleCreatedMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleCreated", "(I)V");
+    vehicleDestroyedMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleDestroyed", "(I)V");
+    vehicleDeathMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleDeath", "(III)V");
 }
 
 void VehicleEventHandler::OnVehicleDeath(rage::IVehicle *vehicle, rage::hash_t hash, rage::IPlayer *killer) {
+    jint vehicleId = JVM::Converter::toJInt(vehicle->GetId());
+    jint jHash = JVM::Converter::toJInt((uint32_t)hash);
+    jint jKiller = JVM::Converter::toJInt(killer->GetId());
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDeathMethod, vehicleId, jHash, jKiller);
+    JVM::VM::checkForException();
+}
 
+void VehicleEventHandler::OnEntityCreated(rage::IEntity *entity) {
+    if(entity->GetType() == rage::entity_t::Vehicle) {
+        jint vehicleId = JVM::Converter::toJInt(entity->GetId());
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleCreatedMethod, vehicleId);
+        JVM::VM::checkForException();
+    }
+}
+
+void VehicleEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
+    if(entity->GetType() == rage::entity_t::Vehicle) {
+        jint vehicleId = JVM::Converter::toJInt(entity->GetId());
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(vehicleEventClass, vehicleDestroyedMethod, vehicleId);
+        JVM::VM::checkForException();
+    }
 }

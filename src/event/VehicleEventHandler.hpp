@@ -10,11 +10,32 @@
 
 #pragma once
 
+#include <jni.h>
 #include "../sdk/rage.hpp"
 
-class VehicleEventHandler : public rage::IEventHandler, public rage::IVehicleHandler {
+class VehicleEventHandler : public rage::IEventHandler, public rage::IVehicleHandler, public rage::IEntityHandler {
 public:
+
+    VehicleEventHandler();
+
+    rage::IVehicleHandler *GetVehicleHandler() override {
+        return this;
+    }
+
+    rage::IEntityHandler *GetEntityHandler() override {
+        return this;
+    }
+
     void OnVehicleDeath(rage::IVehicle *vehicle, rage::hash_t hash, rage::IPlayer *killer) override;
 
-    rage::IVehicleHandler *GetVehicleHandler() override;
+    void OnEntityCreated(rage::IEntity *entity) override;
+
+    void OnEntityDestroyed(rage::IEntity *entity) override;
+
+private:
+    jclass vehicleEventClass;
+    jmethodID vehicleDeathMethod;
+    jmethodID vehicleCreatedMethod;
+    jmethodID vehicleDestroyedMethod;
+
 };
