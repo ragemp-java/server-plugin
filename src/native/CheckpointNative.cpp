@@ -11,7 +11,7 @@
 #include "CheckpointNative.hpp"
 #include "../RageJavaCore.hpp"
 
-jint Java_mp_rage_plugin_java_launcher_checkpoint_CheckpointNative_create(JNIEnv *, jclass, jint type, jfloat x, jfloat y, jfloat z,
+jint Java_mp_rage_launcher_checkpoint_CheckpointNative_create(JNIEnv *, jclass, jint type, jfloat x, jfloat y, jfloat z,
                                                                      jfloat nX, jfloat nY, jfloat nZ, jfloat radius, jint red, jint green, jint blue,
                                                                      jint alpha, jboolean visible, jint dimension) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();

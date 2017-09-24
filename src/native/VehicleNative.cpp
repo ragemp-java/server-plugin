@@ -14,7 +14,7 @@
 #include "../jvm/Object.hpp"
 #include "../game/Player.hpp"
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_create(JNIEnv *, jclass, jint model, jfloat x, jfloat y, jfloat z, jfloat heading, jint dimension) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_create(JNIEnv *, jclass, jint model, jfloat x, jfloat y, jfloat z, jfloat heading, jint dimension) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if (mp == nullptr) {
         return -1;
@@ -27,18 +27,18 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_create(JNIEnv *, jc
     return -1;
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getType(JNIEnv *, jclass, jint) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getType(JNIEnv *, jclass, jint) {
     return (jint)rage::entity_t::Vehicle;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_destroy(JNIEnv *, jclass, jint vehicleId) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_destroy(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->Destroy();
     }
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getDimension(JNIEnv *, jclass, jint vehicleId) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getDimension(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetDimension();
@@ -46,14 +46,14 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getDimension(JNIEnv
     return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setDimension(JNIEnv *, jclass, jint vehicleId, jint dimension) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setDimension(JNIEnv *, jclass, jint vehicleId, jint dimension) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetDimension((rage::dimensionId_t)dimension);
     }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPosition(JNIEnv *, jclass, jint vehicleId) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getPosition(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 position = vehicle->GetPosition();
@@ -62,7 +62,7 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPosition(JNIE
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPosition(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setPosition(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 position = {x, y, z};
@@ -70,7 +70,7 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPosition(JNIEnv 
     }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getRotation(JNIEnv *, jclass, jint vehicleId) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getRotation(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 rotation = vehicle->GetRotation();
@@ -79,7 +79,7 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getRotation(JNIE
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setRotation(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setRotation(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 rotation = {x, y, z};
@@ -87,7 +87,7 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setRotation(JNIEnv 
     }
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getModel(JNIEnv *, jclass, jint vehicleId) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getModel(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetModel();
@@ -95,14 +95,14 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getModel(JNIEnv *, 
     return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setModel(JNIEnv *, jclass, jint vehicleId, jint model) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setModel(JNIEnv *, jclass, jint vehicleId, jint model) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetModel((uint32_t) model);
     }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getVelocity(JNIEnv *, jclass, jint vehicleId) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getVelocity(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 velocity = vehicle->GetVelocity();
@@ -111,7 +111,7 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getVelocity(JNIE
     return nullptr;
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getAlpha(JNIEnv *, jclass, jint vehicleId) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getAlpha(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetAlpha();
@@ -119,14 +119,14 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getAlpha(JNIEnv *, 
     return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setAlpha(JNIEnv *, jclass, jint vehicleId, jint alpha) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setAlpha(JNIEnv *, jclass, jint vehicleId, jint alpha) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetAlpha((uint8_t)alpha);
     }
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isSirenActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isSirenActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsSirenActive();
@@ -134,7 +134,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isSirenActive(J
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isHornActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isHornActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsHornActive();
@@ -142,7 +142,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isHornActive(JN
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areHighbeamsActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_areHighbeamsActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->AreHighbeamsActive();
@@ -150,7 +150,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areHighbeamsAct
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areLightsActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_areLightsActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->AreLightsActive();
@@ -158,7 +158,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areLightsActive
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isEngineActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isEngineActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsEngineActive();
@@ -166,7 +166,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isEngineActive(
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isRocketBoostActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isRocketBoostActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsRocketBoostActive();
@@ -174,7 +174,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isRocketBoostAc
     return (jboolean)false;
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isBrakeActive(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isBrakeActive(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsBrakeActive();
@@ -182,7 +182,7 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isBrakeActive(J
     return (jboolean)false;
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getSteerAngle(JNIEnv *, jclass, jint vehicleId) {
+jfloat Java_mp_rage_launcher_vehicle_VehicleNative_getSteerAngle(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jfloat)vehicle->GetSteerAngle();
@@ -190,7 +190,7 @@ jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getSteerAngle(JNI
     return -1;
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getGasPedalState(JNIEnv *, jclass, jint vehicleId) {
+jfloat Java_mp_rage_launcher_vehicle_VehicleNative_getGasPedalState(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jfloat)vehicle->GetGasPedalState();
@@ -198,7 +198,7 @@ jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getGasPedalState(
     return -1;
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getEngineHealth(JNIEnv *, jclass, jint vehicleId) {
+jfloat Java_mp_rage_launcher_vehicle_VehicleNative_getEngineHealth(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jfloat)vehicle->GetEngineHealth();
@@ -206,7 +206,7 @@ jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getEngineHealth(J
     return -1;
 }
 
-jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getBodyHealth(JNIEnv *, jclass, jint vehicleId) {
+jfloat Java_mp_rage_launcher_vehicle_VehicleNative_getBodyHealth(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jfloat)vehicle->GetBodyHealth();
@@ -214,7 +214,7 @@ jfloat Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getBodyHealth(JNI
     return -1;
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getOccupant(JNIEnv *, jclass, jint vehicleId, jint occupant) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getOccupant(JNIEnv *, jclass, jint vehicleId, jint occupant) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::IPlayer *player = vehicle->GetOccupant((uint8_t)occupant);
@@ -225,7 +225,7 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getOccupant(JNIEnv 
     return -1;
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getOccupants(JNIEnv *, jclass, jint vehicleId) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getOccupants(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         std::vector<rage::IPlayer*> occupants = vehicle->GetOccupants();
@@ -240,7 +240,7 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getOccupants(JNI
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setOccupant(JNIEnv *, jclass, jint vehicleId, jint seat, jint playerId) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setOccupant(JNIEnv *, jclass, jint vehicleId, jint seat, jint playerId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     rage::IPlayer *player = Game::Player::getPlayerById(playerId);
     if(vehicle && player) {
@@ -248,7 +248,7 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setOccupant(JNIEnv 
     }
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isLocked(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isLocked(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsLocked();
@@ -256,14 +256,14 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isLocked(JNIEnv
     return (jboolean)false;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_lock(JNIEnv *, jclass, jint  vehicleId, jboolean state) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_lock(JNIEnv *, jclass, jint  vehicleId, jboolean state) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->Lock((bool)state);
     }
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isDead(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_isDead(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->IsDead();
@@ -271,14 +271,14 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_isDead(JNIEnv *
     return (jboolean)false;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_explode(JNIEnv *, jclass, jint vehicleId) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_explode(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->Explode();
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_spawn(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z, jfloat heading) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_spawn(JNIEnv *, jclass, jint vehicleId, jfloat x, jfloat y, jfloat z, jfloat heading) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::vector3 position = {x, y, z};
@@ -286,7 +286,7 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_spawn(JNIEnv *, jcl
     }
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getMod(JNIEnv *, jclass, jint vehicleId, jint id) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getMod(JNIEnv *, jclass, jint vehicleId, jint id) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetMod((uint8_t)id);
@@ -294,14 +294,14 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getMod(JNIEnv *, jc
     return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setMod(JNIEnv *, jclass, jint vehicleId, jint id, jint mod) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setMod(JNIEnv *, jclass, jint vehicleId, jint id, jint mod) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetMod((uint8_t)id, (uint8_t)mod);
     }
 }
 
-jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areNeonsEnabled(JNIEnv *, jclass, jint vehicleId) {
+jboolean Java_mp_rage_launcher_vehicle_VehicleNative_areNeonsEnabled(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jboolean)vehicle->AreNeonsEnabled();
@@ -309,21 +309,21 @@ jboolean Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_areNeonsEnabled
     return (jboolean)false;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_enableNeons(JNIEnv *, jclass, jint vehicleId, jboolean state) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_enableNeons(JNIEnv *, jclass, jint vehicleId, jboolean state) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->EnableNeons(state);
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setNeonsColour(JNIEnv *, jclass, jint vehicleId, jint r, jint g, jint b) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setNeonsColour(JNIEnv *, jclass, jint vehicleId, jint r, jint g, jint b) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetNeonsColour((uint8_t)r, (uint8_t)g, (uint8_t)b);
     }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNeonsColour(JNIEnv *, jclass, jint vehicleId) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getNeonsColour(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::rgb_t rgb = vehicle->GetNeonsColour();
@@ -332,14 +332,14 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNeonsColour(J
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_repair(JNIEnv *, jclass, jint vehicleId) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_repair(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return vehicle->Repair();
     }
 }
 
-jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColourRGB(JNIEnv *, jclass, jint vehicleId, jint id) {
+jobject Java_mp_rage_launcher_vehicle_VehicleNative_getColourRGB(JNIEnv *, jclass, jint vehicleId, jint id) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::rgb_t rgb = vehicle->GetColourRGB((uint8_t)id);
@@ -348,7 +348,7 @@ jobject Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColourRGB(JNI
     return nullptr;
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColour(JNIEnv *, jclass, jint vehicleId, jint id) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getColour(JNIEnv *, jclass, jint vehicleId, jint id) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetColour((uint8_t)id);
@@ -356,7 +356,7 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getColour(JNIEnv *,
     return -1;
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPaint(JNIEnv *, jclass, jint vehicleId, jint id) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getPaint(JNIEnv *, jclass, jint vehicleId, jint id) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetPaint((uint8_t)id);
@@ -364,7 +364,7 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getPaint(JNIEnv *, 
     return -1;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setColourRGB(JNIEnv *, jclass, jint vehicleId, jint pR, jint pG, jint pB, jint sR, jint sG, jint sB) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setColourRGB(JNIEnv *, jclass, jint vehicleId, jint pR, jint pG, jint pB, jint sR, jint sG, jint sB) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::rgb_t primary = {(uint8_t)pR, (uint8_t)pG, (uint8_t)pB};
@@ -373,14 +373,14 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setColourRGB(JNIEnv
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setColour(JNIEnv *, jclass, jint vehicleId, jint primary, jint secondary) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setColour(JNIEnv *, jclass, jint vehicleId, jint primary, jint secondary) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetColour((uint8_t)primary, (uint8_t)secondary);
     }
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPaint(JNIEnv *, jclass, jint vehicleId, jint pT, jint pC, jint sT, jint sC) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setPaint(JNIEnv *, jclass, jint vehicleId, jint pT, jint pC, jint sT, jint sC) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::paintInfo_t primary = {(uint8_t)pT, (uint8_t)pC};
@@ -389,7 +389,7 @@ void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setPaint(JNIEnv *, 
     }
 }
 
-jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getMaterialType(JNIEnv *, jclass, jint vehicleId) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_getMaterialType(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return (jint)vehicle->GetMaterialType();
@@ -397,7 +397,7 @@ jint Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getMaterialType(JNI
     return -1;
 }
 
-jstring Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNumberPlate(JNIEnv *, jclass, jint vehicleId) {
+jstring Java_mp_rage_launcher_vehicle_VehicleNative_getNumberPlate(JNIEnv *, jclass, jint vehicleId) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         return JVM::Converter::toJString(vehicle->GetNumberPlate());
@@ -405,7 +405,7 @@ jstring Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_getNumberPlate(J
     return nullptr;
 }
 
-void Java_mp_rage_plugin_java_launcher_vehicle_VehicleNative_setNumberPlate(JNIEnv *, jclass, jint vehicleId, jstring numberPlate) {
+void Java_mp_rage_launcher_vehicle_VehicleNative_setNumberPlate(JNIEnv *, jclass, jint vehicleId, jstring numberPlate) {
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         vehicle->SetNumberPlate(JVM::Converter::toString(numberPlate));
