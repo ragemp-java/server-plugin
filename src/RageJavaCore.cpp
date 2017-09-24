@@ -17,7 +17,6 @@ bool RageJavaCore::initialize(rage::IMultiplayer *mp) {
     }
     try {
         mp->AddEventHandler(new PlayerEventHandler);
-        mp->AddEventHandler(new EntityEventHandler);
         mp->AddEventHandler(new VehicleEventHandler);
         mp->AddEventHandler(new ColshapeEventHandler);
         mp->AddEventHandler(new CheckpointEventHandler);

@@ -12,6 +12,8 @@
 
 PlayerEventHandler::PlayerEventHandler() {
     playerEventClass = JVM::VM::getClass(JVM_LAUNCHER_MAIN_PACKAGE_NAME + "player/PlayerEvents");
+    playerCreatedMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerCreated", "(I)V");
+    playerDestroyedMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerDestroyed", "(I)V");
     playerJoinMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerJoin", "(I)V");
     playerCommandMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerCommand", "(ILjava/lang/String;)V");
     playerQuitMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerQuit", "(IILjava/lang/String;)V");
@@ -102,4 +104,18 @@ void PlayerEventHandler::OnPlayerRemoteEvent(rage::IPlayer *player, const std::s
     JVM::VM::checkForException();
 }
 
+void PlayerEventHandler::OnEntityCreated(rage::IEntity *entity) {
+    if(entity->GetType() == rage::entity_t::Player) {
+        jint playerId = JVM::Converter::toJInt(entity->GetId());
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerCreatedMethod, playerId);
+        JVM::VM::checkForException();
+    }
+}
 
+void PlayerEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
+    if(entity->GetType() == rage::entity_t::Player) {
+        jint playerId = JVM::Converter::toJInt(entity->GetId());
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDestroyedMethod, playerId);
+        JVM::VM::checkForException();
+    }
+}

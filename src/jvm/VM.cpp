@@ -73,7 +73,7 @@ bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
     JavaVMOption options[2];
 
-    options[0].optionString = "-Djava.class.path=./plugins/launcher.jar;";
+    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-laucher-1.0-SNAPSHOT.jar;";
     options[1].optionString ="-Djava.library.path=./plugins/RageJava.dll";
 
     vm_args.version = JNI_VERSION_1_8;
@@ -124,7 +124,7 @@ jclass JVM::VM::getClass(std::string className) {
 jmethodID JVM::VM::getMethodId(jclass jClass, std::string methodName, std::string methodSignature) {
     jmethodID methodId = jniEnv->GetMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
-        std::cerr << "JVM method " << methodId << " not found";
+        std::cerr << "JVM method " << methodName << " not found";
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
@@ -133,7 +133,7 @@ jmethodID JVM::VM::getMethodId(jclass jClass, std::string methodName, std::strin
 jmethodID JVM::VM::getStaticMethodId(jclass jClass, std::string methodName, std::string methodSignature) {
     jmethodID methodId = jniEnv->GetStaticMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
-        std::cerr << "JVM static method " << methodId << " not found";
+        std::cerr << "JVM static method " << methodName << " not found";
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;

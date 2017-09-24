@@ -38,6 +38,8 @@ namespace JVM {
         static jint toJInt(int input);
 
         static int toInt(jint input);
+
+        static jint toJInt(uint32_t input);
     };
 
 }

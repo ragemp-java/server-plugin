@@ -16,12 +16,16 @@
 #include "../jvm/VM.hpp"
 #include "../jvm/Converter.hpp"
 
-class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler
+class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler, public rage::IEntityHandler
 {
 public:
     PlayerEventHandler();
 
     rage::IPlayerHandler *GetPlayerHandler() override {
+        return this;
+    }
+
+    rage::IEntityHandler *GetEntityHandler() override {
         return this;
     }
 
@@ -47,8 +51,14 @@ public:
 
     void OnPlayerRemoteEvent(rage::IPlayer *player, const std::string &eventName, const rage::args_t &args) override;
 
+    void OnEntityCreated(rage::IEntity *entity) override;
+
+    void OnEntityDestroyed(rage::IEntity *entity) override;
+
 private:
     jclass playerEventClass;
+    jmethodID playerCreatedMethod;
+    jmethodID playerDestroyedMethod;
     jmethodID playerJoinMethod;
     jmethodID playerCommandMethod;
     jmethodID playerQuitMethod;

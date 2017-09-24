@@ -30,7 +30,7 @@ void JVM::Object::initialize() {
 //    playerHeadBlendClass = VM::getClass("mp/game/plugin/java/api/player/PlayerHeadBlend");
 //    playerHeadBlendConstructor = VM::getJNIEnv()->GetMethodID(playerHeadBlendClass, "<init>", "(IIFFF)V");
 
-    rgbColorClass = VM::getClass(JVM_API_MAIN_PACKAGE_NAME +"color/RGBColor");
+    rgbColorClass = VM::getClass(JVM_API_MAIN_PACKAGE_NAME + "color/RGBColor");
     rgbColorConstructor = VM::getMethodId(rgbColorClass, "<init>", "(III)V");
 
     arrayListClass = VM::getClass("java/util/ArrayList");

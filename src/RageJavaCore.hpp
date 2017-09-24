@@ -13,7 +13,6 @@
 #include "jvm/VM.hpp"
 #include "jvm/Exception.hpp"
 #include "event/PlayerEventHandler.hpp"
-#include "event/EntityEventHandler.hpp"
 #include "event/VehicleEventHandler.hpp"
 #include "event/CheckpointEventHandler.hpp"
 #include "event/ColshapeEventHandler.hpp"
