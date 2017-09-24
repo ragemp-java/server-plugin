@@ -10,13 +10,8 @@ jobs:
       - checkout
       - run: cmake .
       - run: make
-      - run wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip
-      - run wget https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
-      - run unzip build-wrapper-linux-x86.zip
-      - run unzip sonar-scanner-cli-3.0.3.778-linux.zip
-      - run build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all
-      - run sonar-scanner-3.0.3.778-linux/bin/sonar-scanner -Dsonar.projectKey=server-plugin -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=ragemp-java -Dsonar.login=${sonarqube_api_key}
-
+      - run: build-wrapper-linux-x86-64 --out-dir bw-output make clean all
+      - run: sonar-scanner -Dsonar.projectKey=server-plugin -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=ragemp-java -Dsonar.login=${sonarqube_api_key}
 
       - store_artifacts:
           path: /build/build/libRageJava.so
