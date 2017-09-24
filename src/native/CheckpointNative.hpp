@@ -121,66 +121,66 @@ JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_create
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    GetColour
+ * Method:    getColour
  * Signature: (I)Lmp/rage/api/color/RGBColor;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_GetColour
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getColour
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    SetColour
+ * Method:    setColour
  * Signature: (IIIII)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_SetColour
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setColour
         (JNIEnv *, jclass, jint, jint, jint, jint, jint);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    GetDirection
+ * Method:    getDirection
  * Signature: (I)Lmp/rage/api/vector/Vector3;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_GetDirection
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getDirection
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    SetDirection
+ * Method:    setDirection
  * Signature: (ILmp/rage/api/vector/Vector3;)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_SetDirection
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setDirection
         (JNIEnv *, jclass, jint, jobject);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    GetRadius
+ * Method:    getRadius
  * Signature: (I)F
  */
-JNIEXPORT jfloat JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_GetRadius
+JNIEXPORT jfloat JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getRadius
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    SetRadius
+ * Method:    setRadius
  * Signature: (IF)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_SetRadius
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setRadius
         (JNIEnv *, jclass, jint, jfloat);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    IsVisible
+ * Method:    isVisible
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_IsVisible
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_isVisible
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    SetVisible
+ * Method:    setVisible
  * Signature: (IZ)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_SetVisible
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setVisible
         (JNIEnv *, jclass, jint, jboolean);
 
 #ifdef __cplusplus

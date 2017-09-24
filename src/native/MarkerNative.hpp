@@ -113,66 +113,66 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_setAlpha
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    GetColour
+ * Method:    getColour
  * Signature: (I)Lmp/rage/api/color/RGBColor;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_launcher_marker_MarkerNative_GetColour
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_marker_MarkerNative_getColour
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    SetColour
+ * Method:    setColour
  * Signature: (IIIII)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_SetColour
+JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_setColour
         (JNIEnv *, jclass, jint, jint, jint, jint, jint);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    GetDirection
+ * Method:    getDirection
  * Signature: (I)Lmp/rage/api/vector/Vector3;
  */
-JNIEXPORT jobject JNICALL Java_mp_rage_launcher_marker_MarkerNative_GetDirection
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_marker_MarkerNative_getDirection
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    SetDirection
+ * Method:    setDirection
  * Signature: (ILmp/rage/api/vector/Vector3;)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_SetDirection
+JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_setDirection
         (JNIEnv *, jclass, jint, jobject);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    GetScale
+ * Method:    getScale
  * Signature: (I)F
  */
-JNIEXPORT jfloat JNICALL Java_mp_rage_launcher_marker_MarkerNative_GetScale
+JNIEXPORT jfloat JNICALL Java_mp_rage_launcher_marker_MarkerNative_getScale
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    SetScale
+ * Method:    setScale
  * Signature: (IF)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_SetScale
+JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_setScale
         (JNIEnv *, jclass, jint, jfloat);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    IsVisible
+ * Method:    isVisible
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_marker_MarkerNative_IsVisible
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_marker_MarkerNative_isVisible
         (JNIEnv *, jclass, jint);
 
 /*
  * Class:     mp_rage_launcher_marker_MarkerNative
- * Method:    SetVisible
+ * Method:    setVisible
  * Signature: (IZ)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_SetVisible
+JNIEXPORT void JNICALL Java_mp_rage_launcher_marker_MarkerNative_setVisible
         (JNIEnv *, jclass, jint, jboolean);
 
 #ifdef __cplusplus

@@ -113,18 +113,18 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_colshape_ColshapeNative_setAlpha
 
 /*
  * Class:     mp_rage_launcher_colshape_ColshapeNative
- * Method:    IsPointWithin
+ * Method:    isPointWithin
  * Signature: (ILmp/rage/api/vector/Vector3;)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_colshape_ColshapeNative_IsPointWithin
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_colshape_ColshapeNative_isPointWithin
         (JNIEnv *, jclass, jint, jobject);
 
 /*
  * Class:     mp_rage_launcher_colshape_ColshapeNative
- * Method:    GetShapeType
+ * Method:    getShapeType
  * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_mp_rage_launcher_colshape_ColshapeNative_GetShapeType
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_colshape_ColshapeNative_getShapeType
         (JNIEnv *, jclass, jint);
 
 #ifdef __cplusplus
