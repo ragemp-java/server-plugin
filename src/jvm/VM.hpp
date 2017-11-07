@@ -18,13 +18,12 @@
 
 #ifdef __unix__
 static const int OS = 0;
-static std::string FILE_ENDING = ".so";
+#define LINUX
 #elif defined(_WIN32) || defined(WIN32)
 static const int OS = 1;
-static std::string FILE_ENDING = ".dll";
+#define WINDOWS
 #else
 static const int OS = -1;
-static std::string FILE_ENDING = "";
 #endif
 
 

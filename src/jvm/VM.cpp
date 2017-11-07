@@ -75,8 +75,12 @@ bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
     auto options = new JavaVMOption[2];
 
-    std::string libraryPath = "-Djava.library.path=/plugin"; //+ FILE_ENDING;
+    std::string libraryPath = "-Djava.library.path=./plugin";
+#if defined(WINDOWS)
+    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;";
+#elif defined(LINUX)
     options[0].optionString = "-Djava.class.path=plugins/java-runtime-launcher-1.0-SNAPSHOT.jar:";
+#endif
     options[1].optionString = const_cast<char *>(libraryPath.c_str());
 
     vm_args.version = JNI_VERSION_1_8;
