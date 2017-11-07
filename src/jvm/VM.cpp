@@ -30,12 +30,12 @@ bool JVM::VM::create() {
         return false;
     }
 
-    Object::initialize();
-
     if (!VM::findAndExecuteMain()) {
         std::cout << "Failed to execute Launcher" << std::endl;
         return false;
     }
+
+    Object::initialize();
     return true;
 }
 
@@ -76,7 +76,7 @@ bool JVM::VM::createJVM() {
     JavaVMOption options[2];
 
     std::string libraryPath = "-Djava.library.path=./plugins/RageJava" + FILE_ENDING;
-    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-laucher-1.0-SNAPSHOT.jar;";
+    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;";
     options[1].optionString = const_cast<char *>(libraryPath.c_str());
 
     vm_args.version = JNI_VERSION_1_8;
