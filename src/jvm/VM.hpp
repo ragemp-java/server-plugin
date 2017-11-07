@@ -16,6 +16,17 @@
 #include "Exception.hpp"
 #include "Object.hpp"
 
+#ifdef __unix__
+static const int OS = 0;
+static std::string FILE_ENDING = ".so";
+#elif defined(_WIN32) || defined(WIN32)
+static const int OS = 1;
+static std::string FILE_ENDING = ".dll";
+#else
+static const int OS = -1;
+static std::string FILE_ENDING = "";
+#endif
+
 
 const std::string JVM_LAUNCHER_MAIN_PACKAGE_NAME = "mp/rage/launcher/";
 const std::string JVM_API_MAIN_PACKAGE_NAME = "mp/rage/api/";

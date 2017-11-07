@@ -9,6 +9,7 @@
  */
 
 #include "VM.hpp"
+#include "Converter.hpp"
 
 static JNIEnv *jniEnv = nullptr;
 static JavaVM *javaVM = nullptr;
@@ -57,12 +58,13 @@ bool JVM::VM::findAndExecuteMain() {
         std::cout << std::endl << "Couldn't find expected VM main class" << std::endl;
         return false;
     }
-    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "()V");
+    jmethodID methodId = jniEnv->GetStaticMethodID(jClass, JVM_LAUNCHER_METHOD_NAME.c_str(), "(I)V");
     if (methodId == nullptr) {
         std::cout << std::endl << "Couldn't find expected VM main method" << std::endl;
         return false;
     }
-    jniEnv->CallStaticVoidMethod(jClass, methodId);
+    jint jOS = JVM::Converter::toJInt(OS);
+    jniEnv->CallStaticVoidMethod(jClass, methodId, jOS);
     if (checkForException()) {
         return false;
     }
@@ -73,8 +75,9 @@ bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
     JavaVMOption options[2];
 
+    std::string libraryPath = "-Djava.library.path=./plugins/RageJava" + FILE_ENDING;
     options[0].optionString = "-Djava.class.path=./plugins/java-runtime-laucher-1.0-SNAPSHOT.jar;";
-    options[1].optionString ="-Djava.library.path=./plugins/RageJava.dll";
+    options[1].optionString = const_cast<char *>(libraryPath.c_str());
 
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
@@ -115,7 +118,7 @@ bool JVM::VM::createJVM() {
 jclass JVM::VM::getClass(std::string className) {
     jclass jClass = jniEnv->FindClass(className.c_str());
     if (jClass == nullptr) {
-        std::cerr << "JVM class " + className + " not found";
+        std::cerr << "JVM class " + className + " not found" << std::endl;
         throw ClassNotFoundException(className + " not found");
     }
     return jClass;
@@ -124,7 +127,7 @@ jclass JVM::VM::getClass(std::string className) {
 jmethodID JVM::VM::getMethodId(jclass jClass, std::string methodName, std::string methodSignature) {
     jmethodID methodId = jniEnv->GetMethodID(jClass, methodName.c_str(), methodSignature.c_str());
     if (methodId == nullptr) {
-        std::cerr << "JVM method " << methodName << " not found";
+        std::cerr << "JVM method " << methodName << " not found" << std::endl;
         throw MethodNotFoundException(methodName + " not found");
     }
     return methodId;
