@@ -73,10 +73,10 @@ bool JVM::VM::findAndExecuteMain() {
 
 bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
-    JavaVMOption options[2];
+    auto options = new JavaVMOption[2];
 
-    std::string libraryPath = "-Djava.library.path=./plugins/RageJava" + FILE_ENDING;
-    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;";
+    std::string libraryPath = "-Djava.library.path=/plugin"; //+ FILE_ENDING;
+    options[0].optionString = "-Djava.class.path=plugins/java-runtime-launcher-1.0-SNAPSHOT.jar:";
     options[1].optionString = const_cast<char *>(libraryPath.c_str());
 
     vm_args.version = JNI_VERSION_1_8;
