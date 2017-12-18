@@ -12,7 +12,6 @@
 #include <iostream>
 #include "../RagePlugin.hpp"
 #include "../game/Player.hpp"
-#include "../jvm/Object.hpp"
 #include "../game/Vehicle.hpp"
 
 jint Java_mp_rage_launcher_player_PlayerNative_getType(JNIEnv *, jclass, jint playerId) {
@@ -131,14 +130,14 @@ void Java_mp_rage_launcher_player_PlayerNative_ban(JNIEnv *, jclass, jint player
 void Java_mp_rage_launcher_player_PlayerNative_outputChatBox(JNIEnv * env, jclass, jint playerId, jstring message) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        player->OutputChatBox(JVM::Converter::toU16string(message));
+        player->OutputChatBox(JVM::Converter::toString(message));
     }
 }
 
 void Java_mp_rage_launcher_player_PlayerNative_notify(JNIEnv *, jclass, jint playerId, jstring message) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        player->Notify(JVM::Converter::toU16string(message));
+        player->Notify(JVM::Converter::toString(message));
     }
 }
 
@@ -477,7 +476,7 @@ void Java_mp_rage_launcher_player_PlayerNative_updateHeadBlend(JNIEnv *, jclass,
 jint Java_mp_rage_launcher_player_PlayerNative_getWeapon(JNIEnv *, jclass, jint playerId) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        return (jint)player->GetWeapon();
+
     }
     return -1;
 }

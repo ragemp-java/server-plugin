@@ -41,11 +41,11 @@ public:
 
     void OnPlayerEnterVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) override;
 
-    void OnPlayerEnteredVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) override;
+    void OnPlayerStartEnterVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) override;
 
     void OnPlayerExitVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) override;
 
-    void OnPlayerLeftVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) override;
+    void OnPlayerStartExitVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) override;
 
     void OnPlayerDeath(rage::IPlayer *player, rage::hash_t reason, rage::IPlayer *killer) override;
 
@@ -54,6 +54,14 @@ public:
     void OnEntityCreated(rage::IEntity *entity) override;
 
     void OnEntityDestroyed(rage::IEntity *entity) override;
+
+    void OnPlayerReady(rage::IPlayer *player) override;
+
+    void OnPlayerDamage(rage::IPlayer *player, float healthLoss, float armorLoss) override;
+
+    void OnPlayerWeaponChange(rage::IPlayer *player, rage::hash_t oldWeapon, rage::hash_t newWeapon) override;
+
+    void OnEntityModelChange(rage::IEntity *entity, rage::hash_t oldModel) override;
 
 private:
     jclass playerEventClass;
@@ -65,9 +73,13 @@ private:
     jmethodID playerSpawnMethod;
     jmethodID playerChatMethod;
     jmethodID playerEnterVehicleMethod;
-    jmethodID playerEnteredVehicleMethod;
+    jmethodID playerStartEnterVehicleMethod;
     jmethodID playerExitVehicleMethod;
-    jmethodID playerLeftVehicleMethod;
+    jmethodID playerStartExitVehicleMethod;
     jmethodID playerDeathMethod;
     jmethodID playerRemoteEventMethod;
+    jmethodID playerReadyMethod;
+    jmethodID playerDamageMethod;
+    jmethodID playerWeaponChangeMethod;
+    jmethodID playerModelChangeMethod;
 };

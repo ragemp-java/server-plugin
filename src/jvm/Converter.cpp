@@ -56,3 +56,11 @@ jint JVM::Converter::toJInt(int input) {
 jint JVM::Converter::toJInt(uint32_t input) {
     return (jint) input;
 }
+
+float JVM::Converter::toFloat(jfloat input) {
+    return (float)input;
+}
+
+jfloat JVM::Converter::toJFloat(float input) {
+    return (jfloat)input;
+}

@@ -20,10 +20,13 @@ PlayerEventHandler::PlayerEventHandler() {
     playerSpawnMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerSpawn", "(I)V");
     playerChatMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerChat", "(ILjava/lang/String;)V");
     playerEnterVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerEnterVehicle", "(III)V");
-    playerEnteredVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerEnteredVehicle", "(III)V");
+    playerStartEnterVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerStartEnterVehicle", "(III)V");
     playerExitVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerExitVehicle", "(II)V");
-    playerLeftVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerExitVehicle", "(II)V");
+    playerStartExitVehicleMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerStartExitVehicle", "(II)V");
     playerDeathMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerDeath", "(III)V");
+    playerReadyMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerReady", "(I)V");
+    playerDamageMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerDamage", "(IFF)V");
+    playerWeaponChangeMethod = JVM::VM::getStaticMethodId(playerEventClass, "onPlayerModelChange", "(II)V");
 }
 
 void PlayerEventHandler::OnPlayerJoin(rage::IPlayer *player) {
@@ -68,8 +71,8 @@ void PlayerEventHandler::OnPlayerEnterVehicle(rage::IPlayer *player, rage::IVehi
     JVM::VM::checkForException();
 }
 
-void PlayerEventHandler::OnPlayerEnteredVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerEnteredVehicleMethod,
+void PlayerEventHandler::OnPlayerStartEnterVehicle(rage::IPlayer *player, rage::IVehicle *vehicle, uint8_t seatId) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerStartEnterVehicleMethod,
                                                JVM::Converter::toJInt(player->GetId()),
                                                JVM::Converter::toJInt(vehicle->GetId()),
                                                JVM::Converter::toJInt(seatId));
@@ -83,8 +86,8 @@ void PlayerEventHandler::OnPlayerExitVehicle(rage::IPlayer *player, rage::IVehic
     JVM::VM::checkForException();
 }
 
-void PlayerEventHandler::OnPlayerLeftVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerLeftVehicleMethod,
+void PlayerEventHandler::OnPlayerStartExitVehicle(rage::IPlayer *player, rage::IVehicle *vehicle) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerStartExitVehicleMethod,
                                                JVM::Converter::toJInt(player->GetId()),
                                                JVM::Converter::toJInt(vehicle->GetId()));
     JVM::VM::checkForException();
@@ -116,6 +119,40 @@ void PlayerEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Player) {
         JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDestroyedMethod,
                                                    JVM::Converter::toJInt(entity->GetId()));
+        JVM::VM::checkForException();
+    }
+}
+
+void PlayerEventHandler::OnPlayerReady(rage::IPlayer *player) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerReadyMethod,
+                                                JVM::Converter::toJInt(player->GetId()));
+
+    JVM::VM::checkForException();
+}
+
+void PlayerEventHandler::OnPlayerDamage(rage::IPlayer *player, float healthLoss, float armorLoss) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerDamageMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toFloat(healthLoss),
+                                               JVM::Converter::toJFloat(armorLoss));
+
+    JVM::VM::checkForException();
+}
+
+void PlayerEventHandler::OnPlayerWeaponChange(rage::IPlayer *player, rage::hash_t oldWeapon, rage::hash_t newWeapon) {
+    JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerWeaponChangeMethod,
+                                               JVM::Converter::toJInt(player->GetId()),
+                                               JVM::Converter::toJInt(oldWeapon),
+                                               JVM::Converter::toJInt(newWeapon));
+
+    JVM::VM::checkForException();
+}
+
+void PlayerEventHandler::OnEntityModelChange(rage::IEntity *entity, rage::hash_t oldModel) {
+    if(entity->GetType() == rage::entity_t::Player) {
+        JVM::VM::getJNIEnv()->CallStaticVoidMethod(playerEventClass, playerModelChangeMethod,
+                                                   JVM::Converter::toJInt(entity->GetId()),
+                                                   JVM::Converter::toJInt(oldModel));
         JVM::VM::checkForException();
     }
 }

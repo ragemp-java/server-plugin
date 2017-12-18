@@ -40,6 +40,10 @@ namespace JVM {
         static int toInt(jint input);
 
         static jint toJInt(uint32_t input);
+
+        static jfloat toJFloat(float input);
+
+        static float toFloat(jfloat input);
     };
 
 }

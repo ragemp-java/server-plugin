@@ -14,13 +14,22 @@
 #include "../jvm/Object.hpp"
 #include "../game/Player.hpp"
 
-jint Java_mp_rage_launcher_vehicle_VehicleNative_create(JNIEnv *, jclass, jint model, jfloat x, jfloat y, jfloat z, jfloat heading, jint dimension) {
+jint Java_mp_rage_launcher_vehicle_VehicleNative_create(JNIEnv *, jclass, jint model, jfloat x , jfloat y, jfloat z, jfloat heading, jstring numberPlate,
+                                                        jint alpha, jboolean locked, jboolean engine, jint dimension) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if (mp == nullptr) {
         return -1;
     }
     rage::vector3 position = {x, y, z};
-    rage::IVehicle *vehicle = mp->GetVehiclePool().New((uint32_t)model, position, heading, (rage::dimensionId_t)dimension);
+    rage::IVehicle *vehicle = mp->GetVehiclePool().New(
+            (uint32_t)model,
+            position,
+            heading,
+            JVM::Converter::toString(numberPlate),
+            JVM::Converter::toInt(alpha),
+            locked,
+            engine,
+            (rage::dimensionId_t)dimension);
     if(vehicle) {
         return (jint)vehicle->GetId();
     }
@@ -327,7 +336,7 @@ jobject Java_mp_rage_launcher_vehicle_VehicleNative_getNeonsColour(JNIEnv *, jcl
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::rgb_t rgb = vehicle->GetNeonsColour();
-        return JVM::Object::rgbColor(rgb.r, rgb.g, rgb.b);
+        return JVM::Object::rgbColor(rgb.rgba[0], rgb.rgba[1], rgb.rgba[2]);
     }
     return nullptr;
 }
@@ -343,7 +352,7 @@ jobject Java_mp_rage_launcher_vehicle_VehicleNative_getColourRGB(JNIEnv *, jclas
     rage::IVehicle *vehicle = Game::Vehicle::getVehicleById(vehicleId);
     if(vehicle) {
         rage::rgb_t rgb = vehicle->GetColourRGB((uint8_t)id);
-        return JVM::Object::rgbColor(rgb.r, rgb.g, rgb.b);
+        return JVM::Object::rgbColor(rgb.rgba[0], rgb.rgba[1], rgb.rgba[2]);
     }
     return nullptr;
 }

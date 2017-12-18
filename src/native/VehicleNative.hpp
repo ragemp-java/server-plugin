@@ -114,10 +114,10 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_vehicle_VehicleNative_setAlpha
 /*
  * Class:     mp_rage_launcher_vehicle_VehicleNative
  * Method:    create
- * Signature: (IFFFFI)I
+ * Signature: (IFFFFLjava/lang/String;IZZI)I
  */
 JNIEXPORT jint JNICALL Java_mp_rage_launcher_vehicle_VehicleNative_create
-        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat, jint);
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat, jstring, jint, jboolean, jboolean, jint);
 
 /*
  * Class:     mp_rage_launcher_vehicle_VehicleNative
