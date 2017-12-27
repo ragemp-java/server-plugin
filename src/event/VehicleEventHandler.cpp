@@ -19,8 +19,8 @@ VehicleEventHandler::VehicleEventHandler() {
     vehicleDestroyedMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleDestroyed", "(I)V");
     vehicleDeathMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleDeath", "(III)V");
     vehicleModelChangeMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleModelChange", "(II)V");
-    vehicleSirenToggleMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleSirenToggle", "(IB)V");
-    vehicleHornToggleMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleHornToggle", "(IB)V");
+    vehicleSirenToggleMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleSirenToggle", "(IZ)V");
+    vehicleHornToggleMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleHornToggle", "(IZ)V");
     vehicleTrailerAttachedMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleTrailerAttached", "(II)V");
     vehicleDamageMethod = JVM::VM::getStaticMethodId(vehicleEventClass, "onVehicleDamage", "(IFF)V");
 }
