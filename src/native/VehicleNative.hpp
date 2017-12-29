@@ -145,10 +145,10 @@ JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_vehicle_VehicleNative_areHighbe
 
 /*
  * Class:     mp_rage_launcher_vehicle_VehicleNative
- * Method:    ireLightsActive
+ * Method:    areLightsActive
  * Signature: (I)Z
  */
-JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_vehicle_VehicleNative_ireLightsActive
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_vehicle_VehicleNative_areLightsActive
         (JNIEnv *, jclass, jint);
 
 /*

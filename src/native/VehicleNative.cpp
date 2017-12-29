@@ -240,8 +240,8 @@ jobject Java_mp_rage_launcher_vehicle_VehicleNative_getOccupants(JNIEnv *, jclas
         std::vector<rage::IPlayer*> occupants = vehicle->GetOccupants();
         std::vector<int> playerIds;
 
-        for(rage::IPlayer *player : occupants) {
-            playerIds.push_back(player->GetId());
+        for(size_t i=0; i < occupants.size(); i++) {
+           playerIds.push_back(occupants[i]->GetId());
         }
 
         return JVM::Object::intArrayList(playerIds);
