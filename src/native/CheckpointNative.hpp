@@ -122,7 +122,7 @@ JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_create
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
  * Method:    getColour
- * Signature: (I)Lmp/rage/api/color/RGBColor;
+ * Signature: (I)Lmp/rage/api/color/RGBAColor;
  */
 JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getColour
         (JNIEnv *, jclass, jint);
@@ -185,18 +185,18 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setVisi
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    ShowFor
+ * Method:    showFor
  * Signature: (I[I)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_ShowFor
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_showFor
         (JNIEnv *, jclass, jint, jintArray);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    HideFor
+ * Method:    hideFor
  * Signature: (I[I)V
  */
-JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_HideFor
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_hideFor
         (JNIEnv *, jclass, jint, jintArray);
 
 #ifdef __cplusplus
