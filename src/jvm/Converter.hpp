@@ -44,6 +44,8 @@ namespace JVM {
         static jfloat toJFloat(float input);
 
         static float toFloat(jfloat input);
+
+        static std::vector<int> toIntVector(jintArray array);
     };
 
 }

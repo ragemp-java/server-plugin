@@ -22,6 +22,7 @@ namespace JVM {
         static jobject vector3(float x, float y, float z);
         static jobject playerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix);
         static jobject rgbColor(int red, int green, int blue);
+        static jobject rgbaColor(int red, int green, int blue, int alpha);
 
         static jobject intArrayList(std::vector<int> ids);
     };

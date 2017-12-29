@@ -146,10 +146,10 @@ JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getD
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
  * Method:    setDirection
- * Signature: (ILmp/rage/api/vector/Vector3;)V
+ * Signature: (IFFF)V
  */
 JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setDirection
-        (JNIEnv *, jclass, jint, jobject);
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat);
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
@@ -182,6 +182,22 @@ JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_isV
  */
 JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setVisible
         (JNIEnv *, jclass, jint, jboolean);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    ShowFor
+ * Signature: (I[I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_ShowFor
+        (JNIEnv *, jclass, jint, jintArray);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    HideFor
+ * Signature: (I[I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_HideFor
+        (JNIEnv *, jclass, jint, jintArray);
 
 #ifdef __cplusplus
 }

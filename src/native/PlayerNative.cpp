@@ -60,8 +60,8 @@ void Java_mp_rage_launcher_player_PlayerNative_setPosition(JNIEnv *, jclass, jin
 jobject Java_mp_rage_launcher_player_PlayerNative_getRotation(JNIEnv *, jclass, jint playerId) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        rage::vector3 position = player->GetRotation();
-        return JVM::Object::vector3(position.x, position.y, position.z);
+        rage::vector3 rotation = player->GetRotation();
+        return JVM::Object::vector3(rotation.x, rotation.y, rotation.z);
     }
     return nullptr;
 }
@@ -69,8 +69,8 @@ jobject Java_mp_rage_launcher_player_PlayerNative_getRotation(JNIEnv *, jclass, 
 void Java_mp_rage_launcher_player_PlayerNative_setRotation(JNIEnv *, jclass, jint playerId, jfloat x, jfloat y, jfloat z) {
     rage::IPlayer* player = Game::Player::getPlayerById(JVM::Converter::toInt(playerId));
     if(player) {
-        rage::vector3 position = {x, y, z};
-        player->SetRotation(position);
+        rage::vector3 rotation = {x, y, z};
+        player->SetRotation(rotation);
     }
 }
 

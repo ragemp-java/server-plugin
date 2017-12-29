@@ -77,9 +77,9 @@ bool JVM::VM::createJVM() {
 
     std::string libraryPath = "-Djava.library.path=./plugin";
 #if defined(WINDOWS)
-    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;";
+    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-api-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;";
 #elif defined(LINUX)
-    options[0].optionString = "-Djava.class.path=plugins/java-runtime-launcher-1.0-SNAPSHOT.jar:";
+    options[0].optionString = "-Djava.class.path=plugins/java-runtime-api-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:";
 #endif
     options[1].optionString = const_cast<char *>(libraryPath.c_str());
     options[2].optionString = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005";

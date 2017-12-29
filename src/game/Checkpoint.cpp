@@ -8,21 +8,17 @@
  * See the file COPYING included with this distribution for more information.
  */
 
-#include "Player.hpp"
+#include "Checkpoint.hpp"
 
-/**
- * Get's a player from the player pool.
- * If the pool returns null for the player a JVM exception will be thrown
- */
-rage::IPlayer* Game::Player::getPlayerById(int playerId) {
+rage::ICheckpoint *Game::Checkpoint::getCheckpointById(int checkpointId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if(mp == nullptr) {
         return nullptr;
     }
-    rage::IPlayer *player = mp->GetPlayerPool().GetAt((rage::entityId_t) playerId);
+    rage::ICheckpoint *player = mp->GetCheckpointPool().GetAt((rage::entityId_t) checkpointId);
     if(player) {
         return player;
     }
-    JVM::Exception::throwPlayerNotFoundException(playerId);
+    JVM::Exception::throwCheckpointNotFoundException(checkpointId);
     return nullptr;
 }

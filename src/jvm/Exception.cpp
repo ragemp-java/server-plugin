@@ -30,3 +30,8 @@ void JVM::Exception::throwJNIExecutionException(std::string reason) {
     VM::getJNIEnv()->ThrowNew(clazz, reason.c_str());
 }
 
+void JVM::Exception::throwCheckpointNotFoundException(int checkpointId) {
+    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/CheckpointNotFoundException");
+    VM::getJNIEnv()->ThrowNew(clazz, std::to_string(checkpointId).c_str());
+}
+

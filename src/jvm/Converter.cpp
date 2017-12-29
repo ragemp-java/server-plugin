@@ -15,8 +15,8 @@ std::u16string JVM::Converter::toU16string(jstring input) {
     std::u16string wstr = u"";
     char16_t c16str[3] = u"\0";
     mbstate_t mbs;
-    for (const auto& it: toString(input)){
-        memset(&mbs, 0, sizeof (mbs));
+    for (const auto &it: toString(input)) {
+        memset(&mbs, 0, sizeof(mbs));
         memmove(c16str, u"\0\0\0", 3);
         mbrtoc16(c16str, &it, 3, &mbs);
         wstr.append(std::u16string(c16str));
@@ -58,9 +58,19 @@ jint JVM::Converter::toJInt(uint32_t input) {
 }
 
 float JVM::Converter::toFloat(jfloat input) {
-    return (float)input;
+    return (float) input;
 }
 
 jfloat JVM::Converter::toJFloat(float input) {
-    return (jfloat)input;
+    return (jfloat) input;
+}
+
+std::vector<int> JVM::Converter::toIntVector(jintArray array) {
+    std::vector<int> playerIds;
+    int length = JVM::VM::getJNIEnv()->GetArrayLength(array);
+    jint *body = JVM::VM::getJNIEnv()->GetIntArrayElements(array, nullptr);
+    for (int i = 0; i < length; i++) {
+        playerIds.push_back(body[i]);
+    }
+    return playerIds;
 }

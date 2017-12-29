@@ -19,6 +19,10 @@ static jmethodID playerHeadBlendConstructor;
 static jclass rgbColorClass;
 static jmethodID rgbColorConstructor;
 
+static jclass rgbaColorClass;
+static jmethodID rgbaColorConstructor;
+
+
 static jclass arrayListClass;
 static jmethodID arrayListConstructor;
 static jmethodID arrayListAddMethod;
@@ -32,6 +36,9 @@ void JVM::Object::initialize() {
 
     rgbColorClass = VM::getClass(JVM_API_MAIN_PACKAGE_NAME + "color/RGBColor");
     rgbColorConstructor = VM::getMethodId(rgbColorClass, "<init>", "(III)V");
+
+    rgbaColorClass = VM::getClass(JVM_API_MAIN_PACKAGE_NAME + "color/RGBAColor");
+    rgbaColorConstructor = VM::getMethodId(rgbaColorClass, "<init>", "(IIII)V");
 
     arrayListClass = VM::getClass("java/util/ArrayList");
     arrayListConstructor = VM::getMethodId(arrayListClass, "<init>", "(I)V");
@@ -48,6 +55,10 @@ jobject JVM::Object::playerHeadBlend(int shape, int skin, float shapeMix, float 
 
 jobject JVM::Object::rgbColor(int red, int green, int blue) {
     return VM::getJNIEnv()->NewObject(rgbColorClass, rgbColorConstructor, red, green, blue);
+}
+
+jobject JVM::Object::rgbaColor(int red, int green, int blue, int alpha) {
+    return VM::getJNIEnv()->NewObject(rgbColorClass, rgbColorConstructor, red, green, blue, alpha);
 }
 
 jobject JVM::Object::intArrayList(std::vector<int> ids) {
