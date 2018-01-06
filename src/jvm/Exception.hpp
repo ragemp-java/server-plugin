@@ -18,15 +18,17 @@
 namespace JVM {
     class Exception {
     public:
-        static void throwNotImplementedException(std::string reason);
+        static void initialize(JNIEnv *env);
 
-        static void throwPlayerNotFoundException(int playerId);
+        static void throwNotImplementedException(JNIEnv *env, std::string reason);
 
-        static void throwVehicleNotFoundException(int vehicleId);
+        static void throwPlayerNotFoundException(JNIEnv *env, int playerId);
 
-        static void throwJNIExecutionException(std::string reason);
+        static void throwVehicleNotFoundException(JNIEnv *env, int vehicleId);
 
-        static void throwCheckpointNotFoundException(int checkpointId);
+        static void throwJNIExecutionException(JNIEnv *env, std::string reason);
+
+        static void throwCheckpointNotFoundException(JNIEnv *env, int checkpointId);
     };
 
 

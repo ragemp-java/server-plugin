@@ -16,10 +16,12 @@ bool RageJavaCore::initialize(rage::IMultiplayer *mp) {
         return false;
     }
     try {
-        mp->AddEventHandler(new PlayerEventHandler);
-        mp->AddEventHandler(new VehicleEventHandler);
-        mp->AddEventHandler(new ColshapeEventHandler);
-        mp->AddEventHandler(new CheckpointEventHandler);
+        JNIEnv *env = JVM::VM::attachCurrentThread();
+        mp->AddEventHandler(new PlayerEventHandler(env));
+        mp->AddEventHandler(new VehicleEventHandler(env));
+        mp->AddEventHandler(new ColshapeEventHandler(env));
+        mp->AddEventHandler(new CheckpointEventHandler(env));
+        JVM::VM::detachCurrentThread();
     } catch (ClassNotFoundException &e) {
         std::cout << "ClassNotFoundException: " << e.what() << std::endl;
         return false;

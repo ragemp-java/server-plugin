@@ -12,40 +12,44 @@
 #include "../jvm/VM.hpp"
 #include "../jvm/Converter.hpp"
 
-ColshapeEventHandler::ColshapeEventHandler() {
-    colshapeEventClass = JVM::VM::getClass(JVM_LAUNCHER_MAIN_PACKAGE_NAME + "colshape/ColshapeEvents");
-    colshapeCreatedMethod = JVM::VM::getStaticMethodId(colshapeEventClass, "onColshapeCreated", "(I)V");
-    colshapeDestroyedMethod = JVM::VM::getStaticMethodId(colshapeEventClass, "onColshapeDestroyed", "(I)V");
-    playerEnterColshapeMethod = JVM::VM::getStaticMethodId(colshapeEventClass, "onPlayerEnterColshape", "(II)V");
-    playerExitColshapeMethod = JVM::VM::getStaticMethodId(colshapeEventClass, "onPlayerExitColshape", "(II)V");
+ColshapeEventHandler::ColshapeEventHandler(JNIEnv *env) {
+    colshapeEventClass = JVM::VM::getClass(env, JVM_LAUNCHER_MAIN_PACKAGE_NAME + "colshape/ColshapeEvents");
+    colshapeCreatedMethod = JVM::VM::getStaticMethodId(env, colshapeEventClass, "onColshapeCreated", "(I)V");
+    colshapeDestroyedMethod = JVM::VM::getStaticMethodId(env, colshapeEventClass, "onColshapeDestroyed", "(I)V");
+    playerEnterColshapeMethod = JVM::VM::getStaticMethodId(env, colshapeEventClass, "onPlayerEnterColshape", "(II)V");
+    playerExitColshapeMethod = JVM::VM::getStaticMethodId(env, colshapeEventClass, "onPlayerExitColshape", "(II)V");
 }
 
 void ColshapeEventHandler::OnPlayerEnterColshape(rage::IPlayer *player, rage::IColshape *colshape) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(colshapeEventClass, playerEnterColshapeMethod,
-                                               JVM::Converter::toJInt(player->GetId()),
-                                               JVM::Converter::toJInt(colshape->GetId()));
-    JVM::VM::checkForException();
+    JNIEnv *env = JVM::VM::attachCurrentThread();
+    env->CallStaticVoidMethod(colshapeEventClass, playerEnterColshapeMethod,
+                                               int(player->GetId()),
+                                               int(colshape->GetId()));
+    JVM::VM::checkForException(env);
 }
 
 void ColshapeEventHandler::OnPlayerExitColshape(rage::IPlayer *player, rage::IColshape *colshape) {
-    JVM::VM::getJNIEnv()->CallStaticVoidMethod(colshapeEventClass, playerExitColshapeMethod,
-                                               JVM::Converter::toJInt(player->GetId()),
-                                               JVM::Converter::toJInt(colshape->GetId()));
-    JVM::VM::checkForException();
+    JNIEnv *env = JVM::VM::attachCurrentThread();
+    env->CallStaticVoidMethod(colshapeEventClass, playerExitColshapeMethod,
+                                               int(player->GetId()),
+                                               int(colshape->GetId()));
+    JVM::VM::checkForException(env);
 }
 
 void ColshapeEventHandler::OnEntityCreated(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Colshape) {
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(colshapeEventClass, colshapeCreatedMethod,
-                                                   JVM::Converter::toJInt(entity->GetId()));
-        JVM::VM::checkForException();
+        JNIEnv *env = JVM::VM::attachCurrentThread();
+        env->CallStaticVoidMethod(colshapeEventClass, colshapeCreatedMethod,
+                                                   int(entity->GetId()));
+        JVM::VM::checkForException(env);
     }
 }
 
 void ColshapeEventHandler::OnEntityDestroyed(rage::IEntity *entity) {
     if(entity->GetType() == rage::entity_t::Colshape) {
-        JVM::VM::getJNIEnv()->CallStaticVoidMethod(colshapeEventClass, colshapeDestroyedMethod,
-                                                   JVM::Converter::toJInt(entity->GetId()));
-        JVM::VM::checkForException();
+        JNIEnv *env = JVM::VM::attachCurrentThread();
+        env->CallStaticVoidMethod(colshapeEventClass, colshapeDestroyedMethod,
+                                                   int(entity->GetId()));
+        JVM::VM::checkForException(env);
     }
 }

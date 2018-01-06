@@ -14,7 +14,7 @@
  * Get's a player from the player pool.
  * If the pool returns null for the player a JVM exception will be thrown
  */
-rage::IPlayer* Game::Player::getPlayerById(int playerId) {
+rage::IPlayer* Game::Player::getPlayerById(JNIEnv *env, int playerId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if(mp == nullptr) {
         return nullptr;
@@ -23,6 +23,6 @@ rage::IPlayer* Game::Player::getPlayerById(int playerId) {
     if(player) {
         return player;
     }
-    JVM::Exception::throwPlayerNotFoundException(playerId);
+    JVM::Exception::throwPlayerNotFoundException(env, playerId);
     return nullptr;
 }

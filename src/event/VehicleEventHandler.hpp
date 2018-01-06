@@ -16,7 +16,7 @@
 class VehicleEventHandler : public rage::IEventHandler, public rage::IVehicleHandler, public rage::IEntityHandler {
 public:
 
-    VehicleEventHandler();
+    VehicleEventHandler(JNIEnv *env);
 
     rage::IVehicleHandler *GetVehicleHandler() override {
         return this;

@@ -10,67 +10,49 @@
 
 #include "Converter.hpp"
 
-std::u16string JVM::Converter::toU16string(jstring input) {
-    const char *jStringMessage = VM::getJNIEnv()->GetStringUTFChars(input, nullptr);
-    std::u16string wstr = u"";
-    char16_t c16str[3] = u"\0";
-    mbstate_t mbs;
-    for (const auto &it: toString(input)) {
-        memset(&mbs, 0, sizeof(mbs));
-        memmove(c16str, u"\0\0\0", 3);
-        mbrtoc16(c16str, &it, 3, &mbs);
-        wstr.append(std::u16string(c16str));
-    }
-    return wstr;
-}
+//std::u16string JVM::Converter::toU16string(JNIEnv *env, jstring input) {
+//    const char *jStringMessage = VM::getJNIEnv()->GetStringUTFChars(input, nullptr);
+//    std::u16string wstr = u"";
+//    char16_t c16str[3] = u"\0";
+//    mbstate_t mbs;
+//    for (const auto &it: toString(input)) {
+//        memset(&mbs, 0, sizeof(mbs));
+//        memmove(c16str, u"\0\0\0", 3);
+//        mbrtoc16(c16str, &it, 3, &mbs);
+//        wstr.append(std::u16string(c16str));
+//    }
+//    return wstr;
+//}
 
-std::string JVM::Converter::toString(jstring input) {
-    const char *jStringMessage = VM::getJNIEnv()->GetStringUTFChars(input, nullptr);
+std::string JVM::Converter::toString(JNIEnv *env, jstring input) {
+    const char *jStringMessage = env->GetStringUTFChars(input, nullptr);
     std::string result(jStringMessage);
+    env->ReleaseStringUTFChars(input, jStringMessage);
     return result;
 }
 
-jstring JVM::Converter::toJString(std::u16string input) {
+jstring JVM::Converter::toJString(JNIEnv *env, std::u16string input) {
     std::wstring_convert<std::codecvt_utf8_utf16<int16_t>, int16_t> convert;
     auto p = reinterpret_cast<const int16_t *>(input.data());
     std::string convertedString = convert.to_bytes(p, p + input.size());
-    return VM::getJNIEnv()->NewStringUTF(convertedString.c_str());
+    return env->NewStringUTF(convertedString.c_str());
 }
 
-jstring JVM::Converter::toJString(std::string string) {
-    return VM::getJNIEnv()->NewStringUTF(string.c_str());
+jstring JVM::Converter::toJString(JNIEnv *env, std::string string) {
+    return env->NewStringUTF(string.c_str());
 }
 
-jstring JVM::Converter::toJString(const char *input) {
-    return VM::getJNIEnv()->NewStringUTF(input);
+jstring JVM::Converter::toJString(JNIEnv *env, const char *input) {
+    return env->NewStringUTF(input);
 }
 
-int JVM::Converter::toInt(jint input) {
-    return (int) input;
-}
-
-jint JVM::Converter::toJInt(int input) {
-    return (jint) input;
-}
-
-jint JVM::Converter::toJInt(uint32_t input) {
-    return (jint) input;
-}
-
-float JVM::Converter::toFloat(jfloat input) {
-    return (float) input;
-}
-
-jfloat JVM::Converter::toJFloat(float input) {
-    return (jfloat) input;
-}
-
-std::vector<int> JVM::Converter::toIntVector(jintArray array) {
+std::vector<int> JVM::Converter::toIntVector(JNIEnv *env, jintArray array) {
     std::vector<int> playerIds;
-    int length = JVM::VM::getJNIEnv()->GetArrayLength(array);
-    jint *body = JVM::VM::getJNIEnv()->GetIntArrayElements(array, nullptr);
+    int length = env->GetArrayLength(array);
+    jint *body = env->GetIntArrayElements(array, nullptr);
     for (int i = 0; i < length; i++) {
         playerIds.push_back(body[i]);
     }
+    env->ReleaseIntArrayElements(array, body, JNI_ABORT);
     return playerIds;
 }

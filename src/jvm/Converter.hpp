@@ -25,27 +25,17 @@ namespace JVM {
 
     class Converter {
     public:
-        static std::u16string toU16string(jstring input);
+//        static std::u16string toU16string(JNIEnv *env, jstring input);
 
-        static std::string toString(jstring input);
+        static std::string toString(JNIEnv *env, jstring input);
 
-        static jstring toJString(std::u16string input);
+        static jstring toJString(JNIEnv *env, std::u16string input);
 
-        static jstring toJString(const char *input);
+        static jstring toJString(JNIEnv *env, const char *input);
 
-        static jstring toJString(std::string string);
+        static jstring toJString(JNIEnv *env, std::string string);
 
-        static jint toJInt(int input);
-
-        static int toInt(jint input);
-
-        static jint toJInt(uint32_t input);
-
-        static jfloat toJFloat(float input);
-
-        static float toFloat(jfloat input);
-
-        static std::vector<int> toIntVector(jintArray array);
+        static std::vector<int> toIntVector(JNIEnv *env, jintArray array);
     };
 
 }

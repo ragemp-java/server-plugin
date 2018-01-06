@@ -38,20 +38,22 @@ namespace JVM {
     public:
         static bool create();
 
-        static JNIEnv *getJNIEnv();
-
         static JavaVM *getJVM();
 
-        static bool checkForException();
+        static bool checkForException(JNIEnv *env, bool detachAfterCheck = false);
 
-        static jclass getClass(std::string className);
+        static jclass getClass(JNIEnv *env, std::string className);
 
-        static jmethodID getMethodId(jclass jClass, std::string methodName, std::string methodSignature);
+        static jmethodID getMethodId(JNIEnv *env, jclass jClass, std::string methodName, std::string methodSignature);
 
-        static jmethodID getStaticMethodId(jclass jClass, std::string methodName, std::string methodSignature);
+        static jmethodID getStaticMethodId(JNIEnv *env, jclass jClass, std::string methodName, std::string methodSignature);
+
+        static JNIEnv *attachCurrentThread();
+
+        static void detachCurrentThread();
 
     private:
-        static bool findAndExecuteMain();
+        static bool findAndExecuteMain(JNIEnv *env);
 
         static bool createJVM();
 

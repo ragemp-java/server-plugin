@@ -17,6 +17,6 @@
 namespace Game {
     class Player {
     public:
-        static rage::IPlayer *getPlayerById(int playerId);
+        static rage::IPlayer *getPlayerById(JNIEnv *env, int playerId);
     };
 }

@@ -19,7 +19,7 @@
 class PlayerEventHandler : public rage::IEventHandler, public rage::IPlayerHandler, public rage::IEntityHandler
 {
 public:
-    PlayerEventHandler();
+    PlayerEventHandler(JNIEnv *env);
 
     rage::IPlayerHandler *GetPlayerHandler() override {
         return this;

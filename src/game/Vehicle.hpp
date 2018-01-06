@@ -18,6 +18,6 @@ namespace Game {
 
     class Vehicle {
     public:
-        static rage::IVehicle *getVehicleById(int vehicleId);
+        static rage::IVehicle *getVehicleById(JNIEnv *env, int vehicleId);
     };
 }

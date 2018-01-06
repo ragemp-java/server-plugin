@@ -17,13 +17,13 @@
 namespace JVM {
     class Object {
     public:
-        static void initialize();
+        static void initialize(JNIEnv *env);
 
-        static jobject vector3(float x, float y, float z);
-        static jobject playerHeadBlend(int shape, int skin, float shapeMix, float skinMix, float thirdMix);
-        static jobject rgbColor(int red, int green, int blue);
-        static jobject rgbaColor(int red, int green, int blue, int alpha);
+        static jobject vector3(JNIEnv *env, float x, float y, float z);
+        static jobject playerHeadBlend(JNIEnv *env, int shape, int skin, float shapeMix, float skinMix, float thirdMix);
+        static jobject rgbColor(JNIEnv *env, int red, int green, int blue);
+        static jobject rgbaColor(JNIEnv *env, int red, int green, int blue, int alpha);
 
-        static jobject intArrayList(std::vector<int> ids);
+        static jobject intArrayList(JNIEnv *env, std::vector<int> ids);
     };
 }

@@ -10,7 +10,7 @@
 
 #include "Vehicle.hpp"
 
-rage::IVehicle *Game::Vehicle::getVehicleById(int vehicleId) {
+rage::IVehicle *Game::Vehicle::getVehicleById(JNIEnv *env, int vehicleId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if (mp == nullptr) {
         return nullptr;
@@ -19,6 +19,6 @@ rage::IVehicle *Game::Vehicle::getVehicleById(int vehicleId) {
     if (vehicle) {
         return vehicle;
     }
-    JVM::Exception::throwVehicleNotFoundException(vehicleId);
+    JVM::Exception::throwVehicleNotFoundException(env, vehicleId);
     return nullptr;
 }

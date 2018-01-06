@@ -17,6 +17,6 @@
 namespace Game {
     class Checkpoint {
     public:
-        static rage::ICheckpoint *getCheckpointById(int checkpointId);
+        static rage::ICheckpoint *getCheckpointById(JNIEnv *env, int checkpointId);
     };
 }

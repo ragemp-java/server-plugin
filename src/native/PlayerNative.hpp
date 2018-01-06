@@ -313,6 +313,14 @@ JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_getPing
 
 /*
  * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getPacketLoss
+ * Signature: (I)F
+ */
+JNIEXPORT jfloat JNICALL Java_mp_rage_launcher_player_PlayerNative_getPacketLoss
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
  * Method:    getKickReason
  * Signature: (I)Ljava/lang/String;
  */
@@ -365,6 +373,30 @@ JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isLeavingVe
  * Signature: (I)Z
  */
 JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isClimbing
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    isOnLadder
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isOnLadder
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    isReloading
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isReloading
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    isInMelee
+ * Signature: (I)Z
+ */
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isInMelee
         (JNIEnv *, jclass, jint);
 
 /*
@@ -489,6 +521,78 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_updateHeadBlend
 
 /*
  * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getHeadOverlay
+ * Signature: (II)Lmp/rage/api/player/event/PlayerHeadOverlay;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_player_PlayerNative_getHeadOverlay
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    setHeadOverlay
+ * Signature: (IIIF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_setHeadOverlay
+        (JNIEnv *, jclass, jint, jint, jint, jfloat);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getCurrentWeapon
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_getCurrentWeapon
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    setCurrentWeapon
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_setCurrentWeapon
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getCurrentWeaponAmmo
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_getCurrentWeaponAmmo
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    setCurrentWeaponAmmo
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_setCurrentWeaponAmmo
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getWeaponAmmo
+ * Signature: (II)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_getWeaponAmmo
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    setWeaponAmmo
+ * Signature: (II)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_setWeaponAmmo
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getWeapons
+ * Signature: (I)Ljava/util/Map;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_player_PlayerNative_getWeapons
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
  * Method:    getWeapon
  * Signature: (I)I
  */
@@ -513,11 +617,187 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_giveWeapons
 
 /*
  * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    removeWeapon
+ * Signature: (III)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_removeWeapon
+        (JNIEnv *, jclass, jint, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    removeWeapons
+ * Signature: (ILjava/util/List;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_removeWeapons
+        (JNIEnv *, jclass, jint, jobject);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    removeAllWeapons
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_removeAllWeapons
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    isStreamed
+ * Signature: (II)Z
+ */
+JNIEXPORT jboolean JNICALL Java_mp_rage_launcher_player_PlayerNative_isStreamed
+        (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getStreamed
+ * Signature: (I)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_player_PlayerNative_getStreamed
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
  * Method:    getSerial
  * Signature: (I)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_mp_rage_launcher_player_PlayerNative_getSerial
         (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getSocialClubName
+ * Signature: (I)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_mp_rage_launcher_player_PlayerNative_getSocialClubName
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    removeObject
+ * Signature: (IIFFFF)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_removeObject
+        (JNIEnv *, jclass, jint, jint, jfloat, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    call
+ * Signature: (ILjava/lang/String;[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_call__ILjava_lang_String_2_3Ljava_lang_String_2
+        (JNIEnv *, jclass, jint, jstring, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    invoke
+ * Signature: (IJ[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_invoke__IJ_3Ljava_lang_String_2
+        (JNIEnv *, jclass, jint, jlong, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    length
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_length
+        (JNIEnv *, jclass);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    count
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_player_PlayerNative_count
+        (JNIEnv *, jclass);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getInRange
+ * Signature: (FFFFI)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_player_PlayerNative_getInRange
+        (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    getInDimension
+ * Signature: (I)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_player_PlayerNative_getInDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    broadcast
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_broadcast
+        (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    broadcastInRange
+ * Signature: (Ljava/lang/String;FFFFI)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_broadcastInRange
+        (JNIEnv *, jclass, jstring, jfloat, jfloat, jfloat, jfloat, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    broadcastInDimension
+ * Signature: (Ljava/lang/String;I)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_broadcastInDimension
+        (JNIEnv *, jclass, jstring, jint);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    call
+ * Signature: (Ljava/lang/String;[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_call__Ljava_lang_String_2_3Ljava_lang_String_2
+        (JNIEnv *, jclass, jstring, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    callInRange
+ * Signature: (FFFFILjava/lang/String;[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_callInRange
+        (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint, jstring, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    callInDimension
+ * Signature: (ILjava/lang/String;[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_callInDimension
+        (JNIEnv *, jclass, jint, jstring, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    invoke
+ * Signature: (J[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_invoke__J_3Ljava_lang_String_2
+        (JNIEnv *, jclass, jlong, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    invokeInRange
+ * Signature: (FFFFIJ[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_invokeInRange
+        (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint, jlong, jobjectArray);
+
+/*
+ * Class:     mp_rage_launcher_player_PlayerNative
+ * Method:    invokeInDimension
+ * Signature: (IJ[Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_mp_rage_launcher_player_PlayerNative_invokeInDimension
+        (JNIEnv *, jclass, jint, jlong, jobjectArray);
 
 #ifdef __cplusplus
 }

@@ -16,7 +16,7 @@
 class ColshapeEventHandler : public rage::IColshapeHandler, public rage::IEventHandler, public rage::IEntityHandler {
 public:
 
-    ColshapeEventHandler();
+    ColshapeEventHandler(JNIEnv *env);
 
     rage::IEntityHandler *GetEntityHandler() override {
         return this;

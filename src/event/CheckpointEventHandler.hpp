@@ -16,7 +16,7 @@
 
 class CheckpointEventHandler : public rage::ICheckpointHandler, public rage::IEventHandler, public rage::IEntityHandler {
 public:
-    CheckpointEventHandler();
+    CheckpointEventHandler(JNIEnv *env);
 
     rage::ICheckpointHandler *GetCheckpointHandler() override {
         return this;

@@ -10,7 +10,7 @@
 
 #include "Checkpoint.hpp"
 
-rage::ICheckpoint *Game::Checkpoint::getCheckpointById(int checkpointId) {
+rage::ICheckpoint *Game::Checkpoint::getCheckpointById(JNIEnv *env, int checkpointId) {
     rage::IMultiplayer *mp = RageJavaCore::getInstance().getMultiPlayer();
     if(mp == nullptr) {
         return nullptr;
@@ -19,6 +19,6 @@ rage::ICheckpoint *Game::Checkpoint::getCheckpointById(int checkpointId) {
     if(player) {
         return player;
     }
-    JVM::Exception::throwCheckpointNotFoundException(checkpointId);
+    JVM::Exception::throwCheckpointNotFoundException(env, checkpointId);
     return nullptr;
 }

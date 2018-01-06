@@ -113,14 +113,6 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_setAlph
 
 /*
  * Class:     mp_rage_launcher_checkpoint_CheckpointNative
- * Method:    create
- * Signature: (IFFFFFFFIIIIZI)I
- */
-JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_create
-        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jint, jint, jint, jint, jboolean, jint);
-
-/*
- * Class:     mp_rage_launcher_checkpoint_CheckpointNative
  * Method:    getColour
  * Signature: (I)Lmp/rage/api/color/RGBAColor;
  */
@@ -198,6 +190,46 @@ JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_showFor
  */
 JNIEXPORT void JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_hideFor
         (JNIEnv *, jclass, jint, jintArray);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    length
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_length
+        (JNIEnv *, jclass);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    count
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_count
+        (JNIEnv *, jclass);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    getInRange
+ * Signature: (FFFFI)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getInRange
+        (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat, jint);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    getInDimension
+ * Signature: (I)Ljava/util/List;
+ */
+JNIEXPORT jobject JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_getInDimension
+        (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     mp_rage_launcher_checkpoint_CheckpointNative
+ * Method:    create
+ * Signature: (IFFFFFFFIIIIZI)I
+ */
+JNIEXPORT jint JNICALL Java_mp_rage_launcher_checkpoint_CheckpointNative_create
+        (JNIEnv *, jclass, jint, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jint, jint, jint, jint, jboolean, jint);
 
 #ifdef __cplusplus
 }

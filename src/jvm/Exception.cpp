@@ -10,28 +10,37 @@
 
 #include "Exception.hpp"
 
-void JVM::Exception::throwNotImplementedException(std::string reason) {
-    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/NotImplementedException");
-    VM::getJNIEnv()->ThrowNew(clazz, reason.c_str());
+static jclass notImplementedExceptionClass;
+static jclass playerNotFoundExceptionClass;
+static jclass vehicleNotFoundExceptionClass;
+static jclass jniExecutionExceptionClass;
+static jclass checkpointNotFoundExceptionClass;
+
+void JVM::Exception::initialize(JNIEnv *env) {
+    notImplementedExceptionClass = JVM::VM::getClass(env, "mp/rage/api/exception/NotImplementedException");
+    jniExecutionExceptionClass = JVM::VM::getClass(env,"mp/rage/api/exception/JNIExecutionException");
+    playerNotFoundExceptionClass = JVM::VM::getClass(env,"mp/rage/api/exception/game/PlayerNotFoundException");
+    vehicleNotFoundExceptionClass = JVM::VM::getClass(env,"mp/rage/api/exception/game/VehicleNotFoundException");
+    checkpointNotFoundExceptionClass = JVM::VM::getClass(env,"mp/rage/api/exception/game/CheckpointNotFoundException");
 }
 
-void JVM::Exception::throwPlayerNotFoundException(int playerId) {
-    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/PlayerNotFoundException");
-    VM::getJNIEnv()->ThrowNew(clazz, std::to_string(playerId).c_str());
+void JVM::Exception::throwNotImplementedException(JNIEnv *env, std::string reason) {
+    env->ThrowNew(notImplementedExceptionClass, reason.c_str());
 }
 
-void JVM::Exception::throwVehicleNotFoundException(int vehicleId) {
-    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/VehicleNotFoundException");
-    VM::getJNIEnv()->ThrowNew(clazz, std::to_string(vehicleId).c_str());
+void JVM::Exception::throwPlayerNotFoundException(JNIEnv *env, int playerId) {
+    env->ThrowNew(playerNotFoundExceptionClass, std::to_string(playerId).c_str());
 }
 
-void JVM::Exception::throwJNIExecutionException(std::string reason) {
-    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/JNIExecutionException");
-    VM::getJNIEnv()->ThrowNew(clazz, reason.c_str());
+void JVM::Exception::throwVehicleNotFoundException(JNIEnv *env, int vehicleId) {
+    env->ThrowNew(vehicleNotFoundExceptionClass, std::to_string(vehicleId).c_str());
 }
 
-void JVM::Exception::throwCheckpointNotFoundException(int checkpointId) {
-    jclass clazz = VM::getJNIEnv()->FindClass("mp/game/plugin/java/api/exception/CheckpointNotFoundException");
-    VM::getJNIEnv()->ThrowNew(clazz, std::to_string(checkpointId).c_str());
+void JVM::Exception::throwJNIExecutionException(JNIEnv *env, std::string reason) {
+    env->ThrowNew(jniExecutionExceptionClass, reason.c_str());
+}
+
+void JVM::Exception::throwCheckpointNotFoundException(JNIEnv *env, int checkpointId) {
+    env->ThrowNew(checkpointNotFoundExceptionClass, std::to_string(checkpointId).c_str());
 }
 
