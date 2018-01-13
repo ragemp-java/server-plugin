@@ -81,25 +81,12 @@ bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
     std::string libraryPath = "-Djava.library.path=./plugin";
 
-    std::vector<char*> jvmOptions = readJVMConfiguration();
-    auto options = new JavaVMOption[jvmOptions.size() + 2];
-
-#if defined(WINDOWS)
-    options[0].optionString = const_cast<char *>("-Djava.class.path=./plugins/java-runtime-api-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;");
-#elif defined(LINUX)
-    options[0].optionString = const_cast<char *>("-Djava.class.path=plugins/java-runtime-api-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:";)
-#endif
-
-    options[1].optionString = const_cast<char *>("-Djava.library.path=./plugins");
-    for (unsigned int i = 0; i < jvmOptions.size(); i++)
-    {
-        std::cout << jvmOptions[i] << std::endl;
-        options[i + 2].optionString = jvmOptions[i];
-    }
+    auto inputConfiguration = readJVMConfiguration();
+    auto configuration = buildJVMConfiguration(inputConfiguration);
 
     vm_args.version = JNI_VERSION_1_8;
-    vm_args.options = options;
-    vm_args.nOptions = (jint) (jvmOptions.size() + 2);
+    vm_args.options = configuration;
+    vm_args.nOptions = (jint) (inputConfiguration.size() + 2);
     vm_args.ignoreUnrecognized = JNI_FALSE;
     JNIEnv *env;
     int res = JNI_CreateJavaVM(&javaVM, (void **) &env, &vm_args);
@@ -142,6 +129,24 @@ std::vector<char *> JVM::VM::readJVMConfiguration() {
         jvmOptions.push_back(jvmOption);
     }
     return jvmOptions;
+}
+
+JavaVMOption* JVM::VM::buildJVMConfiguration(std::vector<char*> jvmOptions) {
+    auto options = new JavaVMOption[jvmOptions.size() + 2];
+
+#if defined(WINDOWS)
+    options[0].optionString = const_cast<char *>("-Djava.class.path=./plugins/java-runtime-api-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;");
+#elif defined(LINUX)
+    options[0].optionString = const_cast<char *>("-Djava.class.path=plugins/java-runtime-api-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:";)
+#endif
+
+    options[1].optionString = const_cast<char *>("-Djava.library.path=./plugins");
+    for (unsigned int i = 0; i < jvmOptions.size(); i++)
+    {
+        std::cout << jvmOptions[i] << std::endl;
+        options[i + 2].optionString = jvmOptions[i];
+    }
+    return options;
 }
 
 jclass JVM::VM::getClass(JNIEnv *env, std::string className) {
