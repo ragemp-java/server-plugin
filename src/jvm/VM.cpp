@@ -79,46 +79,27 @@ bool JVM::VM::findAndExecuteMain(JNIEnv *env) {
 
 bool JVM::VM::createJVM() {
     JavaVMInitArgs vm_args;
-//    auto options = new JavaVMOption[3];
-
     std::string libraryPath = "-Djava.library.path=./plugin";
 
-    std::vector<char *> optionStrings;
-    std::ifstream optionStream("./jvm.txt", std::ifstream::in);
-    if (optionStream.is_open())
-    {
-        optionStrings.reserve(20);
-        while (optionStream.good())
-        {
-            auto option = new char[128];
-            optionStream.getline(option, 128);
-            auto p = option + strlen(option) - 1;
-            if (p >= option && *p == '\r') *p = 0;
-            if (strlen(option) < 1) continue;
-            optionStrings.push_back(option);
-        }
-        optionStream.close();
-    }
+    std::vector<char*> jvmOptions = readJVMConfiguration();
+    auto options = new JavaVMOption[jvmOptions.size() + 2];
 
-    auto options = new JavaVMOption[optionStrings.size() + 2];
 #if defined(WINDOWS)
-    options[0].optionString = "-Djava.class.path=./plugins/java-runtime-api-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;";
+    options[0].optionString = const_cast<char *>("-Djava.class.path=./plugins/java-runtime-api-1.0-SNAPSHOT.jar;./plugins/java-runtime-runtime-1.0-SNAPSHOT.jar;./plugins/java-runtime-launcher-1.0-SNAPSHOT.jar;");
 #elif defined(LINUX)
-    options[0].optionString = "-Djava.class.path=plugins/java-runtime-api-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:";
+    options[0].optionString = const_cast<char *>("-Djava.class.path=plugins/java-runtime-api-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:plugins/java-runtime-runtime-1.0-SNAPSHOT.jar:";)
 #endif
 
-    options[1].optionString = "-Djava.library.path=./plugins";
-    for (unsigned int i = 0; i < optionStrings.size(); i++)
+    options[1].optionString = const_cast<char *>("-Djava.library.path=./plugins");
+    for (unsigned int i = 0; i < jvmOptions.size(); i++)
     {
-        std::cout << optionStrings[i] << std::endl;
-        options[i + 2].optionString = optionStrings[i];
+        std::cout << jvmOptions[i] << std::endl;
+        options[i + 2].optionString = jvmOptions[i];
     }
 
-
-//    options[2].optionString = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -agentpath:'C:/Users/Fabian Jungwirth/Desktop/visualvm_14/profiler/lib/deployed/jdk16/windows-amd64/profilerinterface.dll'='C:\Users\Fabian Jungwirth\Desktop\visualvm_14\profiler\lib'5006";
     vm_args.version = JNI_VERSION_1_8;
     vm_args.options = options;
-    vm_args.nOptions = (jint) (optionStrings.size() + 2);
+    vm_args.nOptions = (jint) (jvmOptions.size() + 2);
     vm_args.ignoreUnrecognized = JNI_FALSE;
     JNIEnv *env;
     int res = JNI_CreateJavaVM(&javaVM, (void **) &env, &vm_args);
@@ -150,6 +131,17 @@ bool JVM::VM::createJVM() {
     } else {
         return true;
     }
+}
+
+std::vector<char *> JVM::VM::readJVMConfiguration() {
+    std::vector<char *> jvmOptions;
+    std::ifstream optionStream("./jvm.txt", std::ifstream::in);
+    while(optionStream.good()) {
+        auto jvmOption = new char[128];
+        optionStream.getline(jvmOption, 128);
+        jvmOptions.push_back(jvmOption);
+    }
+    return jvmOptions;
 }
 
 jclass JVM::VM::getClass(JNIEnv *env, std::string className) {

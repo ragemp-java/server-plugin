@@ -57,5 +57,6 @@ namespace JVM {
 
         static bool createJVM();
 
+        static std::vector<char *> readJVMConfiguration();
     };
 }
